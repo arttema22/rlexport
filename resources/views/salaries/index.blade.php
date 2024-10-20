@@ -14,7 +14,7 @@
     </x-slot>
 
     <x-section>
-        <x-card-main-white>
+        <x-cover-medium>
             <div class="w-full h-full overflow-x-auto">
                 <table class="w-full mt-4 text-left table-fixed min-w-max">
                     <thead>
@@ -83,8 +83,10 @@
                     </tbody>
                 </table>
             </div>
-        </x-card-main-white>
+        </x-cover-medium>
     </x-section>
+
+
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

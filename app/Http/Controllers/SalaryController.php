@@ -38,6 +38,8 @@ class SalaryController extends Controller
             'sum' => 'required',
             'comment' => 'string',
         ]);
+
+
         // создание модели данных
         $Salary = new Salary();
         // заполнение модели данными из формы
