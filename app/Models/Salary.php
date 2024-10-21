@@ -16,13 +16,15 @@ class Salary extends Model
     use HasFactory, SoftDeletes, HasChangeLog, MassPrunable;
 
     protected $fillable = [
-        'date',
+        'salary_date',
         'owner_id',
         'driver_id',
         'sum',
         'comment',
         'profit_id',
     ];
+
+    protected $dates = ['salary_date'];
 
     /**
      * owner
@@ -56,15 +58,26 @@ class Salary extends Model
     }
 
     /**
+     * Мутатор
+     * Преобразует дату в формат для базы.
+     * Формат лежит в config\app
+     */
+    // public function setDateAttribute($value)
+    // {
+    //     return Carbon::createFromTimestamp(strtotime($value))
+    //         ->format(config('app.date_format'));
+    // }
+
+    /**
      * Аксессор
      * Преобразует дату из базы в нужный формат.
      * Формат лежит в config\app
      */
-    public function getDateAttribute($value)
-    {
-        return Carbon::createFromTimestamp(strtotime($value))
-            ->format(config('app.date_format'));
-    }
+    // public function getSalaryDateAttribute($value)
+    // {
+    //     return Carbon::createFromTimestamp(strtotime($value))
+    //         ->format(config('app.date_full_format'));
+    // }
     public function getCreatedAtAttribute($value)
     {
         return Carbon::createFromTimestamp(strtotime($value))

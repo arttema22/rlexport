@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('business_trips', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->dateTime('date');
+            $table->timestamp('b_trip_date');
             $table->BigInteger('owner_id')->unsigned()->default(0);
             $table->BigInteger('driver_id')->unsigned();
             $table->foreign('driver_id')->references('id')->on('users');
             $table->float('sum', 9, 2);
             $table->string('comment')->nullable();
             $table->BigInteger('profit_id')->unsigned()->default(0);
+            $table->timestamps();
             $table->softDeletes();
         });
     }

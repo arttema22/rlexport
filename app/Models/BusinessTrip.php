@@ -15,13 +15,15 @@ class BusinessTrip extends Model
     use HasFactory, SoftDeletes, HasChangeLog, MassPrunable;
 
     protected $fillable = [
-        'date',
+        'b_trip_date',
         'owner_id',
         'driver_id',
         'sum',
         'comment',
         'profit_id',
     ];
+
+    protected $dates = ['b_trip_date'];
 
     /**
      * owner
@@ -41,6 +43,28 @@ class BusinessTrip extends Model
     public function driver()
     {
         return $this->belongsTo(MoonshineUser::class, 'driver_id', 'id');
+    }
+
+    /**
+     * setSumAttribute
+     *
+     * @param  mixed $value
+     * @return void
+     */
+    public function setSumAttribute($value)
+    {
+        $this->attributes['sum'] = round($value, 2);
+    }
+
+    public function getCreatedAtAttribute($value)
+    {
+        return Carbon::createFromTimestamp(strtotime($value))
+            ->format(config('app.date_full_format'));
+    }
+    public function getUpdatedAtAttribute($value)
+    {
+        return Carbon::createFromTimestamp(strtotime($value))
+            ->format(config('app.date_full_format'));
     }
 
     /**

@@ -1,49 +1,49 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Edit salary') }}
+            {{ __('Edit') }}
         </h2>
     </x-slot>
 
-    <x-card-main-white>
-        test
-    </x-card-main-white>
+    <x-section>
+        <x-cover-small>
+            <x-validation-errors class="mb-4" />
 
-    <x-new-data-card>
+            <form method="POST" action="{{ route('salary.update', $salary->id) }}">
+                @csrf
 
-        <x-validation-errors class="mb-4" />
+                <div>
+                    <x-label for="date" value="{{ __('Date') }}" />
+                    <x-input id="salary_date" class="block mt-1 w-full" type="date" name="salary_date"
+                        :value="old('salary_date', $salary->salary_date)" required autofocus
+                        autocomplete="salary_date" />
+                </div>
 
-        <form method="PUT" action="{{ route('salary.update', $salary->id) }}">
-            @csrf
+                <div class="mt-4">
+                    <x-label for="sum" value="{{ __('Sum') }}" />
+                    <x-input id="sum" class="block mt-1 w-full" type="number" min="10" max="1000000" step=".01"
+                        name="sum" :value="old('sum', $salary->sum)" required />
+                </div>
 
-            <div>
-                <x-label for="date" value="{{ __('Date') }}" />
-                <x-input id="date" class="block mt-1 w-full" type="date" name="date" :value="old('date', $salary->date)"
-                    required autofocus autocomplete="date" />
-            </div>
+                <div class="mt-4">
+                    <x-label for="comment" value="{{ __('Comment') }}" />
+                    <x-input id="comment" class="block mt-1 w-full" type="text" name="comment"
+                        :value="old('comment', $salary->comment)" />
+                </div>
 
-            <div class="mt-4">
-                <x-label for="sum" value="{{ __('Sum') }}" />
-                <x-input id="sum" class="block mt-1 w-full" type="number" min="10" max="1000000" step=".01" name="sum"
-                    :value="old('sum', $salary->sum)" required />
-            </div>
+                <x-buttons-group>
+                    <x-link href="{{ route('salary.index') }}">
+                        {{ __('Cancel') }}
+                    </x-link>
+                    <x-button class="ms-4">
+                        {{ __('Save') }}
+                    </x-button>
+                </x-buttons-group>
+            </form>
 
-            <div class="mt-4">
-                <x-label for="comment" value="{{ __('Comment') }}" />
-                <x-input id="comment" class="block mt-1 w-full" type="text" name="comment"
-                    :value="old('comment', $salary->comment)" />
-            </div>
+        </x-cover-small>
+    </x-section>
 
-            <x-buttons-group>
-                <x-link href="{{ route('salary.index') }}">
-                    {{ __('Cancel') }}
-                </x-link>
-                <x-button class="ms-4">
-                    {{ __('Save') }}
-                </x-button>
-            </x-buttons-group>
-        </form>
-    </x-new-data-card>
 </x-app-layout>
 
 {{--

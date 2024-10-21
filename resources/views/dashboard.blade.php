@@ -19,7 +19,7 @@
                             <div class="bg-white shadow-md rounded-lg p-6 flex flex-col items-center">
                                 <h2 class="text-gray-500 font-medium text-sm">{{__('Salaries')}}</h2>
                                 <p class="text-2xl font-bold">{{$SalariesCount}} / {{$SalariesSum}}</p>
-                                <span class="text-gray-400 text-sm mt-1">{{__('Count / Sum of Salaries.')}}</span>
+                                <span class="text-gray-400 text-sm mt-1">{{__('Count')}} / {{__('Sum')}}</span>
                             </div>
                             <!-- Refillings -->
                             <div class="bg-white shadow-md rounded-lg p-6 flex flex-col items-center">

@@ -18,11 +18,12 @@
                     <x-nav-link href="{{ route('salary.index') }}" :active="request()->routeIs(['salary*'])">
                         {{ __('Salaries') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('refillings') }}"
+                    <x-nav-link href="{{ route('refilling.index') }}"
                         :active="request()->routeIs(['refillings', 'refilling-new'])">
                         {{ __('Refillings') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('b-trips') }}" :active="request()->routeIs(['b-trips', 'b-trip-new'])">
+                    <x-nav-link href="{{ route('b-trip.index') }}"
+                        :active="request()->routeIs(['b-trips', 'b-trip-new'])">
                         {{ __('Business Trips') }}
                     </x-nav-link>
                 </div>
@@ -166,10 +167,10 @@
             <x-responsive-nav-link href="{{ route('salary.index') }}" :active="request()->routeIs('salary*')">
                 {{ __('Salaries') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link href="{{ route('refillings') }}" :active="request()->routeIs('refillings')">
+            <x-responsive-nav-link href="{{ route('refilling.index') }}" :active="request()->routeIs('refilling*')">
                 {{ __('Refillings') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link href="{{ route('b-trips') }}" :active="request()->routeIs('b-trips')">
+            <x-responsive-nav-link href="{{ route('b-trip.index') }}" :active="request()->routeIs('b-trip*')">
                 {{ __('Business Trips') }}
             </x-responsive-nav-link>
         </div>

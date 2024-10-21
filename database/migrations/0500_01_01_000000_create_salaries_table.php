@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('salaries', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('date');
+            $table->timestamp('salary_date');
             $table->BigInteger('owner_id')->unsigned()->default(0);
             $table->BigInteger('driver_id')->unsigned();
             $table->foreign('driver_id')->references('id')->on('users');

@@ -8,13 +8,14 @@
     <x-section>
         <x-cover-small>
             <x-validation-errors class="mb-4" />
+
             <form method="POST" action="{{ route('salary.store') }}">
                 @csrf
 
                 <div>
                     <x-label for="date" value="{{ __('Date') }}" />
-                    <x-input id="date" class="block mt-1 w-full" type="date" name="date" :value="old('date')" required
-                        autofocus autocomplete="date" />
+                    <x-input id="salary_date" class="block mt-1 w-full" type="date" name="salary_date"
+                        :value="date('Y-m-d')" required autofocus autocomplete="salary_date" />
                 </div>
 
                 <div class="mt-4">
@@ -38,6 +39,7 @@
                     </x-button>
                 </x-buttons-group>
             </form>
+
         </x-cover-small>
     </x-section>
 

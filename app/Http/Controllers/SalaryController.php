@@ -14,7 +14,7 @@ class SalaryController extends Controller
      */
     public function index()
     {
-        $Salaries = Salary::where('driver_id', Auth::user()->id)->get();
+        $Salaries = Salary::where('driver_id', Auth::user()->id)->orderByDesc('salary_date')->get();
 
         return view('salaries.index', ['Salaries' => $Salaries]);
     }
@@ -33,24 +33,22 @@ class SalaryController extends Controller
     public function store(Request $request)
     {
         // проверка введенных данных
-        $valid = $request->validate([
-            'date' => 'required|data',
+        $request->validate([
+            'salary_date' => 'required|date',
             'sum' => 'required',
-            'comment' => 'string',
+            'comment' => 'nullable|string',
         ]);
-
-
         // создание модели данных
         $Salary = new Salary();
         // заполнение модели данными из формы
         $Salary->driver_id = Auth::user()->id;
-        $Salary->date = $request->input('date');
+        $Salary->salary_date = $request->input('salary_date');
         $Salary->sum = $request->input('sum');
         $Salary->comment = $request->input('comment');
         // сохранение данных в базе
         $Salary->save();
-        // переход к странице списка
-        return redirect()->route('salary');
+        // Перенаправление с сообщением об успешном создании
+        return redirect()->route('salary.index')->with('success', __('Saiary save successfully!'));
     }
 
     /**
@@ -75,17 +73,15 @@ class SalaryController extends Controller
     public function update(Request $request, Salary $salary)
     {
         // Валидация входящих данных
-        $validatedData = $request->validate([
-            'data' => 'required|data',
+        $data = $request->validate([
+            'salary_date' => 'required|date',
             'sum' => 'required',
-            'comment' => 'string',
+            'comment' => 'nullable|string',
         ]);
-
         // Обновление данных модели
-        $salary->update($validatedData);
-
+        $salary->update($data);
         // Перенаправление с сообщением об успешном обновлении
-        return redirect()->route('salary')->with('success', __('Saiary updated successfully!'));
+        return redirect()->route('salary.index')->with('success', __('Saiary updated successfully!'));
     }
 
     /**
@@ -93,21 +89,13 @@ class SalaryController extends Controller
      */
     public function destroy(Salary $salary)
     {
-
-        dd($salary);
-
-        // Находим модель по ID
-        //        $model = Salary::find($salary->id);
-
-        // Проверяем, существует ли модель
-        if (!$salary) {
-            return Response::json(['message' => 'Post not found'], 404);
+        if ($salary) {
+            $salary->delete();
+            // Перенаправление с сообщением об успешном удалении
+            return redirect()->route('salary.index')->with('success', __('Saiary deleted!'));
+        } else {
+            // Перенаправление с сообщением об ошибке
+            return redirect()->route('salary.index')->with('error', __('Saiary not found!'));
         }
-
-        // Удаляем модель
-        $salary->delete();
-
-        // Возвращаем ответ с статусом 200 и сообщением о успехе
-        return Response::json(['message' => 'Post deleted successfully'], 200);
     }
 }
