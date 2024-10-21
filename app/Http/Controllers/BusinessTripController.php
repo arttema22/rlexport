@@ -13,9 +13,9 @@ class BusinessTripController extends Controller
      */
     public function index()
     {
-        $Btrips = BusinessTrip::where('driver_id', Auth::user()->id)->get();
+        $BusinessTrips = BusinessTrip::where('driver_id', Auth::user()->id)->orderByDesc('b_trip_date')->get();
 
-        return view('business-trips.index', ['Btrips' => $Btrips]);
+        return view('business-trips.index', ['BusinessTrips' => $BusinessTrips]);
     }
 
     /**
@@ -31,38 +31,70 @@ class BusinessTripController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // проверка введенных данных
+        $request->validate([
+            'b_trip_date' => 'required|date',
+            'sum' => 'required',
+            'comment' => 'nullable|string',
+        ]);
+        // создание модели данных
+        $Btrip = new BusinessTrip();
+        // заполнение модели данными из формы
+        $Btrip->driver_id = Auth::user()->id;
+        $Btrip->b_trip_date = $request->input('b_trip_date');
+        $Btrip->sum = $request->input('sum');
+        $Btrip->comment = $request->input('comment');
+        // сохранение данных в базе
+        $Btrip->save();
+        // Перенаправление с сообщением об успешном создании
+        return redirect()->route('b-trip.index')->with('success', __('Business Trip save successfully!'));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(BusinessTrip $businessTrip)
+    public function show(BusinessTrip $BusinessTrip)
     {
-        //
+        return view('business-trips.show', compact('BusinessTrip'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(BusinessTrip $businessTrip)
+    public function edit(BusinessTrip $BusinessTrip)
     {
-        //
+        return view('business-trips.edit', compact('BusinessTrip'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, BusinessTrip $businessTrip)
+    public function update(Request $request, BusinessTrip $BusinessTrip)
     {
-        //
+        // Валидация входящих данных
+        $data = $request->validate([
+            'b_trip_date' => 'required|date',
+            'sum' => 'required',
+            'comment' => 'nullable|string',
+        ]);
+        // Обновление данных модели
+        $BusinessTrip->update($data);
+        // Перенаправление с сообщением об успешном обновлении
+        return redirect()->route('b-trip.index')->with('success', __('Business Trip updated successfully!'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(BusinessTrip $businessTrip)
+    public function destroy(BusinessTrip $BusinessTrip)
     {
-        //
+        if ($BusinessTrip) {
+            $BusinessTrip->delete();
+            // Перенаправление с сообщением об успешном удалении
+            return redirect()->route('b-trip.index')->with('success', __('Business Trip deleted!'));
+        } else {
+            // Перенаправление с сообщением об ошибке
+            return redirect()->route('b-trip.index')->with('error', __('Business Trip not found!'));
+        }
     }
 }

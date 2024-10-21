@@ -9,7 +9,7 @@
         <x-cover-small>
             <x-validation-errors class="mb-4" />
 
-            <form method="POST" action="{{ route('salary.update', $salary->id) }}">
+            <form method="POST" action="{{ route('salary.update', $salary) }}">
                 @csrf
 
                 <div>

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Carbon;
 use App\Models\Sys\MoonshineUser;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -42,7 +43,7 @@ class BusinessTrip extends Model
      */
     public function driver()
     {
-        return $this->belongsTo(MoonshineUser::class, 'driver_id', 'id');
+        return $this->belongsTo(User::class, 'driver_id', 'id');
     }
 
     /**

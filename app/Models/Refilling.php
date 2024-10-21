@@ -2,26 +2,27 @@
 
 namespace App\Models;
 
-use App\Models\Dir\DirFuelCategory;
 use App\Models\Sys\Truck;
+use Illuminate\Support\Carbon;
 use App\Models\Dir\DirFuelType;
+use App\Models\Dir\DirFuelCategory;
 use MoonShine\Models\MoonshineUser;
 use App\Models\Dir\DirPetrolStation;
-use App\Models\Dir\DirPetrolStationBrand;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Dir\DirPetrolStationBrand;
 use Illuminate\Database\Eloquent\Builder;
 use MoonShine\ChangeLog\Traits\HasChangeLog;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\MassPrunable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Refilling extends Model
 {
     use HasFactory, SoftDeletes, HasChangeLog, MassPrunable;
 
     protected $fillable = [
-        'date',
+        'refilling_date',
         'owner_id',
         'driver_id',
         'volume',
@@ -37,8 +38,12 @@ class Refilling extends Model
         'profit_id',
     ];
 
+    protected $dates = ['refilling_date'];
+
     /**
+     * owner
      * Получить данные о создателе записи.
+     * @return void
      */
     public function owner()
     {
@@ -46,11 +51,13 @@ class Refilling extends Model
     }
 
     /**
+     * driver
      * Получить данные о водителе.
+     * @return void
      */
     public function driver()
     {
-        return $this->belongsTo(MoonshineUser::class, 'driver_id', 'id');
+        return $this->belongsTo(User::class, 'driver_id', 'id');
     }
 
     /**
@@ -99,6 +106,17 @@ class Refilling extends Model
     public function truck(): BelongsTo
     {
         return $this->belongsTo(Truck::class, 'truck_id', 'id');
+    }
+
+    public function getCreatedAtAttribute($value)
+    {
+        return Carbon::createFromTimestamp(strtotime($value))
+            ->format(config('app.date_full_format'));
+    }
+    public function getUpdatedAtAttribute($value)
+    {
+        return Carbon::createFromTimestamp(strtotime($value))
+            ->format(config('app.date_full_format'));
     }
 
     /**

@@ -13,8 +13,7 @@ class RefillingController extends Controller
      */
     public function index()
     {
-        $Refillings = Refilling::where('driver_id', Auth::user()->id)->get();
-
+        $Refillings = Refilling::where('driver_id', Auth::user()->id)->orderByDesc('refilling_date')->get();
         return view('refillings.index', ['Refillings' => $Refillings]);
     }
 

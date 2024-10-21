@@ -18,12 +18,10 @@
                     <x-nav-link href="{{ route('salary.index') }}" :active="request()->routeIs(['salary*'])">
                         {{ __('Salaries') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('refilling.index') }}"
-                        :active="request()->routeIs(['refillings', 'refilling-new'])">
+                    <x-nav-link href="{{ route('refilling.index') }}" :active="request()->routeIs(['refilling*'])">
                         {{ __('Refillings') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('b-trip.index') }}"
-                        :active="request()->routeIs(['b-trips', 'b-trip-new'])">
+                    <x-nav-link href="{{ route('b-trip.index') }}" :active="request()->routeIs(['b-trip*'])">
                         {{ __('Business Trips') }}
                     </x-nav-link>
                 </div>

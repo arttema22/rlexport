@@ -14,25 +14,51 @@
                     </h1>
 
                     <div class="mt-6 text-gray-500 leading-relaxed">
-                        <div class="flex gap-4">
+                        <div class="flex gap-4 flex-wrap">
                             <!-- Salaries -->
-                            <div class="bg-white shadow-md rounded-lg p-6 flex flex-col items-center">
-                                <h2 class="text-gray-500 font-medium text-sm">{{__('Salaries')}}</h2>
-                                <p class="text-2xl font-bold">{{$SalariesCount}} / {{$SalariesSum}}</p>
+                            <x-dashboard.card-dashboard>
+                                <x-dashboard.card-dashboard-title>
+                                    <a href="{{route('salary.index')}}">{{__('Salaries')}}</a>
+                                </x-dashboard.card-dashboard-title>
+                                <x-dashboard.card-dashboard-data>
+                                    {{$SalariesCount}} / {{$SalariesSum}}
+                                </x-dashboard.card-dashboard-data>
                                 <span class="text-gray-400 text-sm mt-1">{{__('Count')}} / {{__('Sum')}}</span>
-                            </div>
+                                <x-dashboard.card-dashboard-link href="{{route('salary.new')}}">
+                                    {{__('New')}}
+                                    <x-dashboard.card-dashboard-link-img />
+                                </x-dashboard.card-dashboard-link>
+                            </x-dashboard.card-dashboard>
+
                             <!-- Refillings -->
-                            <div class="bg-white shadow-md rounded-lg p-6 flex flex-col items-center">
-                                <h2 class="text-gray-500 font-medium text-sm">{{__('Refillings')}}</h2>
-                                <p class="text-2xl font-bold">{{$RefillingsCount}} / {{$RefillingsSum}}</p>
-                                <span class="text-gray-400 text-sm mt-1">{{__('Count / Sum of Refillings.')}}</span>
-                            </div>
+                            <x-dashboard.card-dashboard>
+                                <x-dashboard.card-dashboard-title>
+                                    <a href="{{route('refilling.index')}}">{{__('Refillings')}}</a>
+                                </x-dashboard.card-dashboard-title>
+                                <x-dashboard.card-dashboard-data>
+                                    {{$RefillingsCount}} / {{$RefillingsSum}}
+                                </x-dashboard.card-dashboard-data>
+                                <span class="text-gray-400 text-sm mt-1">{{__('Count')}} / {{__('Sum')}}</span>
+                                <x-dashboard.card-dashboard-link href="{{route('refilling.new')}}">
+                                    {{__('New')}}
+                                    <x-dashboard.card-dashboard-link-img />
+                                </x-dashboard.card-dashboard-link>
+                            </x-dashboard.card-dashboard>
+
                             <!-- Business Trips -->
-                            <div class="bg-white shadow-md rounded-lg p-6 flex flex-col items-center">
-                                <h2 class="text-gray-500 font-medium text-sm">{{ __('Business Trips') }}</h2>
-                                <p class="text-2xl font-bold">{{$BtripsCount}} / {{$BtripsSum}}</p>
-                                <span class="text-gray-400 text-sm mt-1">{{__('Count / Sum of Business Trips.')}}</span>
-                            </div>
+                            <x-dashboard.card-dashboard>
+                                <x-dashboard.card-dashboard-title>
+                                    <a href="{{route('b-trip.index')}}">{{ __('Business Trips') }}</a>
+                                </x-dashboard.card-dashboard-title>
+                                <x-dashboard.card-dashboard-data>
+                                    {{$BtripsCount}} / {{$BtripsSum}}
+                                </x-dashboard.card-dashboard-data>
+                                <span class="text-gray-400 text-sm mt-1">{{__('Count')}} / {{__('Sum')}}</span>
+                                <x-dashboard.card-dashboard-link href="{{route('b-trip.new')}}">
+                                    {{__('New')}}
+                                    <x-dashboard.card-dashboard-link-img />
+                                </x-dashboard.card-dashboard-link>
+                            </x-dashboard.card-dashboard>
                         </div>
                     </div>
                 </div>

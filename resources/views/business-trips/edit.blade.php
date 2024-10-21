@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('New refilling') }}
+            {{ __('Edit') }}
         </h2>
     </x-slot>
 
@@ -9,29 +9,30 @@
         <x-cover-small>
             <x-validation-errors class="mb-4" />
 
-            <form method="POST" action="{{ route('refilling.store') }}">
+            <form method="POST" action="{{ route('b-trip.update', $BusinessTrip) }}">
                 @csrf
 
                 <div>
                     <x-label for="date" value="{{ __('Date') }}" />
-                    <x-input id="refilling_date" class="block mt-1 w-full" type="date" name="refilling_date"
-                        :value="date('Y-m-d')" required autofocus autocomplete="refilling_date" />
+                    <x-input id="b_trip_date" class="block mt-1 w-full" type="date" name="b_trip_date"
+                        :value="old('b_trip_date', $BusinessTrip->b_trip_date)" required autofocus
+                        autocomplete="b_trip_date" />
                 </div>
 
                 <div class="mt-4">
                     <x-label for="sum" value="{{ __('Sum') }}" />
                     <x-input id="sum" class="block mt-1 w-full" type="number" min="10" max="1000000" step=".01"
-                        name="sum" :value="old('sum')" required />
+                        name="sum" :value="old('sum', $BusinessTrip->sum)" required />
                 </div>
 
                 <div class="mt-4">
                     <x-label for="comment" value="{{ __('Comment') }}" />
                     <x-input id="comment" class="block mt-1 w-full" type="text" name="comment"
-                        :value="old('comment')" />
+                        :value="old('comment', $BusinessTrip->comment)" />
                 </div>
 
                 <x-buttons-group>
-                    <x-link href="{{ route('refilling.index') }}">
+                    <x-link href="{{ route('b-trip.index') }}">
                         {{ __('Cancel') }}
                     </x-link>
                     <x-button class="ms-4">

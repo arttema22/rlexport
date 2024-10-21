@@ -1,4 +1,5 @@
 {
+    "Welcome to your Logist application!": "Добро пожаловать в приложение Логист!",
     "Register": "Регистрация",
     "Name": "Имя",
     "Email": "Электронная почта",
@@ -73,7 +74,6 @@
     "Keywords": "Ключевые слова",
     "Thumbnail": "Изображение",
     "Salaries": "Выплаты",
-    "List of all salaries.": "Список всех текущих выплат.",
     "New salary": "Новая выплата",
     "New": "Новая",
     "Count": "Количество",
@@ -94,6 +94,14 @@
     "Saiary updated successfully!": "Выплата успешно обновлена!",
     "Saiary deleted!": "Выплата удалена!",
     "Saiary not found!": "Выплата не найдена!",
+    "Business Trips": "Командировки",
+    "New business trip": "Новая командировка",
+    "Refillings": "Заправки",
+    "New refilling": "Новая заправка",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
     "": "",
     "": "",
     "": ""
