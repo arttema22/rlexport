@@ -47,7 +47,7 @@ class BusinessTripController extends Controller
         // сохранение данных в базе
         $Btrip->save();
         // Перенаправление с сообщением об успешном создании
-        return redirect()->route('b-trip.index')->with('success', __('Business Trip save successfully!'));
+        return redirect()->route('b-trip.index')->with('success', __('Business trip created successfully!'));
     }
 
     /**
@@ -80,7 +80,7 @@ class BusinessTripController extends Controller
         // Обновление данных модели
         $BusinessTrip->update($data);
         // Перенаправление с сообщением об успешном обновлении
-        return redirect()->route('b-trip.index')->with('success', __('Business Trip updated successfully!'));
+        return redirect()->route('b-trip.index')->with('success', __('Business trip updated successfully!'));
     }
 
     /**
@@ -91,10 +91,10 @@ class BusinessTripController extends Controller
         if ($BusinessTrip) {
             $BusinessTrip->delete();
             // Перенаправление с сообщением об успешном удалении
-            return redirect()->route('b-trip.index')->with('success', __('Business Trip deleted!'));
+            return redirect()->route('b-trip.index')->with('success', __('Business trip deleted!'));
         } else {
             // Перенаправление с сообщением об ошибке
-            return redirect()->route('b-trip.index')->with('error', __('Business Trip not found!'));
+            return redirect()->route('b-trip.index')->with('error', __('Business trip not found!'));
         }
     }
 }

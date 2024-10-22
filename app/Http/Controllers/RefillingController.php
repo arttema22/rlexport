@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dir\DirPetrolStation;
 use App\Models\Refilling;
+use App\Models\Sys\Truck;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,7 +24,12 @@ class RefillingController extends Controller
      */
     public function create()
     {
-        return view('refillings.create');
+        $Trucks = Truck::all();
+        $PetrolStations = DirPetrolStation::all();
+        return view('refillings.create', [
+            'PetrolStations' => $PetrolStations,
+            'Trucks' => $Trucks,
+        ]);
     }
 
     /**
@@ -31,40 +38,46 @@ class RefillingController extends Controller
     public function store(Request $request)
     {
         // проверка введенных данных
-        $valid = $request->validate([
-            'date' => 'required',
+        $request->validate([
+            'refilling_date' => 'required|date',
             'volume' => 'required',
             'price' => 'required',
+            'comment' => 'nullable|string',
         ]);
         // создание модели данных
         $Refilling = new Refilling();
         // заполнение модели данными из формы
         $Refilling->driver_id = Auth::user()->id;
-        $Refilling->date = $request->input('date');
+        $Refilling->refilling_date = $request->input('refilling_date');
         $Refilling->volume = $request->input('volume');
         $Refilling->price = $request->input('price');
-        $Refilling->sum = $request->input('sum');
+        $Refilling->sum = $Refilling->volume * $Refilling->price;
+        $Refilling->truck_id = $request->truck;
         $Refilling->comment = $request->input('comment');
         // сохранение данных в базе
         $Refilling->save();
         // переход к странице списка
-        return redirect()->route('refillings');
+        return redirect()->route('refilling.index')->with('success', __('Refilling created successfully!'));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Refilling $refilling)
+    public function show(Refilling $Refilling)
     {
-        //
+        return view('refillings.show', compact('Refilling'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Refilling $refilling)
+    public function edit(Refilling $Refilling)
     {
-        //
+        $Trucks = Truck::all();
+        return view('refillings.edit', [
+            'Refilling' => $Refilling,
+            'Trucks' => $Trucks
+        ]);
     }
 
     /**
@@ -72,7 +85,18 @@ class RefillingController extends Controller
      */
     public function update(Request $request, Refilling $refilling)
     {
-        //
+        // Валидация входящих данных
+        $data = $request->validate([
+            'refilling_date' => 'required|date',
+            'volume' => 'required',
+            'price' => 'required',
+            'sum' => 'required',
+            'comment' => 'nullable|string',
+        ]);
+        // Обновление данных модели
+        $refilling->update($data);
+        // Перенаправление с сообщением об успешном обновлении
+        return redirect()->route('refilling.index')->with('success', __('Refilling updated successfully!'));
     }
 
     /**
@@ -80,6 +104,13 @@ class RefillingController extends Controller
      */
     public function destroy(Refilling $refilling)
     {
-        //
+        if ($refilling) {
+            $refilling->delete();
+            // Перенаправление с сообщением об успешном удалении
+            return redirect()->route('refilling.index')->with('success', __('Refilling deleted!'));
+        } else {
+            // Перенаправление с сообщением об ошибке
+            return redirect()->route('refilling.index')->with('error', __('Refilling not found!'));
+        }
     }
 }

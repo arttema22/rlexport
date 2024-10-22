@@ -38,7 +38,7 @@ Route::middleware([
     Route::get('/refilling/new', [RefillingController::class, 'create'])->name('refilling.new');
     Route::post('/refilling/store', [RefillingController::class, 'store'])->name('refilling.store');
     Route::get('/refilling/{refilling}/show', [RefillingController::class, 'show'])->name('refilling.show');
-    Route::get('/rng/{refilling}/edit', [RefillingController::class, 'edit'])->name('refilling.edit');
+    Route::get('/refilling/{refilling}/edit', [RefillingController::class, 'edit'])->name('refilling.edit');
     Route::post('/refilling/{refilling}', [RefillingController::class, 'update'])->name('refilling.update');
     Route::delete('/refilling/{refilling}/destroy', [RefillingController::class, 'destroy'])->name('refilling.destroy');
 });

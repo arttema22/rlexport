@@ -47,7 +47,7 @@ class SalaryController extends Controller
         // сохранение данных в базе
         $Salary->save();
         // Перенаправление с сообщением об успешном создании
-        return redirect()->route('salary.index')->with('success', __('Saiary save successfully!'));
+        return redirect()->route('salary.index')->with('success', __('Saiary created successfully!'));
     }
 
     /**
