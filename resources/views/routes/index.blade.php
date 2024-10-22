@@ -2,9 +2,9 @@
     <x-slot name="header">
         <div class="flex justify-between">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Business Trips') }}
+                {{ __('Routes') }}
             </h2>
-            <x-link-button href="{{ route('b-trip.new') }}">
+            <x-link-button href="{{ route('route.new') }}">
                 {{ __('New') }}
             </x-link-button>
         </div>
@@ -23,22 +23,23 @@
                     <x-index.table-head-th></x-index.table-head-th>
                 </x-index.table-head>
                 <tbody>
-                    @foreach ( $BusinessTrips as $BusinessTrip )
+                    @foreach ( $Routes as $Route )
                     <tr>
-                        <x-index.table-td>{{$BusinessTrip->b_trip_date}}</x-index.table-td>
-                        <x-index.table-td>{{$BusinessTrip->sum}}</x-index.table-td>
-                        <x-index.table-td>{{$BusinessTrip->comment}}</x-index.table-td>
+                        <x-index.table-td>{{$Route->route_date}}</x-index.table-td>
+                        <x-index.table-td>{{$Route->sum}}</x-index.table-td>
+                        <x-index.table-td>{{$Route->comment}}</x-index.table-td>
                         <x-index.table-td>
                             <div class="inline-flex items-center rounded-md shadow-sm">
-                                <x-index.button-view href="{{ route('b-trip.show', $BusinessTrip) }}" />
-                                <x-index.button-edit href="{{ route('b-trip.edit', $BusinessTrip) }}" />
-                                <x-index.button-delete action="{{ route('b-trip.destroy', $BusinessTrip) }}" />
+                                <x-index.button-view href="{{ route('route.show', $Route) }}" />
+                                <x-index.button-edit href="{{ route('route.edit', $Route) }}" />
+                                <x-index.button-delete action="{{ route('route.destroy', $Route) }}" />
                             </div>
                         </x-index.table-td>
                     </tr>
                     @endforeach
                 </tbody>
             </x-index.table>
+
         </x-cover-medium>
     </x-section>
 

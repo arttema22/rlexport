@@ -15,6 +15,21 @@
 
                     <div class="mt-6 text-gray-500 leading-relaxed">
                         <div class="flex gap-4 flex-wrap">
+                            <!-- Routes -->
+                            <x-dashboard.card-dashboard>
+                                <x-dashboard.card-dashboard-title>
+                                    <a href="{{route('route.index')}}">{{__('Routes')}}</a>
+                                </x-dashboard.card-dashboard-title>
+                                <x-dashboard.card-dashboard-data>
+                                    {{$RoutesCount}} / {{$RoutesSum}}
+                                </x-dashboard.card-dashboard-data>
+                                <span class="text-gray-400 text-sm mt-1">{{__('Count')}} / {{__('Sum')}}</span>
+                                <x-dashboard.card-dashboard-link href="{{route('route.new')}}">
+                                    {{__('New')}}
+                                    <x-dashboard.card-dashboard-link-img />
+                                </x-dashboard.card-dashboard-link>
+                            </x-dashboard.card-dashboard>
+
                             <!-- Salaries -->
                             <x-dashboard.card-dashboard>
                                 <x-dashboard.card-dashboard-title>
@@ -48,7 +63,7 @@
                             <!-- Business Trips -->
                             <x-dashboard.card-dashboard>
                                 <x-dashboard.card-dashboard-title>
-                                    <a href="{{route('b-trip.index')}}">{{ __('Business Trips') }}</a>
+                                    <a href="{{route('b-trip.index')}}">{{__('Business Trips')}}</a>
                                 </x-dashboard.card-dashboard-title>
                                 <x-dashboard.card-dashboard-data>
                                     {{$BtripsCount}} / {{$BtripsSum}}
@@ -62,7 +77,76 @@
                         </div>
                     </div>
                 </div>
+
+
+                <div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8">
+                    <nav aria-label="Progress">
+                        <ol role="list" class="space-y-4 md:flex md:space-x-8 md:space-y-0">
+                            <li class="md:flex-1">
+                                <div
+                                    class="group flex flex-col border-l-4 border-black py-2 pl-4 hover:border-gray-300 md:border-l-0 md:border-t-4 md:pb-0 md:pl-0 md:pt-4">
+                                    <span
+                                        class="text-sm font-medium text-gray-500 group-hover:text-gray-700">saldo</span>
+                                    <span class="text-sm font-medium">saldo</span>
+                                </div>
+                            </li>
+
+                            <li class="md:flex-1">
+                                <div class="flex flex-col border-l-4 border-gray-300 py-2 pl-4 md:border-l-0 md:border-t-4 md:pb-0 md:pl-0 md:pt-4"
+                                    aria-current="step">
+                                    <span class="text-sm font-medium text-gray-600">{{__('Routes')}}</span>
+                                    <span class="text-sm font-medium">{{$RoutesSum}}</span>
+                                </div>
+                            </li>
+
+                            <li class="md:flex-1">
+                                <div class="flex flex-col border-l-4 border-gray-300 py-2 pl-4 md:border-l-0 md:border-t-4 md:pb-0 md:pl-0 md:pt-4"
+                                    aria-current="step">
+                                    <span class="text-sm font-medium text-gray-600">{{__('Salaries')}}</span>
+                                    <span class="text-sm font-medium">{{$SalariesSum}}</span>
+                                </div>
+                            </li>
+
+                            <li class="md:flex-1">
+                                <div class="flex flex-col border-l-4 border-gray-300 py-2 pl-4 md:border-l-0 md:border-t-4 md:pb-0 md:pl-0 md:pt-4"
+                                    aria-current="step">
+                                    <span class="text-sm font-medium text-gray-600">{{__('Refillings')}}</span>
+                                    <span class="text-sm font-medium">{{$RefillingsSum}}</span>
+                                </div>
+                            </li>
+
+                            <li class="md:flex-1">
+                                <div class="flex flex-col border-l-4 border-gray-300 py-2 pl-4 md:border-l-0 md:border-t-4 md:pb-0 md:pl-0 md:pt-4"
+                                    aria-current="step">
+                                    <span class="text-sm font-medium text-gray-600">{{__('Business Trips')}}</span>
+                                    <span class="text-sm font-medium">{{$BtripsSum}}</span>
+                                </div>
+                            </li>
+
+                            <li class="md:flex-1">
+                                <div
+                                    class="group flex flex-col border-l-4 border-red-600 py-2 pl-4 hover:border-red-800 md:border-l-0 md:border-t-4 md:pb-0 md:pl-0 md:pt-4">
+                                    <span
+                                        class="text-sm font-medium text-red-600 group-hover:text-red-800">{{__('Total')}}</span>
+                                    <span class="text-sm font-medium">{{$Total}}</span>
+                                </div>
+                            </li>
+
+                            <li class="md:flex-1">
+                                <div
+                                    class="group flex flex-col border-l-4 border-black py-2 pl-4 hover:border-gray-300 md:border-l-0 md:border-t-4 md:pb-0 md:pl-0 md:pt-4">
+                                    <span
+                                        class="text-sm font-medium text-gray-500 group-hover:text-gray-700">saldo</span>
+                                    <span class="text-sm font-medium">saldo</span>
+                                </div>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+
+
                 <x-welcome />
+
             </div>
         </div>
     </div>

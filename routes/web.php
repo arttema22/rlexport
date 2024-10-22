@@ -3,6 +3,7 @@
 use App\Http\Controllers\BusinessTripController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RefillingController;
+use App\Http\Controllers\RouteController;
 use App\Http\Controllers\SalaryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
@@ -41,4 +42,12 @@ Route::middleware([
     Route::get('/refilling/{refilling}/edit', [RefillingController::class, 'edit'])->name('refilling.edit');
     Route::post('/refilling/{refilling}', [RefillingController::class, 'update'])->name('refilling.update');
     Route::delete('/refilling/{refilling}/destroy', [RefillingController::class, 'destroy'])->name('refilling.destroy');
+
+    Route::get('/routes', [RouteController::class, 'index'])->name('route.index');
+    Route::get('/route/new', [RouteController::class, 'create'])->name('route.new');
+    Route::post('/route/store', [RouteController::class, 'store'])->name('route.store');
+    Route::get('/route/{route}/show', [RouteController::class, 'show'])->name('route.show');
+    Route::get('/route/{route}/edit', [RouteController::class, 'edit'])->name('route.edit');
+    Route::post('/route/{route}', [RouteController::class, 'update'])->name('route.update');
+    Route::delete('/route/{route}/destroy', [RouteController::class, 'destroy'])->name('route.destroy');
 });
