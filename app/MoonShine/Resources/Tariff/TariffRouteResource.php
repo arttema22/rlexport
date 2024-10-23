@@ -31,23 +31,13 @@ class TariffRouteResource extends MainResource
     public string $column = 'id';
 
     /**
-     * getAlias
-     * Устанавливает алиас для ресурса.
-     * @return string
-     */
-    public function getAlias(): ?string
-    {
-        return __('moonshine::tariff.resource_route_tariff');
-    }
-
-    /**
      * title
      * Устанавливает заголовок для ресурса.
      * @return string
      */
     public function title(): string
     {
-        return __('moonshine::tariff.routes');
+        return __('Routes');
     }
 
     /**

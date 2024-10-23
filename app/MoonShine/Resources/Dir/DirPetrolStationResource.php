@@ -22,27 +22,17 @@ class DirPetrolStationResource extends MainResource
     // Модель данных
     protected string $model = DirPetrolStation::class;
 
+    // Жадная загрузка
+    public array $with = ['petrolStationBrand'];
+
     // Поле сортировки по умолчанию
     protected string $sortColumn = 'address';
 
     // Тип сортировки по умолчанию
     protected string $sortDirection = 'ASC';
 
-    // Количество элементов на странице
-    protected int $itemsPerPage = 15;
-
     // Поле для отображения значений в связях и хлебных крошках
     public string $column = 'address';
-
-    /**
-     * getAlias
-     * Устанавливает алиас для ресурса.
-     * @return string
-     */
-    public function getAlias(): ?string
-    {
-        return __('moonshine::directory.resource_station');
-    }
 
     /**
      * title
@@ -51,18 +41,7 @@ class DirPetrolStationResource extends MainResource
      */
     public function title(): string
     {
-        return __('moonshine::directory.petrol_station');
-    }
-
-    /**
-     * query
-     *
-     * @return Builder
-     */
-    public function query(): Builder
-    {
-        return parent::query()
-            ->with('petrolStationBrand');
+        return __('Petrol station');
     }
 
     /**
@@ -104,7 +83,8 @@ class DirPetrolStationResource extends MainResource
     public function search(): array
     {
         return [
-            'address', 'petrolStationBrand.name'
+            'address',
+            'petrolStationBrand.name'
         ];
     }
 }

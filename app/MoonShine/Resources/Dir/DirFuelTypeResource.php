@@ -9,7 +9,6 @@ use App\Models\Dir\DirFuelType;
 use MoonShine\Resources\ModelResource;
 use Illuminate\Database\Eloquent\Model;
 use App\MoonShine\Resources\MainResource;
-use Illuminate\Database\Eloquent\Builder;
 use App\MoonShine\Pages\Dir\DirFuelType\DirFuelTypeFormPage;
 use App\MoonShine\Pages\Dir\DirFuelType\DirFuelTypeIndexPage;
 
@@ -22,6 +21,9 @@ class DirFuelTypeResource extends MainResource
     // Модель данных
     protected string $model = DirFuelType::class;
 
+    // Жадная загрузка
+    public array $with = ['fuelCategory'];
+
     // Поле сортировки по умолчанию
     protected string $sortColumn = 'name';
 
@@ -32,34 +34,13 @@ class DirFuelTypeResource extends MainResource
     public string $column = 'name';
 
     /**
-     * getAlias
-     * Устанавливает алиас для ресурса.
-     * @return string
-     */
-    public function getAlias(): ?string
-    {
-        return __('moonshine::directory.resource_fuel');
-    }
-
-    /**
      * title
      * Устанавливает заголовок для ресурса.
      * @return string
      */
     public function title(): string
     {
-        return __('moonshine::directory.fuels');
-    }
-
-    /**
-     * query
-     *
-     * @return Builder
-     */
-    public function query(): Builder
-    {
-        return parent::query()
-            ->with('fuelCategory');
+        return __('Fuels');
     }
 
     /**

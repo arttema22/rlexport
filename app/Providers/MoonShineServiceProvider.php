@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\Models\Sys\SetupIntegration;
 use Closure;
 use MoonShine\Pages\Page;
 use Illuminate\Http\Request;
@@ -98,9 +99,11 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
                 ->translatable('moonshine::profit'),
 
 
-            MenuGroup::make(static fn() => __('moonshine::ui.resource.system'), [
+            MenuGroup::make(static fn() => __('System'), [
                 MenuItem::make(__('Drivers'), new UserResource()),
                 MenuItem::make(__('Trucks'), new TruckResource()),
+                MenuItem::make(__('Integrations'), new SetupIntegrationResource()),
+
 
                 MenuItem::make(
                     static fn() => __('moonshine::system.role.roles'),
@@ -108,12 +111,6 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
                 ),
                 MenuItem::make('settings', new Settings())->icon('heroicons.cog-6-tooth')
                     ->translatable('moonshine::setup'),
-                MenuItem::make(
-                    static fn() => __('moonshine::integration.set_up'),
-                    new SetupIntegrationResource()
-                )->canSee(function (Request $request) {
-                    return $request->user('moonshine')?->moonshine_user_role_id == 1;
-                }),
             ]),
 
             MenuGroup::make(__('Directories'), [

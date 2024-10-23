@@ -25,6 +25,9 @@ class TariffServiceResource extends MainResource
     // Модель данных
     protected string $model = TariffService::class;
 
+    // Жадная загрузка
+    public array $with = ['service'];
+
     // Поле сортировки по умолчанию
     protected string $sortColumn = 'service_id';
 
@@ -47,33 +50,13 @@ class TariffServiceResource extends MainResource
     }
 
     /**
-     * getAlias
-     * Устанавливает алиас для ресурса.
-     * @return string
-     */
-    public function getAlias(): ?string
-    {
-        return __('moonshine::tariff.resource_service');
-    }
-
-    /**
      * title
      * Устанавливает заголовок для ресурса.
      * @return string
      */
     public function title(): string
     {
-        return __('moonshine::tariff.services');
-    }
-
-    /**
-     * query
-     *
-     * @return Builder
-     */
-    public function query(): Builder
-    {
-        return parent::query()->with('service');
+        return __('Services');
     }
 
     /**
@@ -114,7 +97,8 @@ class TariffServiceResource extends MainResource
     public function search(): array
     {
         return [
-            'service.name', 'price',
+            'service.name',
+            'price',
         ];
     }
 

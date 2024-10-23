@@ -31,23 +31,13 @@ class MoonShineUserRoleResource extends MainResource
     protected bool $isAsync = true;
 
     /**
-     * getAlias
-     * Устанавливает алиас для ресурса.
-     * @return string
-     */
-    public function getAlias(): ?string
-    {
-        return __('moonshine::system.role.resource_role');
-    }
-
-    /**
      * title
      * Устанавливает заголовок для ресурса.
      * @return string
      */
     public function title(): string
     {
-        return __('moonshine::system.role.roles');
+        return __('Roles');
     }
 
     /**

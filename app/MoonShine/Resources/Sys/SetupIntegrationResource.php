@@ -7,33 +7,22 @@ namespace App\MoonShine\Resources\Sys;
 use MoonShine\Fields\Url;
 use MoonShine\Fields\Json;
 use MoonShine\Fields\Text;
-use MoonShine\Enums\PageType;
 use MoonShine\Attributes\Icon;
 use MoonShine\Fields\Textarea;
-use App\Models\Sys\SetupIntegration;
 use MoonShine\Decorations\Block;
-use MoonShine\Handlers\ExportHandler;
-use MoonShine\Handlers\ImportHandler;
+use App\Models\Sys\SetupIntegration;
 use MoonShine\Resources\ModelResource;
 use Illuminate\Database\Eloquent\Model;
+use App\MoonShine\Resources\MainResource;
 
 /**
  * @extends ModelResource<SetupIntegration>
  */
 #[Icon('heroicons.outline.wrench-screwdriver')]
-class SetupIntegrationResource extends ModelResource
+class SetupIntegrationResource extends MainResource
 {
     // Модель данных
     protected string $model = SetupIntegration::class;
-
-    // Проверка прав доступа
-    protected bool $withPolicy = false;
-
-    // Редирект после сохранения
-    protected ?PageType $redirectAfterSave = PageType::INDEX;
-
-    // Редирект после удаления
-    protected ?PageType $redirectAfterDelete = PageType::INDEX;
 
     // Поле сортировки по умолчанию
     protected string $sortColumn = 'name';
@@ -41,25 +30,24 @@ class SetupIntegrationResource extends ModelResource
     // Тип сортировки по умолчанию
     protected string $sortDirection = 'ASC';
 
-    // Количество элементов на странице
-    protected int $itemsPerPage = 15;
-
     // Поле для отображения значений в связях и хлебных крошках
     public string $column = 'name';
 
+    /**
+     * title
+     * Устанавливает заголовок для ресурса.
+     * @return string
+     */
     public function title(): string
     {
-        return __('moonshine::integration.integrations');
+        return __('Integrations');
     }
 
-    // Разрешенные действия
-    public function getActiveActions(): array
-    {
-        return [
-            'create', 'update', 'delete'
-        ];
-    }
-
+    /**
+     * indexFields
+     *
+     * @return array
+     */
     public function indexFields(): array
     {
         return [
@@ -69,11 +57,16 @@ class SetupIntegrationResource extends ModelResource
             Text::make(
                 'help',
                 'help_api',
-                fn ($item) => '<a href="' . $item['help_api'] . '" target=_blank>link</a>'
+                fn($item) => '<a href="' . $item['help_api'] . '" target=_blank>link</a>'
             )->translatable('moonshine::integration.setup'),
         ];
     }
 
+    /**
+     * formFields
+     *
+     * @return array
+     */
     public function formFields(): array
     {
         return [
@@ -89,21 +82,17 @@ class SetupIntegrationResource extends ModelResource
         ];
     }
 
+    /**
+     * rules
+     * Правила проверки вводимых данных
+     * @param  mixed $item
+     * @return array
+     */
     public function rules(Model $item): array
     {
         return [
             'name' => ['required', 'string', 'min:3'],
             'url' => ['required', 'url'],
         ];
-    }
-
-    public function import(): ?ImportHandler
-    {
-        return null;
-    }
-
-    public function export(): ?ExportHandler
-    {
-        return null;
     }
 }

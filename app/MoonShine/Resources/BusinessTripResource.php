@@ -26,14 +26,14 @@ class BusinessTripResource extends MainResource
     // Модель данных
     protected string $model = BusinessTrip::class;
 
+    // Жадная загрузка
+    public array $with = ['driver'];
+
     // Поле сортировки по умолчанию
     protected string $sortColumn = 'b_trip_date';
 
     // Тип сортировки по умолчанию
     protected string $sortDirection = 'DESC';
-
-    // Количество элементов на странице
-    protected int $itemsPerPage = 30;
 
     // Поле для отображения значений в связях и хлебных крошках
     public string $column = 'b_trip_date';
@@ -46,16 +46,6 @@ class BusinessTripResource extends MainResource
     public function title(): string
     {
         return __('Business Trips');
-    }
-
-    /**
-     * query
-     *
-     * @return Builder
-     */
-    public function query(): Builder
-    {
-        return parent::query()->with('driver');
     }
 
     /**

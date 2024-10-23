@@ -7,18 +7,19 @@ namespace App\MoonShine\Resources;
 use App\Models\User;
 use MoonShine\Pages\Page;
 use MoonShine\Attributes\Icon;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 use MoonShine\Resources\ModelResource;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Validation\Rules\Password;
 use App\MoonShine\Pages\User\UserFormPage;
 use App\MoonShine\Pages\User\UserIndexPage;
-use Illuminate\Validation\Rule;
-use Illuminate\Validation\Rules\Password;
 
 /**
  * @extends ModelResource<User>
  */
 #[Icon('heroicons.outline.users')]
-class UserResource extends ModelResource
+class UserResource extends MainResource
 {
     // Модель данных
     protected string $model = User::class;
@@ -68,7 +69,30 @@ class UserResource extends ModelResource
         return [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($item->id)],
-            'password' => ['required', Password::min(8)->mixedCase()->numbers(), 'confirmed'],
+            'password' => [
+                'sometimes',
+                'nullable',
+                'bail',
+                'required',
+                Password::min(8)->mixedCase()->numbers(),
+                'confirmed'
+            ],
         ];
+    }
+
+    /**
+     * afterCreated
+     *
+     * @param  mixed $item
+     * @return Model
+     */
+    protected function afterCreated(Model $item): Model
+    {
+        // $profit = new Profit();
+        // $profit->owner_id = Auth::user()->id;
+        // $profit->title = 'Старт';
+        // $profit->comment = 'Начальная загрузка';
+        // $item->profits()->save($profit);
+        return $item;
     }
 }

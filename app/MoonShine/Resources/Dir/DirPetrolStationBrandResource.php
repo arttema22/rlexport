@@ -31,23 +31,13 @@ class DirPetrolStationBrandResource extends MainResource
     public string $column = 'name';
 
     /**
-     * getAlias
-     * Устанавливает алиас для ресурса.
-     * @return string
-     */
-    public function getAlias(): ?string
-    {
-        return __('moonshine::directory.resource_brand');
-    }
-
-    /**
      * title
      * Устанавливает заголовок для ресурса.
      * @return string
      */
     public function title(): string
     {
-        return __('moonshine::directory.petrol_station_brands');
+        return __('Petrol station brands');
     }
 
     /**

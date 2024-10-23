@@ -8,6 +8,7 @@ use Closure;
 use App\Models\Refilling;
 use MoonShine\Fields\Date;
 use MoonShine\Fields\Field;
+use MoonShine\Enums\PageType;
 use MoonShine\Attributes\Icon;
 use MoonShine\QueryTags\QueryTag;
 use Illuminate\Support\Facades\Auth;
@@ -30,14 +31,14 @@ class RefillingResource extends MainResource
     // Модель данных
     protected string $model = Refilling::class;
 
+    // Жадная загрузка
+    public array $with = ['driver'];
+
     // Поле сортировки по умолчанию
     protected string $sortColumn = 'refilling_date';
 
     // Тип сортировки по умолчанию
     protected string $sortDirection = 'DESC';
-
-    // Количество элементов на странице
-    protected int $itemsPerPage = 30;
 
     // Поле для отображения значений в связях и хлебных крошках
     public string $column = 'refilling_date';
@@ -50,16 +51,6 @@ class RefillingResource extends MainResource
     public function title(): string
     {
         return __('Refillings');
-    }
-
-    /**
-     * query
-     *
-     * @return Builder
-     */
-    public function query(): Builder
-    {
-        return parent::query()->with('driver');
     }
 
     /**

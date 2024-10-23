@@ -26,14 +26,14 @@ class SalaryResource extends MainResource
     // Модель данных
     protected string $model = Salary::class;
 
+    // Жадная загрузка
+    public array $with = ['driver'];
+
     // Поле сортировки по умолчанию
     protected string $sortColumn = 'salary_date';
 
     // Тип сортировки по умолчанию
     protected string $sortDirection = 'DESC';
-
-    // Количество элементов на странице
-    protected int $itemsPerPage = 30;
 
     // Поле для отображения значений в связях и хлебных крошках
     public string $column = 'salary_date';
@@ -46,16 +46,6 @@ class SalaryResource extends MainResource
     public function title(): string
     {
         return __('Salaries');
-    }
-
-    /**
-     * query
-     *
-     * @return Builder
-     */
-    public function query(): Builder
-    {
-        return parent::query()->with('driver');
     }
 
     /**

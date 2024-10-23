@@ -23,6 +23,9 @@ class ServiceResource extends MainResource
     // Модель данных
     protected string $model = Service::class;
 
+    // Жадная загрузка
+    public array $with = ['driver', 'service.tariff'];
+
     // Поле сортировки по умолчанию
     protected string $sortColumn = 'date';
 
@@ -40,22 +43,6 @@ class ServiceResource extends MainResource
     public function title(): string
     {
         return __('moonshine::service.services');
-    }
-
-    /**
-     * query
-     *
-     * @return Builder
-     */
-    public function query(): Builder
-    {
-        if (Auth::user()->moonshine_user_role_id == 3)
-            return parent::query()
-                ->where('driver_id', Auth::user()->id)
-                ->with('driver')
-                ->with('service.tariff');
-
-        return parent::query()->with('driver')->with('service.tariff');
     }
 
     /**

@@ -23,6 +23,9 @@ class DirServiceResource extends MainResource
     // Модель данных
     protected string $model = DirService::class;
 
+    // Жадная загрузка
+    public array $with = ['tariff'];
+
     // Поле сортировки по умолчанию
     protected string $sortColumn = 'name';
 
@@ -33,33 +36,13 @@ class DirServiceResource extends MainResource
     public string $column = 'name';
 
     /**
-     * getAlias
-     * Устанавливает алиас для ресурса.
-     * @return string
-     */
-    public function getAlias(): ?string
-    {
-        return __('moonshine::directory.resource_dir_service');
-    }
-
-    /**
      * title
      * Устанавливает заголовок для ресурса.
      * @return string
      */
     public function title(): string
     {
-        return __('moonshine::directory.services');
-    }
-
-    /**
-     * query
-     *
-     * @return Builder
-     */
-    public function query(): Builder
-    {
-        return parent::query()->with('tariff');
+        return __('Services');
     }
 
     /**

@@ -27,21 +27,8 @@ class DirRouteAddressResource extends MainResource
     // Тип сортировки по умолчанию
     protected string $sortDirection = 'ASC';
 
-    // Количество элементов на странице
-    protected int $itemsPerPage = 15;
-
     // Поле для отображения значений в связях и хлебных крошках
     public string $column = 'name';
-
-    /**
-     * getAlias
-     * Устанавливает алиас для ресурса.
-     * @return string
-     */
-    public function getAlias(): ?string
-    {
-        return __('moonshine::directory.resource_address');
-    }
 
     /**
      * title
@@ -50,7 +37,7 @@ class DirRouteAddressResource extends MainResource
      */
     public function title(): string
     {
-        return __('moonshine::directory.addresses');
+        return __('Addresses');
     }
 
     /**

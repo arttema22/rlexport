@@ -5,33 +5,49 @@ declare(strict_types=1);
 namespace App\MoonShine\Resources;
 
 use App\Models\Profit;
+use MoonShine\Attributes\Icon;
 use MoonShine\Resources\ModelResource;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
 use App\MoonShine\Pages\Profit\ProfitFormPage;
-
 use App\MoonShine\Pages\Profit\ProfitIndexPage;
 use App\MoonShine\Pages\Profit\ProfitDetailPage;
 
 /**
  * @extends ModelResource<Profit>
  */
-class ProfitResource extends ModelResource
+#[Icon('heroicons.outline.banknotes')]
+class ProfitResource extends MainResource
 {
+    // Модель данных
     protected string $model = Profit::class;
 
-    protected string $title = 'Profits';
+    // Жадная загрузка
+    public array $with = ['driver'];
+
+    // Поле сортировки по умолчанию
+    protected string $sortColumn = '';
+
+    // Тип сортировки по умолчанию
+    protected string $sortDirection = 'DESC';
+
+    // Поле для отображения значений в связях и хлебных крошках
+    public string $column = '';
 
     /**
-     * query
-     *
-     * @return Builder
+     * title
+     * Устанавливает заголовок для ресурса.
+     * @return string
      */
-    public function query(): Builder
+    public function title(): string
     {
-        return parent::query()->with('driver');
+        return __('Profits');
     }
 
+    /**
+     * pages
+     *
+     * @return array
+     */
     public function pages(): array
     {
         return [
@@ -45,6 +61,12 @@ class ProfitResource extends ModelResource
         ];
     }
 
+    /**
+     * rules
+     *
+     * @param  mixed $item
+     * @return array
+     */
     public function rules(Model $item): array
     {
         return [];

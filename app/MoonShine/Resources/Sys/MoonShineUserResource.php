@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Auth;
 use MoonShine\Resources\ModelResource;
 use Illuminate\Database\Eloquent\Model;
 use App\MoonShine\Resources\MainResource;
-use Illuminate\Database\Eloquent\Builder;
 use App\MoonShine\Pages\Sys\User\UserFormPage;
 use App\MoonShine\Pages\Sys\User\UserIndexPage;
 
@@ -25,6 +24,9 @@ class MoonShineUserResource extends MainResource
     // Модель данных
     public string $model = MoonshineUser::class;
 
+    // Жадная загрузка
+    public array $with = ['moonshineUserRole'];
+
     // Поле сортировки по умолчанию
     protected string $sortColumn = 'name';
 
@@ -34,18 +36,6 @@ class MoonShineUserResource extends MainResource
     // Поле для отображения значений в связях и хлебных крошках
     public string $column = 'name';
 
-    public array $with = ['moonshineUserRole'];
-
-    /**
-     * getAlias
-     * Устанавливает алиас для ресурса.
-     * @return string
-     */
-    public function getAlias(): ?string
-    {
-        return __('moonshine::system.user.resource_user');
-    }
-
     /**
      * title
      * Устанавливает заголовок для ресурса.
@@ -53,22 +43,7 @@ class MoonShineUserResource extends MainResource
      */
     public function title(): string
     {
-        return __('moonshine::system.user.users');
-    }
-
-    public function query(): Builder
-    {
-        if (Auth()->user()->moonshine_user_role_id == 1)
-            // SuperAdmin видит всех
-            return parent::query();
-        if (Auth()->user()->moonshine_user_role_id == 2)
-            // Admin видит только админов и водителей
-            return parent::query()
-                ->where('moonshine_user_role_id', '>=', 2);
-        // Остальные видят только водителей
-        return
-            parent::query()
-            ->where('moonshine_user_role_id', 3);
+        return __('Users');
     }
 
     /**
@@ -106,12 +81,6 @@ class MoonShineUserResource extends MainResource
                 'email',
                 Rule::unique('moonshine_users')->ignoreModel($item),
             ],
-            // 'phone' => [
-            //     'sometimes',
-            //     'bail',
-            //     'required',
-            //     Rule::unique('moonshine_users')->ignoreModel($item),
-            // ],
             'password' => $item->exists
                 ? 'sometimes|nullable|min:6|required_with:password_repeat|same:password_repeat'
                 : 'required|min:6|required_with:password_repeat|same:password_repeat',
@@ -128,21 +97,5 @@ class MoonShineUserResource extends MainResource
         return [
             'name',
         ];
-    }
-
-    /**
-     * afterCreated
-     *
-     * @param  mixed $item
-     * @return Model
-     */
-    protected function afterCreated(Model $item): Model
-    {
-        $profit = new Profit();
-        $profit->owner_id = Auth::user()->id;
-        $profit->title = 'Старт';
-        $profit->comment = 'Начальная загрузка';
-        $item->profits()->save($profit);
-        return $item;
     }
 }

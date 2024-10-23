@@ -9,7 +9,6 @@ use App\Models\Tariff\TariffDistance;
 use MoonShine\Resources\ModelResource;
 use Illuminate\Database\Eloquent\Model;
 use App\MoonShine\Resources\MainResource;
-use Illuminate\Database\Eloquent\Builder;
 use App\MoonShine\Pages\Tariff\TariffDistance\TariffDistanceFormPage;
 use App\MoonShine\Pages\Tariff\TariffDistance\TariffDistanceIndexPage;
 
@@ -21,6 +20,9 @@ class TariffDistanceResource extends MainResource
 {
     // Модель данных
     protected string $model = TariffDistance::class;
+
+    // Жадная загрузка
+    public array $with = ['truckType'];
 
     // Поле сортировки по умолчанию
     protected string $sortColumn = 'truck_type_id';
@@ -44,16 +46,6 @@ class TariffDistanceResource extends MainResource
     }
 
     /**
-     * getAlias
-     * Устанавливает алиас для ресурса.
-     * @return string
-     */
-    public function getAlias(): ?string
-    {
-        return __('moonshine::tariff.resource_distance');
-    }
-
-    /**
      * title
      * Устанавливает заголовок для ресурса.
      * @return string
@@ -61,16 +53,6 @@ class TariffDistanceResource extends MainResource
     public function title(): string
     {
         return __('Tariff by Distance');
-    }
-
-    /**
-     * query
-     *
-     * @return Builder
-     */
-    public function query(): Builder
-    {
-        return parent::query()->with('truckType');
     }
 
     /**

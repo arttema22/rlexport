@@ -27,6 +27,9 @@ class TruckResource extends MainResource
     // Модель данных
     protected string $model = Truck::class;
 
+    // Жадная загрузка
+    public array $with = ['brand', 'type', 'driver'];
+
     // Поле сортировки по умолчанию
     protected string $sortColumn = 'name';
 
@@ -37,33 +40,13 @@ class TruckResource extends MainResource
     public string $column = 'reg_num_ru';
 
     /**
-     * getAlias
-     * Устанавливает алиас для ресурса.
-     * @return string
-     */
-    public function getAlias(): ?string
-    {
-        return __('moonshine::system.truck.resource_truck');
-    }
-
-    /**
      * title
      * Устанавливает заголовок для ресурса.
      * @return string
      */
     public function title(): string
     {
-        return __('moonshine::system.truck.trucks');
-    }
-
-    /**
-     * query
-     *
-     * @return Builder
-     */
-    public function query(): Builder
-    {
-        return parent::query()->with('brand')->with('type')->with('driver');
+        return __('Trucks');
     }
 
     /**
@@ -125,8 +108,12 @@ class TruckResource extends MainResource
     public function search(): array
     {
         return [
-            'name', 'reg_num_ru', 'reg_num_en', 'brand.name',
-            'type.name', 'users.name'
+            'name',
+            'reg_num_ru',
+            'reg_num_en',
+            'brand.name',
+            'type.name',
+            'users.name'
         ];
     }
 
@@ -140,23 +127,23 @@ class TruckResource extends MainResource
         return [
             QueryTag::make(
                 __('moonshine::system.all'),
-                fn (Builder $query) => $query
+                fn(Builder $query) => $query
             )->default(),
             QueryTag::make(
                 'Щеповозы',
-                fn (Builder $query) => $query->where('type_id', 1)
+                fn(Builder $query) => $query->where('type_id', 1)
             ),
             QueryTag::make(
                 'Тенты',
-                fn (Builder $query) => $query->where('type_id', 2)
+                fn(Builder $query) => $query->where('type_id', 2)
             ),
             QueryTag::make(
                 'Лесовозы',
-                fn (Builder $query) => $query->where('type_id', 3)
+                fn(Builder $query) => $query->where('type_id', 3)
             ),
             QueryTag::make(
                 'Лесовозы-фишки',
-                fn (Builder $query) => $query->where('type_id', 4)
+                fn(Builder $query) => $query->where('type_id', 4)
             ),
         ];
     }

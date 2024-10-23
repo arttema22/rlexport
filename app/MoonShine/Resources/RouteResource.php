@@ -9,7 +9,6 @@ use MoonShine\Attributes\Icon;
 use Illuminate\Support\Facades\Auth;
 use MoonShine\Resources\ModelResource;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
 use App\MoonShine\Pages\Route\RouteFormPage;
 use App\MoonShine\Pages\Route\RouteIndexPage;
 use App\MoonShine\Pages\Route\RouteDetailPage;
@@ -23,6 +22,9 @@ class RouteResource extends MainResource
     // Модель данных
     protected string $model = Route::class;
 
+    // Жадная загрузка
+    public array $with = ['driver', 'cargo'];
+
     // Поле сортировки по умолчанию
     protected string $sortColumn = 'address_loading';
 
@@ -33,38 +35,13 @@ class RouteResource extends MainResource
     public string $column = 'address_loading';
 
     /**
-     * getAlias
-     * Устанавливает алиас для ресурса.
-     * @return string
-     */
-    public function getAlias(): ?string
-    {
-        return __('moonshine::route.resource_list');
-    }
-
-    /**
      * title
      * Устанавливает заголовок для ресурса.
      * @return string
      */
     public function title(): string
     {
-        return __('moonshine::route.routes');
-    }
-
-    /**
-     * query
-     *
-     * @return Builder
-     */
-    public function query(): Builder
-    {
-        if (Auth::user()->moonshine_user_role_id == 3)
-            return parent::query()
-                ->where('driver_id', Auth::user()->id)
-                ->with('driver')->with('cargo');
-
-        return parent::query()->with('driver')->with('cargo');
+        return __('Routes');
     }
 
     /**

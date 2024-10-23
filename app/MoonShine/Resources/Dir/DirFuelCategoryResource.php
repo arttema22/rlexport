@@ -31,23 +31,13 @@ class DirFuelCategoryResource extends MainResource
     public string $column = 'name';
 
     /**
-     * getAlias
-     * Устанавливает алиас для ресурса.
-     * @return string
-     */
-    public function getAlias(): ?string
-    {
-        return __('moonshine::directory.resource_fuel_cat');
-    }
-
-    /**
      * title
      * Устанавливает заголовок для ресурса.
      * @return string
      */
     public function title(): string
     {
-        return __('moonshine::directory.fuel_categories');
+        return __('Fuel categories');
     }
 
     /**
