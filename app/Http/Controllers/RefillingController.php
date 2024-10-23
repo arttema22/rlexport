@@ -16,7 +16,13 @@ class RefillingController extends Controller
     public function index()
     {
         $Refillings = Refilling::where('driver_id', Auth::user()->id)->orderByDesc('refilling_date')->get();
-        return view('refillings.index', ['Refillings' => $Refillings]);
+        $Archives = Refilling::onlyTrashed()->where('driver_id', Auth::user()->id)->where('profit_id', '!=', 0)
+            ->orderByDesc('refilling_date')->get();
+
+        return view('refillings.index', [
+            'Refillings' => $Refillings,
+            'Archives' => $Archives
+        ]);
     }
 
     /**

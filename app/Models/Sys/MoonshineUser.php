@@ -96,17 +96,6 @@ class MoonshineUser extends Authenticatable
     }
 
     /**
-     * salaries
-     *
-     * @return HasMany
-     * Получить все записи о выплатах
-     */
-    public function salaries(): HasMany
-    {
-        return $this->hasMany(Salary::class, 'driver_id');
-    }
-
-    /**
      * services
      *
      * @return HasMany
@@ -136,7 +125,7 @@ class MoonshineUser extends Authenticatable
     protected function email(): Attribute
     {
         return Attribute::make(
-            set: fn (string $value) => strtolower($value),
+            set: fn(string $value) => strtolower($value),
         );
     }
 }

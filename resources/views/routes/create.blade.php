@@ -20,7 +20,7 @@
 
                 @if($TruckTypes)
                 <div class="mt-4">
-                    <x-label for="truck" value="{{ __('Type') }}" />
+                    <x-label for="truck" value="{{ __('Truck type') }}" />
                     <x-form.select name="truck" class="block mt-1 w-full">
                         <option value="0">{{__('Type not selected')}}</option>
                         @foreach($TruckTypes as $Type)

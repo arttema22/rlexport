@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace App\MoonShine;
 
-use MoonShine\Components\Layout\{Content,
+use MoonShine\Components\Layout\{
+    Content,
     Flash,
     Footer,
     Header,
@@ -13,7 +14,8 @@ use MoonShine\Components\Layout\{Content,
     Menu,
     Profile,
     Search,
-    Sidebar};
+    Sidebar
+};
 use MoonShine\Components\When;
 use MoonShine\Contracts\MoonShineLayoutContract;
 
@@ -38,18 +40,18 @@ final class MoonShineLayout implements MoonShineLayoutContract
                 Footer::make()
                     ->copyright(fn(): string => sprintf(
                         <<<'HTML'
-                            &copy; 2021-%d Made with ❤️ by
-                            <a href="https://cutcode.dev"
+                            &copy; 2022-%d Made special for
+                            <a href="https://rlexport.ru"
                                 class="font-semibold text-primary hover:text-secondary"
                                 target="_blank"
                             >
-                                CutCode
+                                Region Les Export
                             </a>
                         HTML,
                         now()->year
                     ))
                     ->menu([
-                        'https://moonshine-laravel.com/docs' => 'Documentation',
+                        'https://moonshine-laravel.com/docs' => __('Documentation'),
                     ]),
             ])->customAttributes(['class' => 'layout-page']),
         ]);

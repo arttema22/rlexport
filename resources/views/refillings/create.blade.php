@@ -1,4 +1,5 @@
 <x-app-layout>
+
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('New refilling') }}
@@ -74,21 +75,21 @@
 
     <script>
         function calc() {
-                            return {
-                                sum: 0,
-                                volume: '',
-                                price: '',
-                                getVolume() {
-                                    return (this.volume === "") ? 0 : parseFloat(this.volume);
-                                },
-                                getPrice() {
-                                    return (this.price === "") ? 0 : parseFloat(this.price);
-                                },
-                                update_sum() {
-                                    this.sum = ((this.getVolume() * this.getPrice() )).toFixed(2);
-                                }
-                            }
-                        }
+            return {
+                sum: 0,
+                volume: '',
+                price: '',
+                getVolume() {
+                    return (this.volume === "") ? 0 : parseFloat(this.volume);
+                },
+                getPrice() {
+                    return (this.price === "") ? 0 : parseFloat(this.price);
+                },
+                update_sum() {
+                    this.sum = ((this.getVolume() * this.getPrice() )).toFixed(2);
+                }
+            }
+        }
     </script>
 
 </x-app-layout>

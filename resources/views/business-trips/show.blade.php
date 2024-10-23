@@ -1,4 +1,5 @@
 <x-app-layout>
+
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('View') }}
@@ -7,7 +8,6 @@
 
     <x-section>
         <x-cover-medium>
-
             <x-2-column-section>
 
                 <h3 class="mb-2 text-lg font-medium text-gray-900">{{ __('Main information') }}</h3>
@@ -26,7 +26,6 @@
                 <p>{{ $BusinessTrip->comment }}</p>
                 @endif
 
-
                 <x-slot name="additional">
                     <h3 class="mb-2 text-lg font-medium text-gray-900">{{ __('Additional information') }}</h3>
 
@@ -43,14 +42,17 @@
                         <span>{{ __('Driver') }}</span>
                         <span>{{ $BusinessTrip->driver->name }}</span>
                     </div>
+
                     <div class="flex justify-between">
                         <span>{{ __('Created') }}</span>
                         <span>{{ $BusinessTrip->created_at }}</span>
                     </div>
+
                     <div class="flex justify-between">
                         <span>{{ __('Updated') }}</span>
                         <span>{{ $BusinessTrip->updated_at }}</span>
                     </div>
+
                 </x-slot>
 
             </x-2-column-section>

@@ -14,8 +14,13 @@ class BusinessTripController extends Controller
     public function index()
     {
         $BusinessTrips = BusinessTrip::where('driver_id', Auth::user()->id)->orderByDesc('b_trip_date')->get();
+        $Archives = BusinessTrip::onlyTrashed()->where('driver_id', Auth::user()->id)->where('profit_id', '!=', 0)
+            ->orderByDesc('b_trip_date')->get();
 
-        return view('business-trips.index', ['BusinessTrips' => $BusinessTrips]);
+        return view('business-trips.index', [
+            'BusinessTrips' => $BusinessTrips,
+            'Archives' => $Archives
+        ]);
     }
 
     /**
@@ -33,8 +38,8 @@ class BusinessTripController extends Controller
     {
         // проверка введенных данных
         $request->validate([
-            'b_trip_date' => 'required|date',
-            'sum' => 'required',
+            'b_trip_date' => 'required|date|before_or_equal:today',
+            'sum' => 'required|decimal:0,2|min:10|max:9999999.99',
             'comment' => 'nullable|string',
         ]);
         // создание модели данных
@@ -73,8 +78,8 @@ class BusinessTripController extends Controller
     {
         // Валидация входящих данных
         $data = $request->validate([
-            'b_trip_date' => 'required|date',
-            'sum' => 'required',
+            'b_trip_date' => 'required|date|before_or_equal:today',
+            'sum' => 'required|decimal:0,2|min:10|max:9999999.99',
             'comment' => 'nullable|string',
         ]);
         // Обновление данных модели

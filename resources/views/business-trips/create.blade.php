@@ -1,4 +1,5 @@
 <x-app-layout>
+
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('New business trip') }}
@@ -31,7 +32,7 @@
                 </div>
 
                 <x-buttons-group>
-                    <x-link href="{{ route('salary.index') }}">
+                    <x-link href="{{ route('b-trip.index') }}">
                         {{ __('Cancel') }}
                     </x-link>
                     <x-button class="ms-4">

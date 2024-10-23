@@ -14,8 +14,13 @@ class SalaryController extends Controller
     public function index()
     {
         $Salaries = Salary::where('driver_id', Auth::user()->id)->orderByDesc('salary_date')->get();
+        $Archives = Salary::onlyTrashed()->where('driver_id', Auth::user()->id)->where('profit_id', '!=', 0)
+            ->orderByDesc('salary_date')->get();
 
-        return view('salaries.index', ['Salaries' => $Salaries]);
+        return view('salaries.index', [
+            'Salaries' => $Salaries,
+            'Archives' => $Archives
+        ]);
     }
 
     /**
@@ -33,8 +38,8 @@ class SalaryController extends Controller
     {
         // проверка введенных данных
         $request->validate([
-            'salary_date' => 'required|date',
-            'sum' => 'required',
+            'salary_date' => 'required|date|before_or_equal:today',
+            'sum' => 'required|decimal:0,2|min:10|max:9999999.99',
             'comment' => 'nullable|string',
         ]);
         // создание модели данных
@@ -73,8 +78,8 @@ class SalaryController extends Controller
     {
         // Валидация входящих данных
         $data = $request->validate([
-            'salary_date' => 'required|date',
-            'sum' => 'required',
+            'salary_date' => 'required|date|before_or_equal:today',
+            'sum' => 'required|decimal:0,2|min:10|max:9999999.99',
             'comment' => 'nullable|string',
         ]);
         // Обновление данных модели
