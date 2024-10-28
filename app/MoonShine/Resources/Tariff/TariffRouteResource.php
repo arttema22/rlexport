@@ -57,6 +57,12 @@ class TariffRouteResource extends MainResource
         ];
     }
 
+    /**
+     * rules
+     *
+     * @param  mixed $item
+     * @return array
+     */
     public function rules(Model $item): array
     {
         return [];

@@ -11,7 +11,6 @@ use App\Models\Tariff\TariffService;
 use MoonShine\Resources\ModelResource;
 use Illuminate\Database\Eloquent\Model;
 use App\MoonShine\Resources\MainResource;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\View\ComponentAttributeBag;
 use App\MoonShine\Pages\Tariff\TariffService\TariffServiceFormPage;
 use App\MoonShine\Pages\Tariff\TariffService\TariffServiceIndexPage;

@@ -114,41 +114,32 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
             ]),
 
             MenuGroup::make(__('Directories'), [
+                MenuItem::make(__('Cargos'), new DirCargoResource()),
+                MenuItem::make(__('Addresses'), new DirRouteAddressResource()),
+                MenuDivider::make(__('Trucks')),
                 MenuItem::make(__('Truck types'), new DirTruckTypeResource()),
-
-
-                MenuItem::make('addresses', new DirRouteAddressResource())
-                    ->translatable('moonshine::directory'),
-                MenuItem::make('services', new DirServiceResource())
-                    ->translatable('moonshine::directory'),
-                MenuItem::make('cargos', new DirCargoResource())
-                    ->translatable('moonshine::directory'),
-                MenuDivider::make('trucks')->translatable('moonshine::directory'),
-
-                // MenuGroup::make('trucks', [
-                //     MenuItem::make('brands', new DirTruckBrandResource())
-                //         ->translatable('moonshine::directory'),
-                // ])->translatable('moonshine::directory'),
-
-                MenuItem::make('brands', new DirTruckBrandResource())
-                    ->translatable('moonshine::directory'),
-                MenuDivider::make('petrol_station')->translatable('moonshine::directory'),
-                MenuItem::make('petrol_station_brands', new DirPetrolStationBrandResource())
-                    ->translatable('moonshine::directory'),
-                MenuItem::make('petrol_station', new DirPetrolStationResource())
-                    ->translatable('moonshine::directory'),
-                MenuItem::make('fuels', new DirFuelTypeResource())
-                    ->translatable('moonshine::directory'),
-                MenuItem::make('fuel_categories', new DirFuelCategoryResource())
-                    ->translatable('moonshine::directory'),
+                MenuItem::make(__('Brands'), new DirTruckBrandResource()),
+                MenuDivider::make(__('Petrol stations')),
+                MenuItem::make(__('Petrol stations'), new DirPetrolStationResource()),
+                MenuItem::make(__('Petrol station brands'), new DirPetrolStationBrandResource()),
+                MenuItem::make(__('Fuels'), new DirFuelTypeResource()),
+                MenuItem::make(__('Fuel categories'), new DirFuelCategoryResource()),
             ])->icon('heroicons.bars-3'),
+
+
+            //MenuItem::make('services', new DirServiceResource())
+            //    ->translatable('moonshine::directory'),
+            // MenuGroup::make('trucks', [
+            //     MenuItem::make('brands', new DirTruckBrandResource())
+            //         ->translatable('moonshine::directory'),
+            // ])->translatable('moonshine::directory'),
+
+
 
             MenuGroup::make(__('Tariffs'), [
                 MenuItem::make(__('Distance'), new TariffDistanceResource()),
-                MenuItem::make('routes', new TariffRouteResource())
-                    ->translatable('moonshine::tariff'),
-                MenuItem::make('services', new TariffServiceResource())
-                    ->translatable('moonshine::tariff'),
+                MenuItem::make(__('Routes'), new TariffRouteResource()),
+                MenuItem::make(__('Services'), new TariffServiceResource()),
             ])->icon('heroicons.circle-stack'),
 
             // MenuItem::make('help', 'https://github.com/arttema22/LogistRLE2/wiki', blank: true)

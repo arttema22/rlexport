@@ -32,8 +32,7 @@ class DirRouteAddressIndexPage extends IndexPage
     public function fields(): array
     {
         return [
-            Position::make(),
-            Text::make('name')->translatable('moonshine::directory'),
+            Text::make(__('Name'), 'name'),
         ];
     }
 

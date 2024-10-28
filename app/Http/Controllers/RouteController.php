@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dir\DirCargo;
+use App\Models\Dir\DirRouteAddress;
 use App\Models\Dir\DirTruckType;
 use App\Models\Route;
 use Illuminate\Http\Request;
@@ -27,9 +28,12 @@ class RouteController extends Controller
     {
         $TruckTypes = DirTruckType::all();
         $Cargo = DirCargo::all();
+        $RouteAddreses = DirRouteAddress::all();
+
         return view('routes.create', [
             'TruckTypes' => $TruckTypes,
-            'Cargo' => $Cargo
+            'Cargo' => $Cargo,
+            'RouteAddreses' => $RouteAddreses,
         ]);
     }
 

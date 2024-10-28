@@ -48,12 +48,12 @@ return new class extends Migration
             'password' => Hash::make('radswad0'),
         ]);
 
-        User::create([
-            'name' => 'Молчанов А.А.',
-            'e1_card' => '7005230017154060022',
-            'email' => 'sachamol75@gmail.com',
-            'password' => Hash::make('radswad0'),
-        ]);
+        // User::create([
+        //     'name' => 'Молчанов А.А.',
+        //     'e1_card' => '7005230017154060022',
+        //     'email' => 'sachamol75@gmail.com',
+        //     'password' => Hash::make('radswad0'),
+        // ]);
 
         User::create([
             'name' => 'Лукин В.В.',
@@ -126,12 +126,12 @@ return new class extends Migration
             'password' => Hash::make('radswad0'),
         ]);
 
-        User::create([
-            'name' => 'Молчанов А.А.',
-            'e1_card' => '7005230017154060113',
-            'email' => 'enter22866@gmail.com',
-            'password' => Hash::make('radswad0'),
-        ]);
+        // User::create([
+        //     'name' => 'Молчанов А.А.',
+        //     'e1_card' => '7005230017154060113',
+        //     'email' => 'enter22866@gmail.com',
+        //     'password' => Hash::make('radswad0'),
+        // ]);
 
         User::create([
             'name' => 'Вийдас В.Ю.',

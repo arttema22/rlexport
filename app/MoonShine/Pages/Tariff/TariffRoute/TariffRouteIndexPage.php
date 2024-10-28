@@ -11,15 +11,10 @@ use MoonShine\Pages\Crud\IndexPage;
 class TariffRouteIndexPage extends IndexPage
 {
     /**
-     * getAlias
-     * Устанавливает алиас для ресурса.
-     * @return string
+     * fields
+     *
+     * @return array
      */
-    public function getAlias(): ?string
-    {
-        return __('moonshine::tariff.resource_list');
-    }
-
     public function fields(): array
     {
         return [

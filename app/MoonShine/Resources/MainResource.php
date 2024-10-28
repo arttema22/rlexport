@@ -34,7 +34,10 @@ class MainResource extends ModelResource
     public function getActiveActions(): array
     {
         return [
-            'create', 'update', 'view', 'delete'
+            'create',
+            'update',
+            'view',
+            'delete'
         ];
     }
 
@@ -54,20 +57,20 @@ class MainResource extends ModelResource
      * Импорт данных
      * @return ImportHandler
      */
-    public function import(): ?ImportHandler
-    {
-        return null;
-    }
+    // public function import(): ?ImportHandler
+    // {
+    //     return null;
+    // }
 
     /**
      * export
      * Экспорт данных
      * @return ExportHandler
      */
-    public function export(): ?ExportHandler
-    {
-        return null;
-    }
+    // public function export(): ?ExportHandler
+    // {
+    //     return null;
+    // }
 
     /**
      * onBoot
