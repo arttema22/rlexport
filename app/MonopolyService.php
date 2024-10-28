@@ -2,9 +2,10 @@
 
 namespace App;
 
+use App\Models\User;
 use App\Models\Refilling;
-use App\Models\Sys\SetupIntegration;
 use MoonShine\Models\MoonshineUser;
+use App\Models\Sys\SetupIntegration;
 use Illuminate\Support\Facades\Http;
 use App\MoonShine\Controllers\IntegrationRefillingController;
 
@@ -20,6 +21,7 @@ class MonopolyService
     public function callAuth()
     {
         $data = SetupIntegration::find(2);
+
         $response = Http::asForm()->post(
             $data->url . '/api/v1/auth',
             [
@@ -27,6 +29,7 @@ class MonopolyService
                 'Password' => $data->password,
             ]
         )->json();
+
         if (isset($response)) {
             $data->update([
                 'access_token' => $response['access_token'],
@@ -83,11 +86,12 @@ class MonopolyService
                     $Truck = IntegrationRefillingController::getTruck($transaction['regNumber']);
 
                     // Если водитель с карточкой существует, то создается запись
-                    $driver = MoonshineUser::where('phone', $transaction['driverPhone'])
-                        ->where('moonshine_user_role_id', 3)->first();
+                    $driver = User::where('phone', $transaction['driverPhone'])
+                        ->first();
+                    echo '1 | ';
                     if ($driver) {
                         Refilling::create([
-                            'date' => date('Y-m-d', strtotime($transaction['refuelingDate'])),
+                            'refilling_date' => date('Y-m-d', strtotime($transaction['refuelingDate'])),
                             'owner_id' => 1,
                             'driver_id' => $driver->id,
                             'volume' => $transaction['refuelVolume'],

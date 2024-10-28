@@ -51,14 +51,8 @@ class SetupIntegrationResource extends MainResource
     public function indexFields(): array
     {
         return [
-            Text::make('name')
-                ->sortable()
-                ->translatable('moonshine::integration.setup'),
-            Text::make(
-                'help',
-                'help_api',
-                fn($item) => '<a href="' . $item['help_api'] . '" target=_blank>link</a>'
-            )->translatable('moonshine::integration.setup'),
+            Text::make(__('Name'), 'name')->sortable(),
+            Url::make(__('Help'), 'help_api')->title(fn() => str(__('Link')))->blank(),
         ];
     }
 

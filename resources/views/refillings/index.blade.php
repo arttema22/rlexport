@@ -25,16 +25,26 @@
                 </x-index.table-head>
                 <tbody>
                     @foreach ( $Refillings as $Refilling )
-                    <x-index.table-td>{{$Refilling->refilling_date}}</x-index.table-td>
-                    <x-index.table-td>{{$Refilling->sum}}</x-index.table-td>
-                    <x-index.table-td>{{$Refilling->comment}}</x-index.table-td>
-                    <x-index.table-td>
-                        <div class="inline-flex items-center rounded-md shadow-sm">
-                            <x-index.button-view href="{{ route('refilling.show', $Refilling) }}" />
-                            <x-index.button-edit href="{{ route('refilling.edit', $Refilling) }}" />
-                            <x-index.button-delete action="{{ route('refilling.destroy', $Refilling) }}" />
-                        </div>
-                    </x-index.table-td>
+                    <tr class="{{ $Refilling->integration_id == null ? 'bg-red-50' : 'bg-inherit' }}">
+                        <x-index.table-td>{{$Refilling->refilling_date}}</x-index.table-td>
+                        <x-index.table-td>{{$Refilling->volume}} л. <br>
+                            {{$Refilling->sum}} руб.
+                        </x-index.table-td>
+                        {{-- <x-index.table-td>{{$Refilling->petrolBrand->name}} <br>
+                            {{$Refilling->petrolStation->address}}
+                        </x-index.table-td> --}}
+                        <x-index.table-td>{{$Refilling->truck->reg_num_ru}}<br>
+                            {{$Refilling->truck->name}}
+                        </x-index.table-td>
+                        <x-index.table-td>
+                            @if ($Refilling->integration_id == null)
+                            <div class="inline-flex items-center rounded-md shadow-sm">
+                                <x-index.button-view href="{{ route('refilling.show', $Refilling) }}" />
+                                <x-index.button-edit href="{{ route('refilling.edit', $Refilling) }}" />
+                                <x-index.button-delete action="{{ route('refilling.destroy', $Refilling) }}" />
+                            </div>
+                            @endif
+                        </x-index.table-td>
                     </tr>
                     @endforeach
                 </tbody>

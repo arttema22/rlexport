@@ -2,11 +2,11 @@
 
 namespace App;
 
+use App\Models\User;
 use App\Models\Refilling;
 use App\Models\Sys\SetupIntegration;
-use App\MoonShine\Controllers\IntegrationRefillingController;
-use MoonShine\Models\MoonshineUser;
 use Illuminate\Support\Facades\Http;
+use App\MoonShine\Controllers\IntegrationRefillingController;
 
 class E1cardService
 {
@@ -20,6 +20,7 @@ class E1cardService
     public function callAuth()
     {
         $data = SetupIntegration::find(1);
+
         $response = Http::asForm()->post(
             $data->url . '/token',
             [
@@ -61,6 +62,7 @@ class E1cardService
 
         if (isset($response['transactions'])) {
             foreach ($response['transactions'] ?? [] as $transaction) {
+
                 if (!Refilling::where('integration_id', $transaction['UnID'])->exists()) {
 
                     // Получение ID типа топлива
@@ -83,12 +85,12 @@ class E1cardService
                     $Truck = IntegrationRefillingController::getTruck($transaction['auto']);
 
                     // Если водитель с карточкой существует, то создается запись
-                    $driver = MoonshineUser::where('e1_card', $transaction['card'])
-                        ->where('moonshine_user_role_id', 3)
+                    $driver = User::where('e1_card', $transaction['card'])
                         ->first();
+
                     if ($driver) {
                         Refilling::create([
-                            'date' => date('Y-m-d H:i', strtotime($transaction['date'])),
+                            'refilling_date' => date('Y-m-d H:i', strtotime($transaction['date'])),
                             'owner_id' => 1,
                             'driver_id' => $driver->id,
                             'volume' => $transaction['volume'],

@@ -21,16 +21,6 @@ use MoonShine\Components\FlexibleRender;
 class RefillingIndexPage extends IndexPage
 {
     /**
-     * getAlias
-     *
-     * @return string
-     */
-    public function getAlias(): ?string
-    {
-        return __('moonshine::refilling.index_page');
-    }
-
-    /**
      * fields
      *
      * @return array
@@ -38,33 +28,24 @@ class RefillingIndexPage extends IndexPage
     public function fields(): array
     {
         return [
-            Position::make(),
-            Date::make('date')->format('d.m.Y H:i')->sortable()
-                ->translatable('moonshine::refilling'),
+            Date::make(__('Date'), 'refilling_date')->format('d.m.Y H:i')->sortable(),
+            Text::make(__('Driver'), 'driver.name'),
+            StackFields::make(__('Refilling'))->fields([
+                Text::make('volume', 'volume', fn($item) => $item->volume . ' л.'),
+                Text::make('price', 'price', fn($item) => $item->price . ' р./л.'),
+                Text::make('sum', 'sum', fn($item) => $item->sum . ' руб.'),
+            ]),
 
-            Text::make('driver', 'driver.name')
-                ->when(
-                    Auth::user()->moonshine_user_role_id == 3,
-                    fn (Field $field) => $field->hideOnIndex()
-                )
-                ->translatable('moonshine::refilling'),
-
-            StackFields::make('refilling')->fields([
-                Text::make('volume', 'volume', fn ($item) => $item->volume . ' л.')->translatable('moonshine::refilling'),
-                Text::make('price', 'price', fn ($item) => $item->price . ' р./л.')->translatable('moonshine::refilling'),
-                Text::make('sum', 'sum', fn ($item) => $item->sum . ' руб.')->translatable('moonshine::refilling'),
-            ])->translatable('moonshine::refilling'),
-
-            StackFields::make('petrol_station')->fields([
+            StackFields::make(__('Petrol station'))->fields([
                 Text::make('petrolBrand.name'),
                 Text::make('petrolStation.address'),
                 Text::make('fuelCategory.name'),
-            ])->translatable('moonshine::refilling'),
+            ]),
 
-            StackFields::make('truck')->fields([
+            StackFields::make(__('Truck'))->fields([
                 Text::make('truck.name'),
                 Text::make('truck.reg_num_ru'),
-            ])->translatable('moonshine::refilling'),
+            ]),
         ];
     }
 

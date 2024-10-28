@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Dir\DirPetrolStation;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -20,6 +21,11 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+
+        DirPetrolStation::create([
+            'address' => 'Не определено',
+            'dir_petrol_station_brand_id' => 1,
+        ]);
     }
 
     /**
