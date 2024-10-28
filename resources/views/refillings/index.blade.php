@@ -18,6 +18,7 @@
         <x-cover-medium>
             <x-index.table>
                 <x-index.table-head>
+                    <x-index.table-head-th>#</x-index.table-head-th>
                     <x-index.table-head-th>{{__('Date')}}</x-index.table-head-th>
                     <x-index.table-head-th>{{__('Sum')}}</x-index.table-head-th>
                     <x-index.table-head-th>{{__('Comment')}}</x-index.table-head-th>
@@ -26,6 +27,7 @@
                 <tbody>
                     @foreach ( $Refillings as $Refilling )
                     <tr class="{{ $Refilling->integration_id == null ? 'bg-red-50' : 'bg-inherit' }}">
+                        <x-index.table-td>{{$loop->iteration}}</x-index.table-td>
                         <x-index.table-td>{{$Refilling->refilling_date}}</x-index.table-td>
                         <x-index.table-td>{{$Refilling->volume}} л. <br>
                             {{$Refilling->sum}} руб.
@@ -57,6 +59,7 @@
             <h3>{{__('Archive')}}</h3>
             <x-index.table>
                 <x-index.table-head>
+                    <x-index.table-head-th>#</x-index.table-head-th>
                     <x-index.table-head-th>{{__('Date')}}</x-index.table-head-th>
                     <x-index.table-head-th>{{__('Sum')}}</x-index.table-head-th>
                     <x-index.table-head-th>{{__('Comment')}}</x-index.table-head-th>
@@ -65,6 +68,7 @@
                 <tbody>
                     @foreach ( $Archives as $Archive )
                     <tr>
+                        <x-index.table-td>{{$loop->iteration}}</x-index.table-td>
                         <x-index.table-td>{{$Archive->refilling_date}}</x-index.table-td>
                         <x-index.table-td>{{$Archive->sum}}</x-index.table-td>
                         <x-index.table-td>{{$Archive->comment}}</x-index.table-td>

@@ -18,6 +18,7 @@
         <x-cover-medium>
             <x-index.table>
                 <x-index.table-head>
+                    <x-index.table-head-th>#</x-index.table-head-th>
                     <x-index.table-head-th>{{__('Date')}}</x-index.table-head-th>
                     <x-index.table-head-th>{{__('Sum')}}</x-index.table-head-th>
                     <x-index.table-head-th>{{__('Comment')}}</x-index.table-head-th>
@@ -26,6 +27,7 @@
                 <tbody>
                     @foreach ( $BusinessTrips as $BusinessTrip )
                     <tr>
+                        <x-index.table-td>{{$loop->iteration}}</x-index.table-td>
                         <x-index.table-td>{{$BusinessTrip->b_trip_date}}</x-index.table-td>
                         <x-index.table-td>{{$BusinessTrip->sum}}</x-index.table-td>
                         <x-index.table-td>{{$BusinessTrip->comment}}</x-index.table-td>
@@ -48,6 +50,7 @@
             <h3>{{__('Archive')}}</h3>
             <x-index.table>
                 <x-index.table-head>
+                    <x-index.table-head-th>#</x-index.table-head-th>
                     <x-index.table-head-th>{{__('Date')}}</x-index.table-head-th>
                     <x-index.table-head-th>{{__('Sum')}}</x-index.table-head-th>
                     <x-index.table-head-th>{{__('Comment')}}</x-index.table-head-th>
@@ -56,6 +59,7 @@
                 <tbody>
                     @foreach ( $Archives as $Archive )
                     <tr>
+                        <x-index.table-td>{{$loop->iteration}}</x-index.table-td>
                         <x-index.table-td>{{$Archive->b_trip_date}}</x-index.table-td>
                         <x-index.table-td>{{$Archive->sum}}</x-index.table-td>
                         <x-index.table-td>{{$Archive->comment}}</x-index.table-td>
