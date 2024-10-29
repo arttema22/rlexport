@@ -1,15 +1,18 @@
 <?php
 
-use App\Http\Controllers\BusinessTripController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\RefillingController;
+use App\Models\Salary;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\SalaryController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
-use App\Models\Salary;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\RefillingController;
+use App\Http\Controllers\BusinessTripController;
+use App\MoonShine\Controllers\SettingsController;
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+
+Route::post('setup/store', SettingsController::class)->name('settings.store');
 
 Route::middleware([
     'auth:sanctum',

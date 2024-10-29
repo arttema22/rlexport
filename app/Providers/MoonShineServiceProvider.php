@@ -109,8 +109,7 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
                     static fn() => __('moonshine::system.role.roles'),
                     new MoonShineUserRoleResource()
                 ),
-                MenuItem::make('settings', new Settings())->icon('heroicons.cog-6-tooth')
-                    ->translatable('moonshine::setup'),
+                MenuItem::make(__('Settings'), new Settings())->icon('heroicons.cog-6-tooth'),
             ]),
 
             MenuGroup::make(__('Directories'), [
