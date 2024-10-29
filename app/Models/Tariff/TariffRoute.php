@@ -15,6 +15,12 @@ class TariffRoute extends Model
 {
     use HasFactory, SoftDeletes, HasChangeLog, MassPrunable;
 
+    protected $fillable = [
+        'start_id',
+        'finish_id',
+        'length',
+        'price'
+    ];
     /**
      * start
      *

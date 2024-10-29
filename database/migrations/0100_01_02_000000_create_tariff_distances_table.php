@@ -43,9 +43,9 @@ return new class extends Migration
         TariffDistance::create([
             'truck_type_id' => 3,
             '0_15' => 5000,
-            '16_30' => 8000,
-            '31_60' => 8000,
-            '60_300' => 120,
+            '16_30' => 10000,
+            '31_60' => 10000,
+            '60_300' => 125,
             '300_00' => 120,
         ]);
         TariffDistance::create([
