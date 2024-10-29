@@ -8,7 +8,11 @@
 
                 <!-- header logo -->
                 <div class="header-logo">
-                    <h1 class="font-semibold text-black leading-relaxed"><a href="">RLExport</a></h1>
+                    {{-- <h1 class="font-semibold text-black leading-relaxed"><a href="">RLExport</a></h1> --}}
+
+                    <x-application-logo></x-application-logo>
+
+
                 </div>
 
                 <!-- mobile toggle -->
