@@ -8,7 +8,6 @@ use App\Models\Route;
 use MoonShine\Fields\Date;
 use MoonShine\Fields\Text;
 use MoonShine\Fields\Field;
-use Illuminate\Support\Number;
 use MoonShine\Fields\Position;
 use MoonShine\Components\Badge;
 use MoonShine\Decorations\Flex;
@@ -20,16 +19,6 @@ use MoonShine\Components\FlexibleRender;
 
 class RouteIndexPage extends IndexPage
 {
-    /**
-     * getAlias
-     *
-     * @return string
-     */
-    public function getAlias(): ?string
-    {
-        return __('moonshine::route.index_page');
-    }
-
     /**
      * fields
      *
@@ -44,7 +33,7 @@ class RouteIndexPage extends IndexPage
             Text::make('driver.name')
                 ->when(
                     Auth::user()->moonshine_user_role_id == 3,
-                    fn (Field $field) => $field->hideOnIndex()
+                    fn(Field $field) => $field->hideOnIndex()
                 )
                 ->translatable('moonshine::route'),
 
@@ -56,31 +45,6 @@ class RouteIndexPage extends IndexPage
             Text::make('cargo.name')->translatable('moonshine::route'),
 
             Text::make('number_trips')->translatable('moonshine::route'),
-        ];
-    }
-
-    /**
-     * topLayer
-     *
-     * @return array
-     */
-    protected function topLayer(): array
-    {
-        if (Auth::user()->moonshine_user_role_id == 3) {
-            // Водители
-            $query = Route::where('driver_id', Auth::user()->id)->get();
-        } else {
-            // Админы и менеджеры
-            $query = Route::all();
-        }
-        $count = $query->count();
-
-        return [
-            Flex::make([
-                FlexibleRender::make(__('moonshine::route.route_count') . ' ' . Badge::make(strval($count), 'info')),
-            ])->justifyAlign('center')->itemsAlign('center'),
-            Divider::make(),
-            ...parent::topLayer(),
         ];
     }
 }

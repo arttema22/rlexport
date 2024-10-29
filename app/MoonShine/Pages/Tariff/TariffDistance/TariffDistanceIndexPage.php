@@ -12,16 +12,6 @@ use MoonShine\Pages\Crud\IndexPage;
 class TariffDistanceIndexPage extends IndexPage
 {
     /**
-     * getAlias
-     * Устанавливает алиас для ресурса.
-     * @return string
-     */
-    public function getAlias(): ?string
-    {
-        return __('moonshine::tariff.resource_list');
-    }
-
-    /**
      * fields
      *
      * @return array
@@ -29,7 +19,6 @@ class TariffDistanceIndexPage extends IndexPage
     public function fields(): array
     {
         return [
-            Position::make(),
             Text::make(__('Type'), 'truckType.name'),
             Number::make(__('Up to 15 km'), '0_15')->badge('primary')->sortable(),
             Number::make(__('Up to 30 km'), '16_30')->badge('primary')->sortable(),

@@ -33,7 +33,7 @@ class Profit extends Model
      */
     public function driver(): BelongsTo
     {
-        return $this->belongsTo(MoonshineUser::class, 'driver_id');
+        return $this->belongsTo(User::class, 'driver_id');
     }
 
     /**
@@ -44,7 +44,7 @@ class Profit extends Model
     protected function saldo_start(): Attribute
     {
         return Attribute::make(
-            set: fn (string $value) => preg_replace('/[^0-9]/', '', $value),
+            set: fn(string $value) => preg_replace('/[^0-9]/', '', $value),
         );
     }
 

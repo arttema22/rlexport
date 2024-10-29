@@ -81,25 +81,6 @@ class TruckResource extends MainResource
         ];
     }
 
-
-    /**
-     * filters
-     *
-     * @return array
-     */
-    public function filters(): array
-    {
-        return [
-            Text::make('name', 'name')->translatable('moonshine::system.truck'),
-            BelongsTo::make('brand', 'brand', resource: new DirTruckBrandResource())
-                ->nullable()
-                ->translatable('moonshine::system.truck'),
-            BelongsTo::make('type', 'type', resource: new DirTruckTypeResource())
-                ->nullable()
-                ->translatable('moonshine::system.truck'),
-        ];
-    }
-
     /**
      * search
      * Поля для поиска
@@ -114,37 +95,6 @@ class TruckResource extends MainResource
             'brand.name',
             'type.name',
             'users.name'
-        ];
-    }
-
-    /**
-     * queryTags
-     *
-     * @return array
-     */
-    public function queryTags(): array
-    {
-        return [
-            QueryTag::make(
-                __('moonshine::system.all'),
-                fn(Builder $query) => $query
-            )->default(),
-            QueryTag::make(
-                'Щеповозы',
-                fn(Builder $query) => $query->where('type_id', 1)
-            ),
-            QueryTag::make(
-                'Тенты',
-                fn(Builder $query) => $query->where('type_id', 2)
-            ),
-            QueryTag::make(
-                'Лесовозы',
-                fn(Builder $query) => $query->where('type_id', 3)
-            ),
-            QueryTag::make(
-                'Лесовозы-фишки',
-                fn(Builder $query) => $query->where('type_id', 4)
-            ),
         ];
     }
 }

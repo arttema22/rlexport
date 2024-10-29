@@ -33,7 +33,7 @@ return new class extends Migration
             'moonshine_user_role_id' => 1,
             'email' => '9268188@mail.ru ',
             'password' => Hash::make('1234qwerQWER'),
-            'name' => 'system',
+            'name' => 'System',
         ]);
 
         MoonshineUser::create([

@@ -4,13 +4,10 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Resources\Sys;
 
-use App\Models\Profit;
 use MoonShine\Attributes\Icon;
 use Illuminate\Validation\Rule;
 use App\Models\Sys\MoonshineUser;
-use Illuminate\Support\Facades\Auth;
 use MoonShine\Resources\ModelResource;
-use Illuminate\Database\Eloquent\Model;
 use App\MoonShine\Resources\MainResource;
 use App\MoonShine\Pages\Sys\User\UserFormPage;
 use App\MoonShine\Pages\Sys\User\UserIndexPage;
@@ -43,7 +40,7 @@ class MoonShineUserResource extends MainResource
      */
     public function title(): string
     {
-        return __('Users');
+        return __('Administrators');
     }
 
     /**

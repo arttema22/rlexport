@@ -42,7 +42,7 @@ class ServiceResource extends MainResource
      */
     public function title(): string
     {
-        return __('moonshine::service.services');
+        return __('Services');
     }
 
     /**

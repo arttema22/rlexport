@@ -6,23 +6,12 @@ namespace App\MoonShine\Pages\Sys\User;
 
 use MoonShine\Fields\Text;
 use MoonShine\Enums\JsEvent;
-use MoonShine\Fields\Position;
 use MoonShine\Support\AlpineJs;
 use MoonShine\Pages\Crud\IndexPage;
 use MoonShine\ActionButtons\ActionButton;
 
 class UserIndexPage extends IndexPage
 {
-    /**
-     * getAlias
-     * Устанавливает алиас для ресурса.
-     * @return string
-     */
-    public function getAlias(): ?string
-    {
-        return __('moonshine::system.resource_list');
-    }
-
     /**
      * fields
      *
@@ -31,10 +20,8 @@ class UserIndexPage extends IndexPage
     public function fields(): array
     {
         return [
-            Position::make(),
-            Text::make('name', 'name')
-                ->translatable('moonshine::system.user'),
-            Text::make('role', 'moonshineUserRole.name')->badge('purple')->translatable('moonshine::system.user'),
+            Text::make(__('Name'), 'name'),
+            Text::make(__('Role'), 'moonshineUserRole.name')->badge('purple'),
         ];
     }
 

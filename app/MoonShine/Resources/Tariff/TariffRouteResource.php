@@ -21,6 +21,9 @@ class TariffRouteResource extends MainResource
     // Модель данных
     protected string $model = TariffRoute::class;
 
+    // Жадная загрузка
+    public array $with = ['start', 'finish'];
+
     // Поле сортировки по умолчанию
     protected string $sortColumn = 'id';
 

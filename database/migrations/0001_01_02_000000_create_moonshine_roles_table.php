@@ -19,15 +19,11 @@ return new class extends Migration
         });
 
         MoonshineUserRole::create([
-            'name' => 'Admin',
+            'name' => 'Система',
         ]);
 
         MoonshineUserRole::create([
             'name' => 'Администратор'
-        ]);
-
-        MoonshineUserRole::create([
-            'name' => 'Наблюдатель'
         ]);
     }
 

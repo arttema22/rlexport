@@ -15,16 +15,6 @@ use MoonShine\Pages\Crud\IndexPage;
 class DirFuelCategoryIndexPage extends IndexPage
 {
     /**
-     * getAlias
-     * Устанавливает алиас для ресурса.
-     * @return string
-     */
-    public function getAlias(): ?string
-    {
-        return __('moonshine::directory.resource_list');
-    }
-
-    /**
      * fields
      *
      * @return array
@@ -32,29 +22,7 @@ class DirFuelCategoryIndexPage extends IndexPage
     public function fields(): array
     {
         return [
-            Position::make(),
-            Text::make('name')->sortable()->translatable('moonshine::ui'),
-        ];
-    }
-
-    /**
-     * mainLayer
-     *
-     * @return array
-     */
-    protected function mainLayer(): array
-    {
-        return [
-            Grid::make([
-                Column::make([
-                    Block::make([
-                        ...parent::mainLayer()
-                    ]),
-                ])->columnSpan(6),
-                Column::make([
-                    Heading::make('Категории нужны для распределения по ним типов горючего.'),
-                ])->columnSpan(6),
-            ]),
+            Text::make(__('Name'), 'name')->sortable(),
         ];
     }
 }

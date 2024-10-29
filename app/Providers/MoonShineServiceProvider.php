@@ -4,16 +4,14 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use App\Models\Sys\SetupIntegration;
 use Closure;
 use MoonShine\Pages\Page;
-use Illuminate\Http\Request;
 use MoonShine\Menu\MenuItem;
 use MoonShine\Menu\MenuGroup;
-use App\MoonShine\Pages\Profit;
 use MoonShine\Menu\MenuDivider;
 use MoonShine\Menu\MenuElement;
 use App\MoonShine\Pages\Sys\Settings;
+use App\MoonShine\Resources\UserResource;
 use App\MoonShine\Resources\RouteResource;
 use App\MoonShine\Resources\ProfitResource;
 use App\MoonShine\Resources\SalaryResource;
@@ -22,23 +20,21 @@ use App\MoonShine\Resources\RefillingResource;
 use App\MoonShine\Resources\Sys\TruckResource;
 use App\MoonShine\Resources\BusinessTripResource;
 use App\MoonShine\Resources\Dir\DirCargoResource;
-use App\MoonShine\Resources\MoonShineUserResource;
-use App\MoonShine\Resources\Dir\DirServiceResource;
 use MoonShine\Contracts\Resources\ResourceContract;
 use App\MoonShine\Resources\Dir\DirFuelTypeResource;
 use App\MoonShine\Resources\Dir\DirTruckTypeResource;
 use App\MoonShine\Resources\Dir\DirTruckBrandResource;
-use App\MoonShine\Resources\MoonShineUserRoleResource;
+use App\MoonShine\Resources\Sys\MoonShineUserResource;
 use App\MoonShine\Resources\Tariff\TariffRouteResource;
 use App\MoonShine\Resources\Dir\DirFuelCategoryResource;
 use App\MoonShine\Resources\Dir\DirRouteAddressResource;
 use App\MoonShine\Resources\Dir\DirPetrolStationResource;
 use App\MoonShine\Resources\Sys\SetupIntegrationResource;
 use App\MoonShine\Resources\Tariff\TariffServiceResource;
+use App\MoonShine\Resources\Sys\MoonShineUserRoleResource;
 use App\MoonShine\Resources\Tariff\TariffDistanceResource;
 use MoonShine\Providers\MoonShineApplicationServiceProvider;
 use App\MoonShine\Resources\Dir\DirPetrolStationBrandResource;
-use App\MoonShine\Resources\UserResource;
 
 class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
 {
@@ -64,51 +60,31 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
     protected function menu(): array
     {
         return [
+            MenuItem::make(__('Profits'), new ProfitResource()),
+            MenuItem::make(__('Routes'), new RouteResource()),
+            MenuItem::make(__('Refillings'), new RefillingResource()),
             MenuItem::make(__('Salaries'), new SalaryResource()),
             MenuItem::make(__('Business Trips'), new BusinessTripResource()),
-            MenuItem::make(__('Refillings'), new RefillingResource()),
-
-            MenuItem::make(__('Routes'), new RouteResource()),
+            MenuItem::make(__('Services'), new ServiceResource()),
 
             // MenuGroup::make('1c', [
             //     MenuItem::make('users_1c', new users1cPage())->translatable('moonshine::menu'),
             //     MenuItem::make('nomenclature_1c', new nomenclature1cPage())->translatable('moonshine::menu'),
             //     MenuItem::make('contract_1c', new contract1cPage())->translatable('moonshine::menu'),
             // ]),
-            MenuGroup::make('users', [
-                //    MenuItem::make('new_user', new NewUserPage())->translatable('moonshine::menu'),
-                MenuItem::make(
-                    static fn() => __('moonshine::system.user.users'),
-                    new MoonShineUserResource()
-                ),
-            ]),
-
 
             // MenuItem::make('test', new DirFuelCategoryFormPage()),
 
-            MenuItem::make('settings', new Settings())->icon('heroicons.cog-6-tooth')
-                ->translatable('moonshine::setup'),
-
-
-            MenuItem::make('services', new ServiceResource())
-                ->translatable('moonshine::service'),
-
-            MenuItem::make('profit', new Profit())
-                ->translatable('moonshine::profit'),
-            MenuItem::make('profits', new ProfitResource())
-                ->translatable('moonshine::profit'),
+            // MenuItem::make('profit', new Profit())
+            //     ->translatable('moonshine::profit'),
 
 
             MenuGroup::make(static fn() => __('System'), [
                 MenuItem::make(__('Drivers'), new UserResource()),
                 MenuItem::make(__('Trucks'), new TruckResource()),
                 MenuItem::make(__('Integrations'), new SetupIntegrationResource()),
-
-
-                MenuItem::make(
-                    static fn() => __('moonshine::system.role.roles'),
-                    new MoonShineUserRoleResource()
-                ),
+                MenuItem::make(__('Administrators'), new MoonShineUserResource()),
+                MenuItem::make(__('Roles'), new MoonShineUserRoleResource()),
                 MenuItem::make(__('Settings'), new Settings())->icon('heroicons.cog-6-tooth'),
             ]),
 

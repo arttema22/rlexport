@@ -41,7 +41,7 @@ class DirPetrolStationResource extends MainResource
      */
     public function title(): string
     {
-        return __('Petrol station');
+        return __('Petrol stations');
     }
 
     /**
