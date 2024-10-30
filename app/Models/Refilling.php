@@ -38,6 +38,10 @@ class Refilling extends Model
         'profit_id',
     ];
 
+    protected $with = [
+        'truck'
+    ];
+
     protected $dates = ['refilling_date'];
 
     /**
@@ -103,21 +107,21 @@ class Refilling extends Model
     /**
      * Получить данные об автомобиле который заправляется.
      */
-    public function truck(): BelongsTo
+    public function truck()
     {
         return $this->belongsTo(Truck::class, 'truck_id', 'id');
     }
 
-    public function getCreatedAtAttribute($value)
-    {
-        return Carbon::createFromTimestamp(strtotime($value))
-            ->format(config('app.date_full_format'));
-    }
-    public function getUpdatedAtAttribute($value)
-    {
-        return Carbon::createFromTimestamp(strtotime($value))
-            ->format(config('app.date_full_format'));
-    }
+    // public function getCreatedAtAttribute($value)
+    // {
+    //     return Carbon::createFromTimestamp(strtotime($value))
+    //         ->format(config('app.date_full_format'));
+    // }
+    // public function getUpdatedAtAttribute($value)
+    // {
+    //     return Carbon::createFromTimestamp(strtotime($value))
+    //         ->format(config('app.date_full_format'));
+    // }
 
     /**
      * prunable

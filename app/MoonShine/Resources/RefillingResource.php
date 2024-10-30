@@ -32,7 +32,12 @@ class RefillingResource extends MainResource
     protected string $model = Refilling::class;
 
     // Жадная загрузка
-    public array $with = ['driver'];
+    public array $with = [
+        'driver',
+        'petrolbrand',
+        'petrolstation',
+        'fuelcategory'
+    ];
 
     // Поле сортировки по умолчанию
     protected string $sortColumn = 'refilling_date';
