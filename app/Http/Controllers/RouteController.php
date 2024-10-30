@@ -6,6 +6,7 @@ use App\Models\Dir\DirCargo;
 use App\Models\Dir\DirRouteAddress;
 use App\Models\Dir\DirTruckType;
 use App\Models\Route;
+use App\Models\Tariff\TariffRoute;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,12 +29,14 @@ class RouteController extends Controller
     {
         $TruckTypes = DirTruckType::all();
         $Cargo = DirCargo::all();
-        $RouteAddreses = DirRouteAddress::all();
+        //$RouteAddreses = DirRouteAddress::all();
+        $Routes = TariffRoute::all();
 
         return view('routes.create', [
             'TruckTypes' => $TruckTypes,
             'Cargo' => $Cargo,
-            'RouteAddreses' => $RouteAddreses,
+            //'RouteAddreses' => $RouteAddreses,
+            'Routes' => $Routes,
         ]);
     }
 

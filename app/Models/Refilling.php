@@ -39,7 +39,9 @@ class Refilling extends Model
     ];
 
     protected $with = [
-        'truck'
+        'truck',
+        'petrolBrand',
+        'petrolStation'
     ];
 
     protected $dates = ['refilling_date'];

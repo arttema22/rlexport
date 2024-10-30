@@ -21,6 +21,8 @@
                     <x-index.table-head-th>#</x-index.table-head-th>
                     <x-index.table-head-th>{{__('Date')}}</x-index.table-head-th>
                     <x-index.table-head-th>{{__('Sum')}}</x-index.table-head-th>
+                    <x-index.table-head-th>{{__('Petrol station')}}</x-index.table-head-th>
+                    <x-index.table-head-th>{{__('Truck')}}</x-index.table-head-th>
                     <x-index.table-head-th>{{__('Comment')}}</x-index.table-head-th>
                     <x-index.table-head-th></x-index.table-head-th>
                 </x-index.table-head>
@@ -32,12 +34,20 @@
                         <x-index.table-td>{{$Refilling->volume}} л. <br>
                             {{$Refilling->sum}} руб.
                         </x-index.table-td>
-                        {{-- <x-index.table-td>{{$Refilling->petrolBrand->name}} <br>
+
+                        <x-index.table-td>{{$Refilling->petrolBrand->name}} <br>
                             {{$Refilling->petrolStation->address}}
-                        </x-index.table-td> --}}
-                        <x-index.table-td>{{$Refilling->truck->reg_num_ru}}<br>
-                            {{$Refilling->truck->name}}
                         </x-index.table-td>
+
+                        <x-index.table-td>
+                            @cannot($Refilling->truck_id)
+                            {{$Refilling->truck->reg_num_ru}}<br>
+                            {{$Refilling->truck->name}}
+                            @else
+                            <span>-</span>
+                            @endcannot
+                        </x-index.table-td>
+
                         <x-index.table-td>
                             @if ($Refilling->integration_id == null)
                             <div class="inline-flex items-center rounded-md shadow-sm">

@@ -42,6 +42,19 @@
                 </div>
                 @endif
 
+                @if($Routes)
+                <div class="mt-4">
+                    <x-label for="truck" value="{{ __('Routes') }}" />
+                    <x-form.select name="truck" class="block mt-1 w-full">
+                        <option value="0">{{__('Route not selected')}}</option>
+                        @foreach($Routes as $Route)
+                        <option value="{{$Route->id}}">
+                            {{$Route->start->name}} - {{$Route->finish->name}}
+                        </option>
+                        @endforeach
+                    </x-form.select>
+                </div>
+                @endif
 
 
                 <div class="mt-4">

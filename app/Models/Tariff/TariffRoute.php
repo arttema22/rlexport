@@ -21,6 +21,12 @@ class TariffRoute extends Model
         'length',
         'price'
     ];
+
+    protected $with = [
+        'start',
+        'finish'
+    ];
+
     /**
      * start
      *
