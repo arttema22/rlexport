@@ -45,7 +45,7 @@
                 @if($Routes)
                 <div class="mt-4">
                     <x-label for="truck" value="{{ __('Routes') }}" />
-                    <x-form.select name="truck" class="block mt-1 w-full">
+                    <x-form.select name="truck" class="block mt-1 w-full select2">
                         <option value="0">{{__('Route not selected')}}</option>
                         @foreach($Routes as $Route)
                         <option value="{{$Route->id}}">
@@ -83,3 +83,16 @@
     </x-section>
 
 </x-app-layout>
+
+<script>
+    // Скрипты для страницы нового маршрута
+        // 1. добавляются select2 для нужных полей
+        // 2. обработчик типа авто
+        // 3. добавление блока инпутов для новой услуги
+        // 4. удаление строки с услугой
+
+    $(document).ready(function() {
+            $('.select2').select2();
+    })
+
+</script>
