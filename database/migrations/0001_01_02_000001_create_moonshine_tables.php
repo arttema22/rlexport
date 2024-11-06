@@ -37,14 +37,14 @@ return new class extends Migration
         ]);
 
         MoonshineUser::create([
-            'moonshine_user_role_id' => 1,
+            'moonshine_user_role_id' => 2,
             'email' => 'arttema@mail.ru',
             'password' => Hash::make('1234qwerQWER'),
             'name' => 'Гусев А.А.',
         ]);
 
         MoonshineUser::create([
-            'moonshine_user_role_id' => 3,
+            'moonshine_user_role_id' => 2,
             'email' => '9132900@gmail.com',
             'password' => Hash::make('radswad0'),
             'name' => 'Клишевич А.В.',
