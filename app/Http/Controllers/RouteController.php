@@ -45,7 +45,7 @@ class RouteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**

@@ -9,7 +9,7 @@
         <x-cover-small>
             <x-validation-errors class="mb-4" />
 
-            <form method="POST" action="{{ route('salary.store') }}">
+            <form method="POST" action="{{ route('route.store') }}">
                 @csrf
 
                 <div>
@@ -21,7 +21,7 @@
                 @if($TruckTypes)
                 <div class="mt-4">
                     <x-label for="truck" value="{{ __('Truck type') }}" />
-                    <x-form.select name="truck" class="block mt-1 w-full">
+                    <x-form.select name="truck" class="select-find block mt-1 w-full">
                         <option value="0">{{__('Type not selected')}}</option>
                         @foreach($TruckTypes as $Type)
                         <option value="{{$Type->id}}">{{$Type->name}}</option>
@@ -32,8 +32,8 @@
 
                 @if($Cargo)
                 <div class="mt-4">
-                    <x-label for="truck" value="{{ __('Cargo') }}" />
-                    <x-form.select name="truck" class="block mt-1 w-full">
+                    <x-label for="cargo" value="{{ __('Cargo') }}" />
+                    <x-form.select name="cargo" class="block mt-1 w-full">
                         <option value="0">{{__('Cargo not selected')}}</option>
                         @foreach($Cargo as $Cargo)
                         <option value="{{$Cargo->id}}">{{$Cargo->name}}</option>
@@ -44,8 +44,8 @@
 
                 @if($Routes)
                 <div class="mt-4">
-                    <x-label for="truck" value="{{ __('Routes') }}" />
-                    <x-form.select name="truck" class="block mt-1 w-full">
+                    <x-label for="route" value="{{ __('Routes') }}" />
+                    <x-form.select name="route" class="select-find block mt-1 w-full">
                         <option value="0">{{__('Route not selected')}}</option>
                         @foreach($Routes as $Route)
                         <option value="{{$Route->id}}">
@@ -81,5 +81,11 @@
 
         </x-cover-small>
     </x-section>
+
+    <script>
+        $(document).ready(function() {
+            $('.select-find').select2();
+        });
+    </script>
 
 </x-app-layout>
