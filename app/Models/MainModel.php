@@ -9,22 +9,12 @@ use Illuminate\Database\Eloquent\Builder;
 use MoonShine\ChangeLog\Traits\HasChangeLog;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\MassPrunable;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class BusinessTrip extends Model
+class MainModel extends Model
 {
     use HasFactory, SoftDeletes, HasChangeLog, MassPrunable;
-
-    protected $fillable = [
-        'b_trip_date',
-        'owner_id',
-        'driver_id',
-        'sum',
-        'comment',
-        'profit_id',
-    ];
-
-    protected $dates = ['b_trip_date'];
 
     /**
      * owner
@@ -47,25 +37,42 @@ class BusinessTrip extends Model
     }
 
     /**
-     * setSumAttribute
+     * createdAt
      *
-     * @param  mixed $value
-     * @return void
+     * @return Attribute
      */
-    public function setSumAttribute($value)
+    protected function createdAt(): Attribute
     {
-        $this->attributes['sum'] = round($value, 2);
+        return Attribute::make(
+            get: fn(string $value) => Carbon::createFromTimestamp(strtotime($value))
+                ->format(config('app.date_full_format')),
+        );
     }
 
-    public function getCreatedAtAttribute($value)
+    /**
+     * updatedAt
+     *
+     * @return Attribute
+     */
+    protected function updatedAt(): Attribute
     {
-        return Carbon::createFromTimestamp(strtotime($value))
-            ->format(config('app.date_full_format'));
+        return Attribute::make(
+            get: fn(string $value) => Carbon::createFromTimestamp(strtotime($value))
+                ->format(config('app.date_full_format')),
+        );
     }
-    public function getUpdatedAtAttribute($value)
+
+    /**
+     * deletedAt
+     *
+     * @return Attribute
+     */
+    protected function deletedAt(): Attribute
     {
-        return Carbon::createFromTimestamp(strtotime($value))
-            ->format(config('app.date_full_format'));
+        return Attribute::make(
+            get: fn(string $value) => Carbon::createFromTimestamp(strtotime($value))
+                ->format(config('app.date_full_format')),
+        );
     }
 
     /**

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BusinessTrip;
 use Illuminate\Http\Request;
+use App\Models\Main\BusinessTrip;
 use Illuminate\Support\Facades\Auth;
 
 class BusinessTripController extends Controller
