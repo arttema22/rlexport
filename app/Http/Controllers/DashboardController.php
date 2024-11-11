@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Salary;
-use App\Models\Refilling;
-use App\Models\BusinessTrip;
 use App\Models\Route;
-use Illuminate\Http\Request;
+use App\Models\Refilling;
+use App\Models\Main\Salary;
+use App\Models\Main\BusinessTrip;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller

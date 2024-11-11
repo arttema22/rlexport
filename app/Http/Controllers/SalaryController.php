@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Salary;
+use App\Models\Main\Salary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
