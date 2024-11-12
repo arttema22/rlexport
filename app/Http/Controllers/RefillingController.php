@@ -16,11 +16,15 @@ class RefillingController extends Controller
     public function index()
     {
         $Refillings = Refilling::where('driver_id', Auth::user()->id)->orderByDesc('event_date')->get();
+        $RefillingsCount = $Refillings->count();
+        $RefillingsSum = $Refillings->sum('sum');
         $Archives = Refilling::onlyTrashed()->where('driver_id', Auth::user()->id)->where('profit_id', '!=', 0)
             ->orderByDesc('event_date')->get();
 
         return view('refillings.index', [
             'Refillings' => $Refillings,
+            'RefillingsCount' => $RefillingsCount,
+            'RefillingsSum' => $RefillingsSum,
             'Archives' => $Archives
         ]);
     }
@@ -45,7 +49,7 @@ class RefillingController extends Controller
     {
         // проверка введенных данных
         $request->validate([
-            'refilling_date' => 'required|date',
+            'event_date' => 'required|date|before_or_equal:today',
             'volume' => 'required',
             'price' => 'required',
             'comment' => 'nullable|string',
@@ -54,16 +58,19 @@ class RefillingController extends Controller
         $Refilling = new Refilling();
         // заполнение модели данными из формы
         $Refilling->driver_id = Auth::user()->id;
-        $Refilling->refilling_date = $request->input('refilling_date');
+        $Refilling->event_date = $request->input('event_date');
         $Refilling->volume = $request->input('volume');
         $Refilling->price = $request->input('price');
         $Refilling->sum = $Refilling->volume * $Refilling->price;
         $Refilling->truck_id = $request->truck;
         $Refilling->comment = $request->input('comment');
         // сохранение данных в базе
-        $Refilling->save();
-        // переход к странице списка
-        return redirect()->route('refilling.index')->with('success', __('Refilling created successfully!'));
+        if ($Refilling->save()) {
+            // Перенаправление с сообщением об успешном создании
+            return redirect()->route('refilling.index')->with('success', __('Refilling created successfully!'));
+        } else {
+            return redirect()->route('refilling.new')->with('error', __('Error creating record'));
+        }
     }
 
     /**
@@ -93,7 +100,7 @@ class RefillingController extends Controller
     {
         // Валидация входящих данных
         $data = $request->validate([
-            'refilling_date' => 'required|date',
+            'event_date' => 'required|date|before_or_equal:today',
             'volume' => 'required',
             'price' => 'required',
             'sum' => 'required',
@@ -113,7 +120,7 @@ class RefillingController extends Controller
         if ($refilling) {
             $refilling->delete();
             // Перенаправление с сообщением об успешном удалении
-            return redirect()->route('refilling.index')->with('success', __('Refilling deleted!'));
+            return redirect()->route('refilling.index')->with('info', __('Refilling deleted!'));
         } else {
             // Перенаправление с сообщением об ошибке
             return redirect()->route('refilling.index')->with('error', __('Refilling not found!'));

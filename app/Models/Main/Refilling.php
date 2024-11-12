@@ -4,7 +4,6 @@ namespace App\Models\Main;
 
 use App\Models\MainModel;
 use App\Models\Sys\Truck;
-use Illuminate\Support\Carbon;
 use App\Models\Dir\DirFuelType;
 use App\Models\Dir\DirFuelCategory;
 use App\Models\Dir\DirPetrolStation;
@@ -82,17 +81,5 @@ class Refilling extends MainModel
     public function truck()
     {
         return $this->belongsTo(Truck::class, 'truck_id', 'id');
-    }
-
-    /**
-     * sum
-     *
-     * @return Attribute
-     */
-    protected function sum(): Attribute
-    {
-        return Attribute::make(
-            get: fn(string $value) => number_format($value, 2, ',', ' '),
-        );
     }
 }
