@@ -18,7 +18,7 @@ class SalaryFactory extends Factory
     public function definition(): array
     {
         return [
-            'salary_date' => fake()->dateTimeBetween('-2 week', '-1 day'),
+            'event_date' => fake()->dateTimeBetween('-2 week', '-1 day'),
             'owner_id' => MoonshineUser::all()->random(),
             'driver_id' => MoonshineUser::all()->random(),
             'sum' => fake()->randomFloat(2, 10000, 50000),

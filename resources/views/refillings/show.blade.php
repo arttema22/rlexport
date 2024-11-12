@@ -14,7 +14,7 @@
                 <table class="table-fixed">
                     <tr>
                         <td class="pr-2">{{ __('Date') }}:</td>
-                        <td class="pl-2">{{ $Refilling->refilling_date }}</td>
+                        <td class="pl-2">{{ $Refilling->event_date }}</td>
                     </tr>
                     <tr>
                         <td class="pr-2">{{ __('Volume') }}:</td>

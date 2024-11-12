@@ -30,13 +30,13 @@
                     @foreach ( $Refillings as $Refilling )
                     <tr class="{{ $Refilling->integration_id == null ? 'bg-red-50' : 'bg-inherit' }}">
                         <x-index.table-td>{{$loop->iteration}}</x-index.table-td>
-                        <x-index.table-td>{{$Refilling->refilling_date}}</x-index.table-td>
+                        <x-index.table-td>{{$Refilling->event_date}}</x-index.table-td>
                         <x-index.table-td>{{$Refilling->volume}} л. <br>
                             {{$Refilling->sum}} руб.
                         </x-index.table-td>
 
-                        <x-index.table-td>{{$Refilling->petrolBrand->name}} <br>
-                            {{$Refilling->petrolStation->address}}
+                        <x-index.table-td>{{$Refilling->petrolBrand}} <br>
+                            {{$Refilling->petrolStation}}
                         </x-index.table-td>
 
                         <x-index.table-td>

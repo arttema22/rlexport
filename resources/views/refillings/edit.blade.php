@@ -13,10 +13,10 @@
                 @csrf
 
                 <div>
-                    <x-label for="refilling_date" value="{{ __('Date') }}" />
-                    <x-input id="refilling_date" class="block mt-1 w-full" type="date" name="refilling_date"
-                        :value="old('refilling_date', $Refilling->refilling_date)" required autofocus
-                        autocomplete="refilling_date" />
+                    <x-label for="event_date" value="{{ __('Date') }}" />
+                    <x-input id="event_date" class="block mt-1 w-full" type="date" name="event_date"
+                        :value="old('event_date', $Refilling->event_date)" required autofocus
+                        autocomplete="event_date" />
                 </div>
 
                 <div class="mt-4">

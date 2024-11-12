@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Main\Route;
 use App\Models\Dir\DirCargo;
-use App\Models\Dir\DirRouteAddress;
-use App\Models\Dir\DirTruckType;
-use App\Models\Route;
-use App\Models\Tariff\TariffRoute;
 use Illuminate\Http\Request;
+use App\Models\Dir\DirTruckType;
+use App\Models\Tariff\TariffRoute;
 use Illuminate\Support\Facades\Auth;
 
 class RouteController extends Controller
@@ -17,7 +16,7 @@ class RouteController extends Controller
      */
     public function index()
     {
-        $Routes = Route::where('driver_id', Auth::user()->id)->orderByDesc('route_date')->get();
+        $Routes = Route::where('driver_id', Auth::user()->id)->orderByDesc('event_date')->get();
 
         return view('routes.index', ['Routes' => $Routes]);
     }

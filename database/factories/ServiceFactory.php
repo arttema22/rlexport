@@ -19,7 +19,7 @@ class ServiceFactory extends Factory
     public function definition(): array
     {
         return [
-            'date' => fake()->dateTimeBetween('-2 week', '-1 day'),
+            'event_date' => fake()->dateTimeBetween('-2 week', '-1 day'),
             'owner_id' => MoonshineUser::all()->random(),
             'driver_id' => MoonshineUser::where('moonshine_user_role_id', 3)->get()->random(),
             'service_id' => DirService::all()->random(),

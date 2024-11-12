@@ -14,9 +14,9 @@
                 @csrf
 
                 <div>
-                    <x-label for="date" value="{{ __('Date') }}" />
-                    <x-input id="salary_date" class="block mt-1 w-full" type="date" name="salary_date"
-                        :value="date('Y-m-d')" required autofocus autocomplete="salary_date" />
+                    <x-label for="event_date" value="{{ __('Date') }}" />
+                    <x-input id="event_date" class="block mt-1 w-full" type="date" name="event_date"
+                        :value="date('Y-m-d')" required autofocus autocomplete="event_date" />
                 </div>
 
                 <div class="mt-4">

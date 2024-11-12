@@ -2,30 +2,29 @@
 
 namespace App\Models\Main;
 
-use App\Models\MainModel;
-use Illuminate\Support\Carbon;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
-class Salary extends MainModel
+class Profit extends Model
 {
     protected $fillable = [
         'event_date',
+        'title',
         'owner_id',
         'driver_id',
-        'sum',
         'comment',
-        'profit_id',
+        'saldo_start'
     ];
 
     /**
-     * sum
+     * saldo_start
      *
      * @return Attribute
      */
-    protected function sum(): Attribute
+    protected function saldo_start(): Attribute
     {
         return Attribute::make(
-            get: fn(string $value) => number_format($value, 2, ',', ' '),
+            set: fn(string $value) => preg_replace('/[^0-9]/', '', $value),
         );
     }
 }

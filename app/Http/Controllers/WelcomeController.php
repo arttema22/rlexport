@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dir\DirPetrolStationBrand;
-use App\Models\Refilling;
 use App\Models\User;
-use Illuminate\Http\Request;
+use App\Models\Main\Refilling;
 
 class WelcomeController extends Controller
 {

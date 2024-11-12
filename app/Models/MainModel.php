@@ -17,6 +17,19 @@ class MainModel extends Model
     use HasFactory, SoftDeletes, HasChangeLog, MassPrunable;
 
     /**
+     * eventDate
+     *
+     * @return Attribute
+     */
+    protected function eventDate(): Attribute
+    {
+        return Attribute::make(
+            get: fn(string $value) => Carbon::createFromTimestamp(strtotime($value))
+                ->format(config('app.date_format')),
+        );
+    }
+
+    /**
      * owner
      * Получить данные о создателе записи.
      * @return void

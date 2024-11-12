@@ -13,9 +13,9 @@ class BusinessTripController extends Controller
      */
     public function index()
     {
-        $BusinessTrips = BusinessTrip::where('driver_id', Auth::user()->id)->orderByDesc('b_trip_date')->get();
+        $BusinessTrips = BusinessTrip::where('driver_id', Auth::user()->id)->orderByDesc('event_date')->get();
         $Archives = BusinessTrip::onlyTrashed()->where('driver_id', Auth::user()->id)->where('profit_id', '!=', 0)
-            ->orderByDesc('b_trip_date')->get();
+            ->orderByDesc('event_date')->get();
 
         return view('business-trips.index', [
             'BusinessTrips' => $BusinessTrips,

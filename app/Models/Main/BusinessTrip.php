@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 class BusinessTrip extends MainModel
 {
     protected $fillable = [
-        'b_trip_date',
+        'event_date',
         'owner_id',
         'driver_id',
         'sum',
@@ -17,18 +17,6 @@ class BusinessTrip extends MainModel
         'profit_id',
     ];
 
-    /**
-     * bTripDate
-     *
-     * @return Attribute
-     */
-    protected function bTripDate(): Attribute
-    {
-        return Attribute::make(
-            get: fn(string $value) => Carbon::createFromTimestamp(strtotime($value))
-                ->format(config('app.date_format')),
-        );
-    }
 
     /**
      * sum

@@ -13,11 +13,10 @@ return new class extends Migration
     {
         Schema::create('routes', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('route_date');
+            $table->timestamp('event_date');
             $table->BigInteger('owner_id')->unsigned()->default(0);
             $table->BigInteger('driver_id')->unsigned();
             $table->foreign('driver_id')->references('id')->on('users');
-
             $table->BigInteger('truck_types_id')->unsigned();
             $table->foreign('truck_types_id')->references('id')->on('dir_truck_types');
             $table->BigInteger('cargo_id')->unsigned();
@@ -31,7 +30,6 @@ return new class extends Migration
             $table->Integer('number_trips');
             $table->float('unexpected_expenses', 8, 2)->nullable()->default(0);
             $table->float('sum', 9, 2);
-
             $table->string('comment')->nullable();
             $table->BigInteger('profit_id')->unsigned()->default(0);
             $table->timestamps();

@@ -28,7 +28,7 @@
                     @foreach ( $Salaries as $Salary )
                     <tr>
                         <x-index.table-td>{{$loop->iteration}}</x-index.table-td>
-                        <x-index.table-td>{{$Salary->salary_date}}</x-index.table-td>
+                        <x-index.table-td>{{$Salary->event_date}}</x-index.table-td>
                         <x-index.table-td>{{$Salary->sum}}</x-index.table-td>
                         <x-index.table-td>{{$Salary->comment}}</x-index.table-td>
                         <x-index.table-td>

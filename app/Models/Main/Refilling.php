@@ -1,28 +1,20 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Main;
 
+use App\Models\MainModel;
 use App\Models\Sys\Truck;
 use Illuminate\Support\Carbon;
 use App\Models\Dir\DirFuelType;
 use App\Models\Dir\DirFuelCategory;
-use MoonShine\Models\MoonshineUser;
 use App\Models\Dir\DirPetrolStation;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Dir\DirPetrolStationBrand;
-use Illuminate\Database\Eloquent\Builder;
-use MoonShine\ChangeLog\Traits\HasChangeLog;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\MassPrunable;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
-class Refilling extends Model
+class Refilling extends MainModel
 {
-    use HasFactory, SoftDeletes, HasChangeLog, MassPrunable;
-
     protected $fillable = [
-        'refilling_date',
+        'event_date',
         'owner_id',
         'driver_id',
         'volume',
@@ -43,28 +35,6 @@ class Refilling extends Model
         'petrolBrand',
         'petrolStation'
     ];
-
-    protected $dates = ['refilling_date'];
-
-    /**
-     * owner
-     * Получить данные о создателе записи.
-     * @return void
-     */
-    public function owner()
-    {
-        return $this->belongsTo(MoonshineUser::class, 'owner_id', 'id');
-    }
-
-    /**
-     * driver
-     * Получить данные о водителе.
-     * @return void
-     */
-    public function driver()
-    {
-        return $this->belongsTo(User::class, 'driver_id', 'id');
-    }
 
     /**
      * petrolStation
@@ -114,24 +84,15 @@ class Refilling extends Model
         return $this->belongsTo(Truck::class, 'truck_id', 'id');
     }
 
-    // public function getCreatedAtAttribute($value)
-    // {
-    //     return Carbon::createFromTimestamp(strtotime($value))
-    //         ->format(config('app.date_full_format'));
-    // }
-    // public function getUpdatedAtAttribute($value)
-    // {
-    //     return Carbon::createFromTimestamp(strtotime($value))
-    //         ->format(config('app.date_full_format'));
-    // }
-
     /**
-     * prunable
-     * Запрос для удаления устаревших записей модели.
-     * @return Builder
+     * sum
+     *
+     * @return Attribute
      */
-    public function prunable(): Builder
+    protected function sum(): Attribute
     {
-        return static::where('deleted_at', '<=', now()->subDay());
+        return Attribute::make(
+            get: fn(string $value) => number_format($value, 2, ',', ' '),
+        );
     }
 }

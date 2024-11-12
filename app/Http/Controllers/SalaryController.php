@@ -13,9 +13,9 @@ class SalaryController extends Controller
      */
     public function index()
     {
-        $Salaries = Salary::where('driver_id', Auth::user()->id)->orderByDesc('salary_date')->get();
+        $Salaries = Salary::where('driver_id', Auth::user()->id)->orderByDesc('event_date')->get();
         $Archives = Salary::onlyTrashed()->where('driver_id', Auth::user()->id)->where('profit_id', '!=', 0)
-            ->orderByDesc('salary_date')->get();
+            ->orderByDesc('event_date')->get();
 
         return view('salaries.index', [
             'Salaries' => $Salaries,

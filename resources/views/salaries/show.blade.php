@@ -14,7 +14,7 @@
                 <table class="table-fixed">
                     <tr>
                         <td class="pr-2">{{ __('Date') }}:</td>
-                        <td class="pl-2">{{ $Salary->salary_date }}</td>
+                        <td class="pl-2">{{ $Salary->event_date }}</td>
                     </tr>
                     <tr>
                         <td class="pr-2">{{ __('Sum') }}:</td>

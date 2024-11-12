@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('refillings', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('refilling_date');
+            $table->timestamp('event_date');
             $table->BigInteger('owner_id')->unsigned()->nullable()->default(0);
             $table->BigInteger('driver_id')->unsigned();
             $table->foreign('driver_id')->references('id')->on('users');
@@ -30,8 +30,8 @@ return new class extends Migration
             $table->foreign('dir_fuel_type_id')->references('id')->on('dir_fuel_types');
             $table->BigInteger('truck_id')->unsigned()->nullable();
             $table->foreign('truck_id')->references('id')->on('trucks');
-            $table->string('comment')->nullable();
             $table->string('integration_id')->nullable();
+            $table->string('comment')->nullable();
             $table->BigInteger('profit_id')->unsigned()->default(0);
             $table->timestamps();
             $table->softDeletes();

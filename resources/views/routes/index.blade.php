@@ -27,7 +27,7 @@
                     @foreach ( $Routes as $Route )
                     <tr>
                         <x-index.table-td>{{$loop->iteration}}</x-index.table-td>
-                        <x-index.table-td>{{$Route->route_date}}</x-index.table-td>
+                        <x-index.table-td>{{$Route->event_date}}</x-index.table-td>
                         <x-index.table-td>{{$Route->sum}}</x-index.table-td>
                         <x-index.table-td>{{$Route->comment}}</x-index.table-td>
                         <x-index.table-td>

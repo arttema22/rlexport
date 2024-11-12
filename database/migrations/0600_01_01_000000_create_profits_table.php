@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Profit;
+use App\Models\Main\Profit;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('profits', function (Blueprint $table) {
             $table->id();
-            $table->date('date')->default(date(now()));
+            $table->date('event_date')->default(date(now()));
             $table->string('title')->nullable();
             $table->foreignId('owner_id')
                 ->constrained('moonshine_users')
@@ -38,84 +38,84 @@ return new class extends Migration
         });
 
         Profit::create([
-            'date' => now(),
+            'event_date' => now(),
             'title' => 'Старт',
             'owner_id' => 1,
             'driver_id' => 1,
             'comment' => 'Начальная загрузка',
         ]);
         Profit::create([
-            'date' => now(),
+            'event_date' => now(),
             'title' => 'Старт',
             'owner_id' => 1,
             'driver_id' => 2,
             'comment' => 'Начальная загрузка',
         ]);
         Profit::create([
-            'date' => now(),
+            'event_date' => now(),
             'title' => 'Старт',
             'owner_id' => 1,
             'driver_id' => 3,
             'comment' => 'Начальная загрузка',
         ]);
         Profit::create([
-            'date' => now(),
+            'event_date' => now(),
             'title' => 'Старт',
             'owner_id' => 1,
             'driver_id' => 4,
             'comment' => 'Начальная загрузка',
         ]);
         Profit::create([
-            'date' => now(),
+            'event_date' => now(),
             'title' => 'Старт',
             'owner_id' => 1,
             'driver_id' => 5,
             'comment' => 'Начальная загрузка',
         ]);
         Profit::create([
-            'date' => now(),
+            'event_date' => now(),
             'title' => 'Старт',
             'owner_id' => 1,
             'driver_id' => 6,
             'comment' => 'Начальная загрузка',
         ]);
         Profit::create([
-            'date' => now(),
+            'event_date' => now(),
             'title' => 'Старт',
             'owner_id' => 1,
             'driver_id' => 7,
             'comment' => 'Начальная загрузка',
         ]);
         Profit::create([
-            'date' => now(),
+            'event_date' => now(),
             'title' => 'Старт',
             'owner_id' => 1,
             'driver_id' => 8,
             'comment' => 'Начальная загрузка',
         ]);
         Profit::create([
-            'date' => now(),
+            'event_date' => now(),
             'title' => 'Старт',
             'owner_id' => 1,
             'driver_id' => 9,
             'comment' => 'Начальная загрузка',
         ]);
         Profit::create([
-            'date' => now(),
+            'event_date' => now(),
             'title' => 'Старт',
             'owner_id' => 1,
             'driver_id' => 10,
             'comment' => 'Начальная загрузка',
         ]);
         Profit::create([
-            'date' => now(),
+            'event_date' => now(),
             'title' => 'Старт',
             'owner_id' => 1,
             'driver_id' => 11,
             'comment' => 'Начальная загрузка',
         ]);
         Profit::create([
-            'date' => now(),
+            'event_date' => now(),
             'title' => 'Старт',
             'owner_id' => 1,
             'driver_id' => 12,

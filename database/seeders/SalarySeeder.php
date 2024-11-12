@@ -2,10 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Salary;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Main\Salary;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Schema;
 
 class SalarySeeder extends Seeder
 {

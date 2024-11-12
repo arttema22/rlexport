@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\BusinessTrip;
 use Illuminate\Database\Seeder;
+use App\Models\Main\BusinessTrip;
 
 class BusinessTripSeeder extends Seeder
 {

@@ -14,10 +14,10 @@
                 @csrf
 
                 <div>
-                    <x-label for="date" value="{{ __('Date') }}" />
-                    <x-input id="b_trip_date" class="block mt-1 w-full" type="date" name="b_trip_date"
-                        :value="old('b_trip_date', $BusinessTrip->b_trip_date)" required autofocus
-                        autocomplete="b_trip_date" />
+                    <x-label for="event_date" value="{{ __('Date') }}" />
+                    <x-input id="event_date" class="block mt-1 w-full" type="date" name="event_date"
+                        :value="old('event_date', $BusinessTrip->event_date)" required autofocus
+                        autocomplete="event_date" />
                 </div>
 
                 <div class="mt-4">

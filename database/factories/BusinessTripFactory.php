@@ -19,7 +19,7 @@ class BusinessTripFactory extends Factory
     public function definition(): array
     {
         return [
-            'b_trip_date' => fake()->dateTimeBetween('-2 week', '-1 day'),
+            'event_date' => fake()->dateTimeBetween('-2 week', '-1 day'),
             'owner_id' => MoonshineUser::all()->random(),
             'driver_id' => User::all()->random(),
             'sum' => fake()->randomFloat(2, 10000, 50000),

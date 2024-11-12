@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dir\DirPetrolStation;
-use App\Models\Refilling;
 use App\Models\Sys\Truck;
 use Illuminate\Http\Request;
+use App\Models\Main\Refilling;
+use App\Models\Dir\DirPetrolStation;
 use Illuminate\Support\Facades\Auth;
 
 class RefillingController extends Controller
@@ -15,9 +15,9 @@ class RefillingController extends Controller
      */
     public function index()
     {
-        $Refillings = Refilling::where('driver_id', Auth::user()->id)->orderByDesc('refilling_date')->get();
+        $Refillings = Refilling::where('driver_id', Auth::user()->id)->orderByDesc('event_date')->get();
         $Archives = Refilling::onlyTrashed()->where('driver_id', Auth::user()->id)->where('profit_id', '!=', 0)
-            ->orderByDesc('refilling_date')->get();
+            ->orderByDesc('event_date')->get();
 
         return view('refillings.index', [
             'Refillings' => $Refillings,
