@@ -4,21 +4,17 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Pages;
 
-use App\Models\BusinessTrip;
-use App\Models\Salary;
 use MoonShine\Pages\Page;
-use MoonShine\Components\When;
+use App\Models\Main\Salary;
+use MoonShine\Decorations\Flex;
 use MoonShine\Decorations\Grid;
+use App\Models\Main\BusinessTrip;
 use MoonShine\Decorations\Column;
 use MoonShine\Metrics\ValueMetric;
 use App\Models\Dir\DirFuelCategory;
 use MoonShine\Decorations\Collapse;
-use Illuminate\Support\Facades\Auth;
 use MoonShine\Metrics\DonutChartMetric;
 use App\Models\Dir\DirPetrolStationBrand;
-use App\Models\Refilling;
-use Illuminate\Database\Eloquent\Builder;
-use MoonShine\Decorations\Flex;
 
 class Dashboard extends Page
 {
