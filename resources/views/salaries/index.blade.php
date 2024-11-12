@@ -63,7 +63,7 @@
                     @foreach ( $Archives as $Archive )
                     <tr>
                         <x-index.table-td>{{$loop->iteration}}</x-index.table-td>
-                        <x-index.table-td>{{$Archive->salary_date}}</x-index.table-td>
+                        <x-index.table-td>{{$Archive->event_date->format(config('app.date_format'))}}</x-index.table-td>
                         <x-index.table-td>{{$Archive->sum}}</x-index.table-td>
                         <x-index.table-td>{{$Archive->comment}}</x-index.table-td>
                     </tr>

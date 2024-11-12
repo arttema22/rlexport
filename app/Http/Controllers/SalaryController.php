@@ -53,7 +53,6 @@ class SalaryController extends Controller
         $Salary->event_date = $request->input('event_date');
         $Salary->sum = $request->input('sum');
         $Salary->comment = $request->input('comment');
-
         // сохранение данных в базе
         if ($Salary->save()) {
             // Перенаправление с сообщением об успешном создании

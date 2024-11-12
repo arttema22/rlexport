@@ -14,11 +14,15 @@ class BusinessTripController extends Controller
     public function index()
     {
         $BusinessTrips = BusinessTrip::where('driver_id', Auth::user()->id)->orderByDesc('event_date')->get();
+        $BusinessTripsCount = $BusinessTrips->count();
+        $BusinessTripsSum = $BusinessTrips->sum('sum');
         $Archives = BusinessTrip::onlyTrashed()->where('driver_id', Auth::user()->id)->where('profit_id', '!=', 0)
             ->orderByDesc('event_date')->get();
 
         return view('business-trips.index', [
             'BusinessTrips' => $BusinessTrips,
+            'BusinessTripsCount' => $BusinessTripsCount,
+            'BusinessTripsSum' => $BusinessTripsSum,
             'Archives' => $Archives
         ]);
     }
@@ -38,7 +42,7 @@ class BusinessTripController extends Controller
     {
         // проверка введенных данных
         $request->validate([
-            'b_trip_date' => 'required|date|before_or_equal:today',
+            'event_date' => 'required|date|before_or_equal:today',
             'sum' => 'required|decimal:0,2|min:10|max:9999999.99',
             'comment' => 'nullable|string',
         ]);
@@ -46,13 +50,16 @@ class BusinessTripController extends Controller
         $Btrip = new BusinessTrip();
         // заполнение модели данными из формы
         $Btrip->driver_id = Auth::user()->id;
-        $Btrip->b_trip_date = $request->input('b_trip_date');
+        $Btrip->event_date = $request->input('event_date');
         $Btrip->sum = $request->input('sum');
         $Btrip->comment = $request->input('comment');
         // сохранение данных в базе
-        $Btrip->save();
-        // Перенаправление с сообщением об успешном создании
-        return redirect()->route('b-trip.index')->with('success', __('Business trip created successfully!'));
+        if ($Btrip->save()) {
+            // Перенаправление с сообщением об успешном создании
+            return redirect()->route('b-trip.index')->with('success', __('Business trip created successfully!'));
+        } else {
+            return redirect()->route('b-trip.new')->with('error', __('Error creating record'));
+        }
     }
 
     /**
@@ -78,7 +85,7 @@ class BusinessTripController extends Controller
     {
         // Валидация входящих данных
         $data = $request->validate([
-            'b_trip_date' => 'required|date|before_or_equal:today',
+            'event_date' => 'required|date|before_or_equal:today',
             'sum' => 'required|decimal:0,2|min:10|max:9999999.99',
             'comment' => 'nullable|string',
         ]);
@@ -96,7 +103,7 @@ class BusinessTripController extends Controller
         if ($BusinessTrip) {
             $BusinessTrip->delete();
             // Перенаправление с сообщением об успешном удалении
-            return redirect()->route('b-trip.index')->with('success', __('Business trip deleted!'));
+            return redirect()->route('b-trip.index')->with('info', __('Business trip deleted!'));
         } else {
             // Перенаправление с сообщением об ошибке
             return redirect()->route('b-trip.index')->with('error', __('Business trip not found!'));

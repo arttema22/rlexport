@@ -1,6 +1,6 @@
 <a {{ $attributes->merge(['class' => 'text-slate-800 hover:text-blue-600 text-sm bg-white hover:bg-slate-100 border
     border-slate-200 rounded-l-lg font-medium
-    px-4 py-2 inline-flex space-x-1 items-center']) }} >
+    px-2 py-1 inline-flex space-x-1 items-center']) }} >
     <span>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
             class="w-4 h-4">
@@ -9,5 +9,5 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
         </svg>
     </span>
-    <span>{{ __('View') }}</span>
+    {{-- <span>{{ __('View') }}</span> --}}
 </a>
