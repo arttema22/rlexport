@@ -24,8 +24,7 @@ class MainModel extends Model
     protected function eventDate(): Attribute
     {
         return Attribute::make(
-            get: fn(string $value) => Carbon::createFromTimestamp(strtotime($value))
-                ->format(config('app.date_format')),
+            get: fn(string $value) => Carbon::parse($value),
         );
     }
 
@@ -57,7 +56,7 @@ class MainModel extends Model
     protected function createdAt(): Attribute
     {
         return Attribute::make(
-            get: fn(string $value) => Carbon::createFromTimestamp(strtotime($value))
+            get: fn(string $value) => Carbon::parse($value)
                 ->format(config('app.date_full_format')),
         );
     }
@@ -70,20 +69,7 @@ class MainModel extends Model
     protected function updatedAt(): Attribute
     {
         return Attribute::make(
-            get: fn(string $value) => Carbon::createFromTimestamp(strtotime($value))
-                ->format(config('app.date_full_format')),
-        );
-    }
-
-    /**
-     * deletedAt
-     *
-     * @return Attribute
-     */
-    protected function deletedAt(): Attribute
-    {
-        return Attribute::make(
-            get: fn(string $value) => Carbon::createFromTimestamp(strtotime($value))
+            get: fn(string $value) => Carbon::parse($value)
                 ->format(config('app.date_full_format')),
         );
     }

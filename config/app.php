@@ -74,7 +74,7 @@ return [
      */
     'date_format' => 'd.m.Y',
     'date_full_format' => 'd.m.Y в H:i',
-    'date_format_to_db' => 'Y-m-d',
+    'date_format_db' => 'Y-m-d',
 
     /*
     |--------------------------------------------------------------------------

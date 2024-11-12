@@ -3,8 +3,6 @@
 namespace App\Models\Main;
 
 use App\Models\MainModel;
-use Illuminate\Support\Carbon;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Salary extends MainModel
 {
@@ -16,16 +14,4 @@ class Salary extends MainModel
         'comment',
         'profit_id',
     ];
-
-    /**
-     * sum
-     *
-     * @return Attribute
-     */
-    protected function sum(): Attribute
-    {
-        return Attribute::make(
-            get: fn(string $value) => number_format($value, 2, ',', ' '),
-        );
-    }
 }

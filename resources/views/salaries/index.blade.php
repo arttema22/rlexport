@@ -3,14 +3,17 @@
     <x-slot name="header">
         <div class="flex justify-between">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Salaries') }}
+                {{ __('Salaries') }}&nbsp;({{$SalariesCount}}&nbsp;/&nbsp;{{$SalariesSum}})
             </h2>
             <x-link-button href="{{ route('salary.new') }}">
                 {{ __('New') }}
             </x-link-button>
         </div>
         @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
+        <x-alerts.success></x-alerts.success>
+        @endif
+        @if(session('info'))
+        <x-alerts.info></x-alerts.info>
         @endif
     </x-slot>
 
@@ -28,7 +31,7 @@
                     @foreach ( $Salaries as $Salary )
                     <tr>
                         <x-index.table-td>{{$loop->iteration}}</x-index.table-td>
-                        <x-index.table-td>{{$Salary->event_date}}</x-index.table-td>
+                        <x-index.table-td>{{$Salary->event_date->format(config('app.date_format'))}}</x-index.table-td>
                         <x-index.table-td>{{$Salary->sum}}</x-index.table-td>
                         <x-index.table-td>{{$Salary->comment}}</x-index.table-td>
                         <x-index.table-td>

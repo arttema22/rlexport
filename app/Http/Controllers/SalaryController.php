@@ -14,11 +14,15 @@ class SalaryController extends Controller
     public function index()
     {
         $Salaries = Salary::where('driver_id', Auth::user()->id)->orderByDesc('event_date')->get();
+        $SalariesCount = $Salaries->count();
+        $SalariesSum = $Salaries->sum('sum');
         $Archives = Salary::onlyTrashed()->where('driver_id', Auth::user()->id)->where('profit_id', '!=', 0)
             ->orderByDesc('event_date')->get();
 
         return view('salaries.index', [
             'Salaries' => $Salaries,
+            'SalariesCount' => $SalariesCount,
+            'SalariesSum' => $SalariesSum,
             'Archives' => $Archives
         ]);
     }
@@ -38,7 +42,7 @@ class SalaryController extends Controller
     {
         // проверка введенных данных
         $request->validate([
-            'salary_date' => 'required|date|before_or_equal:today',
+            'event_date' => 'required|date|before_or_equal:today',
             'sum' => 'required|decimal:0,2|min:10|max:9999999.99',
             'comment' => 'nullable|string',
         ]);
@@ -46,13 +50,17 @@ class SalaryController extends Controller
         $Salary = new Salary();
         // заполнение модели данными из формы
         $Salary->driver_id = Auth::user()->id;
-        $Salary->salary_date = $request->input('salary_date');
+        $Salary->event_date = $request->input('event_date');
         $Salary->sum = $request->input('sum');
         $Salary->comment = $request->input('comment');
+
         // сохранение данных в базе
-        $Salary->save();
-        // Перенаправление с сообщением об успешном создании
-        return redirect()->route('salary.index')->with('success', __('Saiary created successfully!'));
+        if ($Salary->save()) {
+            // Перенаправление с сообщением об успешном создании
+            return redirect()->route('salary.index')->with('success', __('Saiary created successfully!'));
+        } else {
+            return redirect()->route('salary.new')->with('error', __('Error creating record'));
+        }
     }
 
     /**
@@ -78,7 +86,7 @@ class SalaryController extends Controller
     {
         // Валидация входящих данных
         $data = $request->validate([
-            'salary_date' => 'required|date|before_or_equal:today',
+            'event_date' => 'required|date|before_or_equal:today',
             'sum' => 'required|decimal:0,2|min:10|max:9999999.99',
             'comment' => 'nullable|string',
         ]);
@@ -96,7 +104,7 @@ class SalaryController extends Controller
         if ($salary) {
             $salary->delete();
             // Перенаправление с сообщением об успешном удалении
-            return redirect()->route('salary.index')->with('success', __('Saiary deleted!'));
+            return redirect()->route('salary.index')->with('info', __('Saiary deleted!'));
         } else {
             // Перенаправление с сообщением об ошибке
             return redirect()->route('salary.index')->with('error', __('Saiary not found!'));

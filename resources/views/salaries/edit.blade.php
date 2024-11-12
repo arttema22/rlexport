@@ -4,6 +4,9 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Edit') }}
         </h2>
+        @if(session('error'))
+        <x-alerts.error></x-alerts.error>
+        @endif
     </x-slot>
 
     <x-section>
@@ -16,7 +19,8 @@
                 <div>
                     <x-label for="event_date" value="{{ __('Date') }}" />
                     <x-input id="event_date" class="block mt-1 w-full" type="date" name="event_date"
-                        :value="old('event_date', $salary->event_date)" required autofocus autocomplete="event_date" />
+                        :value="old('event_date', $salary->event_date->format(config('app.date_format_db')))" required
+                        autofocus autocomplete="event_date" />
                 </div>
 
                 <div class="mt-4">
