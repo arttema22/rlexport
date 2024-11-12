@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Models\Sys;
 
-use App\Models\Route;
-use App\Models\Profit;
-use App\Models\Salary;
-use App\Models\Service;
-use App\Models\Refilling;
+use App\Models\Sys\Truck;
+use App\Models\Main\Route;
+use App\Models\Main\Profit;
+use App\Models\Main\Service;
+use App\Models\Main\Refilling;
 use Illuminate\Notifications\Notifiable;
 use MoonShine\ChangeLog\Traits\HasChangeLog;
 use Illuminate\Database\Eloquent\Casts\Attribute;

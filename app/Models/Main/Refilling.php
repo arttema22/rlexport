@@ -8,7 +8,6 @@ use App\Models\Dir\DirFuelType;
 use App\Models\Dir\DirFuelCategory;
 use App\Models\Dir\DirPetrolStation;
 use App\Models\Dir\DirPetrolStationBrand;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Refilling extends MainModel
 {

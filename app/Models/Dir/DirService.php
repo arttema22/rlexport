@@ -2,7 +2,7 @@
 
 namespace App\Models\Dir;
 
-use App\Models\Service;
+use App\Models\Main\Service;
 use App\Models\Tariff\TariffService;
 use Illuminate\Database\Eloquent\Model;
 use MoonShine\ChangeLog\Traits\HasChangeLog;

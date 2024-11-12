@@ -2,7 +2,7 @@
 
 namespace App\Models\Dir;
 
-use App\Models\Refilling;
+use App\Models\Main\Refilling;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use MoonShine\ChangeLog\Traits\HasChangeLog;

@@ -2,7 +2,7 @@
 
 namespace App\Models\Dir;
 
-use App\Models\Refilling;
+use App\Models\Main\Refilling;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Dir\DirPetrolStationBrand;
 use Illuminate\Database\Eloquent\Builder;

@@ -7,7 +7,6 @@ namespace App\Models\Sys;
 use MoonShine\Models\MoonshineUser;
 use Illuminate\Database\Eloquent\Model;
 use MoonShine\ChangeLog\Traits\HasChangeLog;
-use Illuminate\Database\Eloquent\MassPrunable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
