@@ -22,6 +22,11 @@ return new class extends Migration
         });
 
         DirFuelType::create([
+            'name' => 'Не определено',
+            'dir_fuel_category_id' => 1,
+        ]);
+
+        DirFuelType::create([
             'name' => 'ДТ лето',
             'dir_fuel_category_id' => 2,
         ]);

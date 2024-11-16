@@ -13,25 +13,42 @@
                 <h3 class="mb-2 text-lg font-medium text-gray-900">{{ __('Main information') }}</h3>
                 <table class="table-fixed">
                     <tr>
-                        <td class="pr-2">{{ __('Date') }}:</td>
-                        <td class="pl-2">{{ $Refilling->event_date }}</td>
+                        <x-index.table-td>{{ __('Date') }}:</x-index.table-td>
+                        <x-index.table-td>{{ $Refilling->event_date->format('d.m.Y') }}</x-index.table-td>
                     </tr>
                     <tr>
-                        <td class="pr-2">{{ __('Volume') }}:</td>
-                        <td class="pl-2">{{ $Refilling->volume }}</td>
+                        <x-index.table-td>{{ __('Volume') }}:</x-index.table-td>
+                        <x-index.table-td>{{ $Refilling->volume }} л.</x-index.table-td>
                     </tr>
                     <tr>
-                        <td class="pr-2">{{ __('Price') }}:</td>
-                        <td class="pl-2">{{ $Refilling->price }}</td>
+                        <x-index.table-td>{{ __('Price') }}:</x-index.table-td>
+                        <x-index.table-td>{{ $Refilling->price }} руб.</x-index.table-td>
                     </tr>
                     <tr>
-                        <td class="pr-2">{{ __('Sum') }}:</td>
-                        <td class="pl-2">{{ $Refilling->sum }}</td>
+                        <x-index.table-td>{{ __('Sum') }}:</x-index.table-td>
+                        <x-index.table-td>{{ $Refilling->sum }} руб.</x-index.table-td>
+                    </tr>
+                    <tr>
+                        <x-index.table-td>{{ __('Brand') }}:</x-index.table-td>
+                        <x-index.table-td>{{$Refilling->petrolBrand->name}}</x-index.table-td>
+                    </tr>
+                    <tr>
+                        <x-index.table-td>{{__('Address')}}:</x-index.table-td>
+                        <x-index.table-td>{{$Refilling->petrolStation->address}}</x-index.table-td>
+                    </tr>
+                    <tr>
+                        <x-index.table-td>{{__('Category')}}:</x-index.table-td>
+                        <x-index.table-td>{{$Refilling->fuelCategory->name}}</x-index.table-td>
+                    </tr>
+                    <tr>
+                        <x-index.table-td>{{__('Type')}}:</x-index.table-td>
+                        <x-index.table-td>{{$Refilling->fuelType->name}}</x-index.table-td>
                     </tr>
                     @if ($Refilling->truck)
                     <tr>
-                        <td class="pr-2">{{ __('Truck') }}:</td>
-                        <td class="pl-2">{{ $Refilling->truck->name }} {{ $Refilling->truck->reg_num_ru }}</td>
+                        <x-index.table-td>{{ __('Truck') }}:</x-index.table-td>
+                        <x-index.table-td>{{ $Refilling->truck->name }} {{ $Refilling->truck->reg_num_ru }}
+                        </x-index.table-td>
                     </tr>
                     @endif
                 </table>

@@ -11,6 +11,9 @@ use Illuminate\Database\Eloquent\MassPrunable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
+/**
+ * DirFuelType
+ */
 class DirFuelType extends Model
 {
     use HasFactory, SoftDeletes, HasChangeLog, MassPrunable;

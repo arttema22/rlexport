@@ -3,7 +3,7 @@
     <x-slot name="header">
         <div class="flex justify-between">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Refillings') }}
+                {{ __('Refillings') }}&nbsp;({{$RefillingsCount}}&nbsp;/&nbsp;{{$RefillingsSum}})
             </h2>
             <x-link-button href="{{ route('refilling.new') }}">
                 {{ __('New') }}
@@ -20,10 +20,9 @@
                 <x-index.table-head>
                     <x-index.table-head-th>#</x-index.table-head-th>
                     <x-index.table-head-th>{{__('Date')}}</x-index.table-head-th>
+                    <x-index.table-head-th>{{__('Value')}}</x-index.table-head-th>
+                    <x-index.table-head-th>{{__('Price')}}</x-index.table-head-th>
                     <x-index.table-head-th>{{__('Sum')}}</x-index.table-head-th>
-                    <x-index.table-head-th>{{__('Petrol station')}}</x-index.table-head-th>
-                    <x-index.table-head-th>{{__('Truck')}}</x-index.table-head-th>
-                    <x-index.table-head-th></x-index.table-head-th>
                     <x-index.table-head-th></x-index.table-head-th>
                 </x-index.table-head>
                 <tbody>
@@ -32,31 +31,20 @@
                         <x-index.table-td>{{$loop->iteration}}</x-index.table-td>
                         <x-index.table-td>{{$Refilling->event_date->format(config('app.date_format'))}}
                         </x-index.table-td>
-                        <x-index.table-td>{{$Refilling->volume}} л. <br>
-                            {{$Refilling->sum}} руб.
-                        </x-index.table-td>
-
-                        <x-index.table-td>{{$Refilling->petrolBrand}} <br>
-                            {{$Refilling->petrolStation}}
-                        </x-index.table-td>
+                        <x-index.table-td>{{$Refilling->volume}} л.</x-index.table-td>
+                        <x-index.table-td>{{$Refilling->price}} руб.</x-index.table-td>
+                        <x-index.table-td>{{$Refilling->sum}} руб.</x-index.table-td>
 
                         <x-index.table-td>
-                            @cannot($Refilling->truck_id)
-                            {{$Refilling->truck->reg_num_ru}}<br>
-                            {{$Refilling->truck->name}}
-                            @else
-                            <span>-</span>
-                            @endcannot
-                        </x-index.table-td>
-
-                        <x-index.table-td>
-                            @if ($Refilling->integration_id == null)
                             <div class="inline-flex items-center rounded-md shadow-sm">
+                                @if ($Refilling->integration_id == null)
                                 <x-index.button-view href="{{ route('refilling.show', $Refilling) }}" />
                                 <x-index.button-edit href="{{ route('refilling.edit', $Refilling) }}" />
                                 <x-index.button-delete action="{{ route('refilling.destroy', $Refilling) }}" />
+                                @else
+                                <x-index.button-view href="{{ route('refilling.show', $Refilling) }}" />
+                                @endif
                             </div>
-                            @endif
                         </x-index.table-td>
                     </tr>
                     @endforeach

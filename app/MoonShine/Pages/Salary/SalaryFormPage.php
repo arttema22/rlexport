@@ -23,7 +23,11 @@ class SalaryFormPage extends FormPageCustom
     {
         return [
             Block::make([
-                BelongsTo::make(__('Driver'), 'driver', resource: new UserResource())
+                BelongsTo::make(
+                    __('Driver'),
+                    'driver',
+                    resource: new UserResource()
+                )
                     ->searchable()->nullable()->required(),
                 Date::make(__('Date'), 'event_date')->required(),
                 Number::make(__('Sum'), 'sum')->min(10)->max(9999999.99)->step(0.01)->required(),

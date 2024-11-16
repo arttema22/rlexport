@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dir\DirFuelCategory;
+use App\Models\Dir\DirFuelType;
 use App\Models\Sys\Truck;
 use Illuminate\Http\Request;
 use App\Models\Main\Refilling;
 use App\Models\Dir\DirPetrolStation;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Dir\DirPetrolStationBrand;
 
 class RefillingController extends Controller
 {
@@ -34,10 +37,17 @@ class RefillingController extends Controller
      */
     public function create()
     {
+        $PSBrands = DirPetrolStationBrand::all();
+        $PStations = DirPetrolStation::all();
+        $FuelCats = DirFuelCategory::all();
+        $FuelTypes = DirFuelType::all();
         $Trucks = Truck::all();
-        $PetrolStations = DirPetrolStation::all();
+
         return view('refillings.create', [
-            'PetrolStations' => $PetrolStations,
+            'PStations' => $PStations,
+            'PSBrands' => $PSBrands,
+            'FuelCats' => $FuelCats,
+            'FuelTypes' => $FuelTypes,
             'Trucks' => $Trucks,
         ]);
     }
@@ -53,6 +63,7 @@ class RefillingController extends Controller
             'volume' => 'required',
             'price' => 'required',
             'comment' => 'nullable|string',
+            'truck' => 'required|numeric|gt:0'
         ]);
         // создание модели данных
         $Refilling = new Refilling();
@@ -62,6 +73,10 @@ class RefillingController extends Controller
         $Refilling->volume = $request->input('volume');
         $Refilling->price = $request->input('price');
         $Refilling->sum = $Refilling->volume * $Refilling->price;
+        $Refilling->dir_petrol_station_brand_id = $request->brand;
+        $Refilling->dir_petrol_station_id = $request->pstation;
+        $Refilling->dir_fuel_category_id = $request->fielcat;
+        $Refilling->dir_fuel_type_id = $request->fieltype;
         $Refilling->truck_id = $request->truck;
         $Refilling->comment = $request->input('comment');
         // сохранение данных в базе
@@ -86,10 +101,18 @@ class RefillingController extends Controller
      */
     public function edit(Refilling $Refilling)
     {
+        $PSBrands = DirPetrolStationBrand::all();
+        $PStations = DirPetrolStation::all();
+        $FuelCats = DirFuelCategory::all();
+        $FuelTypes = DirFuelType::all();
         $Trucks = Truck::all();
         return view('refillings.edit', [
             'Refilling' => $Refilling,
-            'Trucks' => $Trucks
+            'PStations' => $PStations,
+            'PSBrands' => $PSBrands,
+            'FuelCats' => $FuelCats,
+            'FuelTypes' => $FuelTypes,
+            'Trucks' => $Trucks,
         ]);
     }
 

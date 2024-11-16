@@ -3,7 +3,7 @@
 namespace App;
 
 use App\Models\User;
-use App\Models\Refilling;
+use App\Models\Main\Refilling;
 use App\Models\Sys\SetupIntegration;
 use Illuminate\Support\Facades\Http;
 use App\MoonShine\Controllers\IntegrationRefillingController;
@@ -90,7 +90,7 @@ class E1cardService
 
                     if ($driver) {
                         Refilling::create([
-                            'refilling_date' => date('Y-m-d H:i', strtotime($transaction['date'])),
+                            'event_date' => date('Y-m-d', strtotime($transaction['date'])),
                             'owner_id' => 1,
                             'driver_id' => $driver->id,
                             'volume' => $transaction['volume'],

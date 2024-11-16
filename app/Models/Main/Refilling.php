@@ -31,7 +31,9 @@ class Refilling extends MainModel
     protected $with = [
         'truck',
         'petrolBrand',
-        'petrolStation'
+        'petrolStation',
+        'fuelCategory',
+        'fuelType'
     ];
 
     /**

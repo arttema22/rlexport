@@ -13,12 +13,13 @@
                 <h3 class="mb-2 text-lg font-medium text-gray-900">{{ __('Main information') }}</h3>
                 <table class="table-fixed">
                     <tr>
-                        <td class="pr-2">{{ __('Date') }}:</td>
-                        <td class="pl-2">{{ $Salary->event_date->format(config('app.date_format')) }}</td>
+                        <x-index.table-td>{{ __('Date') }}:</x-index.table-td>
+                        <x-index.table-td>{{ $Salary->event_date->format(config('app.date_format')) }}
+                        </x-index.table-td>
                     </tr>
                     <tr>
-                        <td class="pr-2">{{ __('Sum') }}:</td>
-                        <td class="pl-2">{{ $Salary->sum }}</td>
+                        <x-index.table-td>{{ __('Sum') }}:</x-index.table-td>
+                        <x-index.table-td>{{ $Salary->sum }}</x-index.table-td>
                     </tr>
                 </table>
                 @if ($Salary->comment)

@@ -59,7 +59,7 @@ return [
     'gt' => [
         'array' => 'The :attribute field must have more than :value items.',
         'file' => 'The :attribute field must be greater than :value kilobytes.',
-        'numeric' => 'The :attribute field must be greater than :value.',
+        'numeric' => 'Поле ":attribute" должно быть больше чем :value.',
         'string' => 'The :attribute field must be greater than :value characters.',
     ],
     'gte' => [
@@ -193,7 +193,7 @@ return [
         'event_date' => 'Дата',
         'sum' => 'Сумма',
         'comment' => 'Комментарий',
-
+        'truck' => 'Грузовик',
     ],
 
 ];

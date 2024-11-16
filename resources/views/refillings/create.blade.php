@@ -39,6 +39,58 @@
                             step=".01" name="sum" :value="old('sum')" required />
                     </div>
 
+                    {{-- Petrol Brand --}}
+                    @if($PSBrands)
+                    <div class="mt-4">
+                        <x-label for="brand" value="{{ __('Brand') }}" />
+                        <x-form.select name="brand" class="block mt-1 w-full">
+                            @foreach($PSBrands as $Brand)
+                            <option value="{{$Brand->id}}">{{$Brand->name}}</option>
+                            @endforeach
+                        </x-form.select>
+                    </div>
+                    @endif
+                    {{-- Petrol Brand end --}}
+
+                    {{-- Petrol Stations --}}
+                    @if($PStations)
+                    <div class="mt-4">
+                        <x-label for="pstation" value="{{ __('Petrol station') }}" />
+                        <x-form.select name="pstation" class="block mt-1 w-full">
+                            @foreach($PStations as $Station)
+                            <option value="{{$Station->id}}">{{$Station->address}}</option>
+                            @endforeach
+                        </x-form.select>
+                    </div>
+                    @endif
+                    {{-- Petrol Stations end --}}
+
+                    {{-- Fuel Categories --}}
+                    @if($FuelCats)
+                    <div class="mt-4">
+                        <x-label for="fielcat" value="{{ __('Fuel category') }}" />
+                        <x-form.select name="fielcat" class="block mt-1 w-full">
+                            @foreach($FuelCats as $FuelCat)
+                            <option value="{{$FuelCat->id}}">{{$FuelCat->name}}</option>
+                            @endforeach
+                        </x-form.select>
+                    </div>
+                    @endif
+                    {{-- Fuel Categories end --}}
+
+                    {{-- Fuel Types --}}
+                    @if($FuelTypes)
+                    <div class="mt-4">
+                        <x-label for="fieltype" value="{{ __('Fuel type') }}" />
+                        <x-form.select name="fieltype" class="block mt-1 w-full">
+                            @foreach($FuelTypes as $FuelType)
+                            <option value="{{$FuelType->id}}">{{$FuelType->name}}</option>
+                            @endforeach
+                        </x-form.select>
+                    </div>
+                    @endif
+                    {{-- Fuel Types end --}}
+
                     {{-- Trucks --}}
                     @if($Trucks)
                     <div class="mt-4">
