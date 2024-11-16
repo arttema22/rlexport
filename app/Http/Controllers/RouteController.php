@@ -17,8 +17,17 @@ class RouteController extends Controller
     public function index()
     {
         $Routes = Route::where('driver_id', Auth::user()->id)->orderByDesc('event_date')->get();
+        $RoutesCount = $Routes->count();
+        $RoutesSum = $Routes->sum('sum');
+        $Archives = Route::onlyTrashed()->where('driver_id', Auth::user()->id)->where('profit_id', '!=', 0)
+            ->orderByDesc('event_date')->get();
 
-        return view('routes.index', ['Routes' => $Routes]);
+        return view('routes.index', [
+            'Routes' => $Routes,
+            'RoutesCount' => $RoutesCount,
+            'RoutesSum' => $RoutesSum,
+            'Archives' => $Archives
+        ]);
     }
 
     /**

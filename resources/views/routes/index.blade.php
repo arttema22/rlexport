@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex justify-between">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Routes') }}
+                {{ __('Routes') }}&nbsp;({{$RoutesCount}}&nbsp;/&nbsp;{{$RoutesSum}})
             </h2>
             <x-link-button href="{{ route('route.new') }}">
                 {{ __('New') }}
