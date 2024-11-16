@@ -5,10 +5,8 @@ declare(strict_types=1);
 namespace App\MoonShine\Resources;
 
 use Closure;
-use App\Models\Refilling;
 use MoonShine\Fields\Date;
-use MoonShine\Fields\Field;
-use MoonShine\Enums\PageType;
+use App\Models\Main\Refilling;
 use MoonShine\Attributes\Icon;
 use MoonShine\QueryTags\QueryTag;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +18,6 @@ use MoonShine\Fields\Relationships\BelongsTo;
 use App\MoonShine\Pages\Refilling\RefillingFormPage;
 use App\MoonShine\Pages\Refilling\RefillingIndexPage;
 use App\MoonShine\Pages\Refilling\RefillingDetailPage;
-use App\MoonShine\Resources\Sys\MoonShineUserResource;
 
 /**
  * @extends ModelResource<Refilling>
@@ -40,13 +37,13 @@ class RefillingResource extends MainResource
     ];
 
     // Поле сортировки по умолчанию
-    protected string $sortColumn = 'refilling_date';
+    protected string $sortColumn = 'event_date';
 
     // Тип сортировки по умолчанию
     protected string $sortDirection = 'DESC';
 
     // Поле для отображения значений в связях и хлебных крошках
-    public string $column = 'refilling_date';
+    public string $column = 'event_date';
 
     /**
      * title
@@ -85,7 +82,7 @@ class RefillingResource extends MainResource
     public function rules(Model $item): array
     {
         return [
-            'refilling_date' => ['required', 'date', 'before_or_equal:today'],
+            'event_date' => ['required', 'date', 'before_or_equal:today'],
             'volume' => ['required', 'decimal:0,2', 'min:10', 'max:9999999.99'],
             'price' => ['required', 'decimal:0,2', 'min:10', 'max:9999999.99'],
             'sum' => ['required', 'decimal:0,2', 'min:10', 'max:9999999.99'],
@@ -115,7 +112,7 @@ class RefillingResource extends MainResource
             BelongsTo::make(__('Driver'), 'driver', resource: new UserResource())
                 ->searchable()
                 ->nullable(),
-            Date::make(__('Date'), 'refilling_date')->nullable(),
+            Date::make(__('Date'), 'event_date')->nullable(),
         ];
     }
 
@@ -127,7 +124,7 @@ class RefillingResource extends MainResource
     public function search(): array
     {
         return [
-            'refilling_date',
+            'event_date',
             'driver.name',
             'sum',
             'comment'

@@ -23,14 +23,15 @@
                     <x-index.table-head-th>{{__('Sum')}}</x-index.table-head-th>
                     <x-index.table-head-th>{{__('Petrol station')}}</x-index.table-head-th>
                     <x-index.table-head-th>{{__('Truck')}}</x-index.table-head-th>
-                    <x-index.table-head-th>{{__('Comment')}}</x-index.table-head-th>
+                    <x-index.table-head-th></x-index.table-head-th>
                     <x-index.table-head-th></x-index.table-head-th>
                 </x-index.table-head>
                 <tbody>
                     @foreach ( $Refillings as $Refilling )
                     <tr class="{{ $Refilling->integration_id == null ? 'bg-red-50' : 'bg-inherit' }}">
                         <x-index.table-td>{{$loop->iteration}}</x-index.table-td>
-                        <x-index.table-td>{{$Refilling->event_date}}</x-index.table-td>
+                        <x-index.table-td>{{$Refilling->event_date->format(config('app.date_format'))}}
+                        </x-index.table-td>
                         <x-index.table-td>{{$Refilling->volume}} л. <br>
                             {{$Refilling->sum}} руб.
                         </x-index.table-td>
