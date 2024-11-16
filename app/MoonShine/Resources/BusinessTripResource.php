@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\MoonShine\Resources;
 
 use MoonShine\Fields\Date;
-use App\Models\BusinessTrip;
 use MoonShine\Fields\Number;
 use MoonShine\Attributes\Icon;
+use App\Models\Main\BusinessTrip;
 use MoonShine\QueryTags\QueryTag;
 use Illuminate\Support\Facades\Auth;
 use MoonShine\Resources\ModelResource;
@@ -30,13 +30,13 @@ class BusinessTripResource extends MainResource
     public array $with = ['driver'];
 
     // Поле сортировки по умолчанию
-    protected string $sortColumn = 'b_trip_date';
+    protected string $sortColumn = 'event_date';
 
     // Тип сортировки по умолчанию
     protected string $sortDirection = 'DESC';
 
     // Поле для отображения значений в связях и хлебных крошках
-    public string $column = 'b_trip_date';
+    public string $column = 'event_date';
 
     /**
      * title
@@ -74,7 +74,7 @@ class BusinessTripResource extends MainResource
     public function rules(Model $item): array
     {
         return [
-            'b_trip_date' => ['required', 'date', 'before_or_equal:today'],
+            'event_date' => ['required', 'date', 'before_or_equal:today'],
             'sum' => ['required', 'decimal:0,2', 'min:10', 'max:9999999.99'],
 
         ];
@@ -103,7 +103,7 @@ class BusinessTripResource extends MainResource
             BelongsTo::make(__('Driver'), 'driver', resource: new UserResource())
                 ->searchable()
                 ->nullable(),
-            Date::make(__('Date'), 'salary_date')->nullable(),
+            Date::make(__('Date'), 'event_date')->nullable(),
             Number::make(__('Sum'), 'sum')->min(10)->max(9999999.99)->step(0.01),
         ];
     }
@@ -116,7 +116,7 @@ class BusinessTripResource extends MainResource
     public function search(): array
     {
         return [
-            'b_trip_date',
+            'event_date',
             'driver.name',
             'sum',
             'comment'

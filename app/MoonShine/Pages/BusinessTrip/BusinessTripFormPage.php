@@ -25,7 +25,7 @@ class BusinessTripFormPage extends FormPageCustom
             Block::make([
                 BelongsTo::make(__('Driver'), 'driver', resource: new UserResource())
                     ->searchable()->nullable()->required(),
-                Date::make(__('Date'), 'b_trip_date')->required(),
+                Date::make(__('Date'), 'event_date')->required(),
                 Number::make(__('Sum'), 'sum')->min(10)->max(9999999.99)->step(0.01)->required(),
                 Text::make(__('comment'), 'comment'),
             ]),
