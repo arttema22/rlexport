@@ -4,6 +4,9 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('New refilling') }}
         </h2>
+        @if(session('error'))
+        <x-alerts.error></x-alerts.error>
+        @endif
     </x-slot>
 
     <x-section>

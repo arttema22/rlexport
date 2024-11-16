@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sys\Truck;
 use App\Models\Main\Route;
 use App\Models\Dir\DirCargo;
 use Illuminate\Http\Request;
@@ -35,15 +36,13 @@ class RouteController extends Controller
      */
     public function create()
     {
-        $TruckTypes = DirTruckType::all();
-        $Cargo = DirCargo::all();
-        //$RouteAddreses = DirRouteAddress::all();
+        $Trucks = Truck::all();
+        $Cargos = DirCargo::all();
         $Routes = TariffRoute::all();
 
         return view('routes.create', [
-            'TruckTypes' => $TruckTypes,
-            'Cargo' => $Cargo,
-            //'RouteAddreses' => $RouteAddreses,
+            'Trucks' => $Trucks,
+            'Cargos' => $Cargos,
             'Routes' => $Routes,
         ]);
     }
