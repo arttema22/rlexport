@@ -16,16 +16,11 @@ class MainModel extends Model
 {
     use HasFactory, SoftDeletes, HasChangeLog, MassPrunable;
 
-    /**
-     * eventDate
-     *
-     * @return Attribute
-     */
-    protected function eventDate(): Attribute
+    protected function casts(): array
     {
-        return Attribute::make(
-            get: fn(string $value) => Carbon::parse($value),
-        );
+        return [
+            'event_date' => 'date',
+        ];
     }
 
     /**

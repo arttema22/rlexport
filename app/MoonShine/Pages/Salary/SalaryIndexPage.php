@@ -18,7 +18,7 @@ class SalaryIndexPage extends IndexPage
     public function fields(): array
     {
         return [
-            Date::make(__('Date'), 'event_date')->format('d.m.Y')->sortable(),
+            Date::make(__('Date'), 'event_date')->format(config('app.date_format'))->sortable(),
             Text::make(__('Driver'), 'driver.name'),
             Text::make(__('Sum'), 'sum')->sortable(),
             Text::make(__('Comment'), 'comment'),
