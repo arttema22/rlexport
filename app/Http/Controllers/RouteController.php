@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Sys\Truck;
 use App\Models\Main\Route;
 use App\Models\Dir\DirCargo;
+use App\Models\Dir\DirService;
 use Illuminate\Http\Request;
-use App\Models\Dir\DirTruckType;
 use App\Models\Tariff\TariffRoute;
 use Illuminate\Support\Facades\Auth;
 
@@ -39,11 +39,13 @@ class RouteController extends Controller
         $Trucks = Truck::all();
         $Cargos = DirCargo::all();
         $Routes = TariffRoute::all();
+        $Services = DirService::all();
 
         return view('routes.create', [
             'Trucks' => $Trucks,
             'Cargos' => $Cargos,
             'Routes' => $Routes,
+            'Services' => $Services
         ]);
     }
 
@@ -52,7 +54,30 @@ class RouteController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        // проверка введенных данных
+        $request->validate([
+            'event_date' => 'required|date|before_or_equal:today',
+            'truck' => 'required|numeric|gt:0',
+            'cargo' => 'required|numeric|gt:0',
+            'route' => 'required|numeric|gt:0',
+            'unexpected_expenses' => 'nullable|decimal:0,2|min:10|max:9999999.99',
+            'comment' => 'nullable|string',
+
+        ]);
+
+        // создание модели данных
+        $Route = new Route();
+        // заполнение модели данными из формы
+        $Route->driver_id = Auth::user()->id;
+        $Route->event_date = $request->input('event_date');
+        $Route->comment = $request->input('comment');
+        // сохранение данных в базе
+        if ($Route->save()) {
+            // Перенаправление с сообщением об успешном создании
+            return redirect()->route('route.index')->with('success', __('Route created successfully!'));
+        } else {
+            return redirect()->route('route.new')->with('error', __('Error creating record'));
+        }
     }
 
     /**
