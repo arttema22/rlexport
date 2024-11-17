@@ -64,12 +64,26 @@ class RouteController extends Controller
             'comment' => 'nullable|string',
 
         ]);
-
+        //dd($request);
         // создание модели данных
         $Route = new Route();
         // заполнение модели данными из формы
-        $Route->driver_id = Auth::user()->id;
         $Route->event_date = $request->input('event_date');
+        $Route->owner_id = Auth::user()->id;
+        $Route->driver_id = Auth::user()->id;
+        $Route->truck_id = $request->input('truck');
+        $Route->cargo_id = $request->input('cargo');
+
+        $Route->address_loading = 'test1';
+        $Route->address_unloading = 'test2';
+        $Route->route_length = 111;
+        $Route->price_route = 55;
+
+        $Route->number_trips = $request->input('number_trips');
+        $Route->unexpected_expenses = $request->input('unexpected_expenses');
+
+        $Route->sum = 99;
+
         $Route->comment = $request->input('comment');
         // сохранение данных в базе
         if ($Route->save()) {

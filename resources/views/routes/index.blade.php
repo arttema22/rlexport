@@ -9,7 +9,10 @@
             </x-link-button>
         </div>
         @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
+        <x-alerts.success></x-alerts.success>
+        @endif
+        @if(session('info'))
+        <x-alerts.info></x-alerts.info>
         @endif
     </x-slot>
 
@@ -19,22 +22,24 @@
                 <x-index.table-head>
                     <x-index.table-head-th>#</x-index.table-head-th>
                     <x-index.table-head-th>{{__('Date')}}</x-index.table-head-th>
+                    <x-index.table-head-th>{{__('Route')}}</x-index.table-head-th>
                     <x-index.table-head-th>{{__('Sum')}}</x-index.table-head-th>
-                    <x-index.table-head-th>{{__('Comment')}}</x-index.table-head-th>
+                    <x-index.table-head-th></x-index.table-head-th>
                     <x-index.table-head-th></x-index.table-head-th>
                 </x-index.table-head>
                 <tbody>
                     @foreach ( $Routes as $Route )
                     <tr>
                         <x-index.table-td>{{$loop->iteration}}</x-index.table-td>
-                        <x-index.table-td>{{$Route->event_date}}</x-index.table-td>
+                        <x-index.table-td>{{$Route->event_date->format('d.m.Y')}}</x-index.table-td>
+                        <x-index.table-td>{{$Route->number_trips}} {{$Route->address_loading}} -
+                            {{$Route->address_unloading}}</x-index.table-td>
                         <x-index.table-td>{{$Route->sum}}</x-index.table-td>
-                        <x-index.table-td>{{$Route->comment}}</x-index.table-td>
                         <x-index.table-td>
                             <div class="inline-flex items-center rounded-md shadow-sm">
-                                <x-index.button-view href="{{ route('route.show', $Route) }}" />
-                                <x-index.button-edit href="{{ route('route.edit', $Route) }}" />
-                                <x-index.button-delete action="{{ route('route.destroy', $Route) }}" />
+                                <x-buttons.button-view href="{{ route('route.show', $Route) }}" />
+                                <x-buttons.button-edit href="{{ route('route.edit', $Route) }}" />
+                                <x-buttons.button-delete action="{{ route('route.destroy', $Route) }}" />
                             </div>
                         </x-index.table-td>
                     </tr>

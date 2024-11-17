@@ -10,7 +10,10 @@
             </x-link-button>
         </div>
         @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
+        <x-alerts.success></x-alerts.success>
+        @endif
+        @if(session('info'))
+        <x-alerts.info></x-alerts.info>
         @endif
     </x-slot>
 
