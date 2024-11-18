@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Sys\Truck;
 use App\Models\Main\Route;
 use App\Models\Dir\DirCargo;
+use App\Models\Dir\DirRouteAddress;
 use App\Models\Dir\DirService;
 use Illuminate\Http\Request;
 use App\Models\Tariff\TariffRoute;
@@ -64,7 +65,7 @@ class RouteController extends Controller
             'comment' => 'nullable|string',
 
         ]);
-        //dd($request);
+        dd($request);
         // создание модели данных
         $Route = new Route();
         // заполнение модели данными из формы
@@ -73,25 +74,35 @@ class RouteController extends Controller
         $Route->driver_id = Auth::user()->id;
         $Route->truck_id = $request->input('truck');
         $Route->cargo_id = $request->input('cargo');
+        $RouteDotes = TariffRoute::find($request->input('route'));
+        $Route->address_loading = $RouteDotes->start->name;
+        $Route->address_unloading = $RouteDotes->finish->name;
+        $Route->route_length = $RouteDotes->length;
 
-        $Route->address_loading = 'test1';
-        $Route->address_unloading = 'test2';
-        $Route->route_length = 111;
-        $Route->price_route = 55;
+        $Route->price_route = 22;
 
         $Route->number_trips = $request->input('number_trips');
         $Route->unexpected_expenses = $request->input('unexpected_expenses');
-
-        $Route->sum = 99;
-
+        $Route->sum = $Route->price_route * $Route->number_trips;
         $Route->comment = $request->input('comment');
         // сохранение данных в базе
-        if ($Route->save()) {
-            // Перенаправление с сообщением об успешном создании
-            return redirect()->route('route.index')->with('success', __('Route created successfully!'));
-        } else {
-            return redirect()->route('route.new')->with('error', __('Error creating record'));
+        $Route->save();
+
+        // Запись дополнительных услуг
+        $ServiceId = $request->service_id;
+        $NumOperations = $request->number_operations;
+        if (!empty($ServiceId)) {
+            for ($i = 0; $i < count($service_id); $i++) {
+            }
         }
+
+        // сохранение данных в базе
+        // if ($Route->save()) {
+        //     // Перенаправление с сообщением об успешном создании
+        //     return redirect()->route('route.index')->with('success', __('Route created successfully!'));
+        // } else {
+        //     return redirect()->route('route.new')->with('error', __('Error creating record'));
+        // }
     }
 
     /**
