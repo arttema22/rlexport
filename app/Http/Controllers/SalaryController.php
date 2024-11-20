@@ -13,11 +13,10 @@ class SalaryController extends Controller
      */
     public function index()
     {
-        $Salaries = Salary::where('driver_id', Auth::user()->id)->orderByDesc('event_date')->get();
+        $Salaries = Salary::all();
         $SalariesCount = $Salaries->count();
         $SalariesSum = $Salaries->sum('sum');
-        $Archives = Salary::onlyTrashed()->where('driver_id', Auth::user()->id)->where('profit_id', '!=', 0)
-            ->orderByDesc('event_date')->get();
+        $Archives = Salary::onlyTrashed()->where('profit_id', '!=', 0)->get();
 
         return view('salaries.index', [
             'Salaries' => $Salaries,

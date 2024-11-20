@@ -13,11 +13,10 @@ class BusinessTripController extends Controller
      */
     public function index()
     {
-        $BusinessTrips = BusinessTrip::where('driver_id', Auth::user()->id)->orderByDesc('event_date')->get();
+        $BusinessTrips = BusinessTrip::all();
         $BusinessTripsCount = $BusinessTrips->count();
         $BusinessTripsSum = $BusinessTrips->sum('sum');
-        $Archives = BusinessTrip::onlyTrashed()->where('driver_id', Auth::user()->id)->where('profit_id', '!=', 0)
-            ->orderByDesc('event_date')->get();
+        $Archives = BusinessTrip::onlyTrashed()->where('profit_id', '!=', 0)->get();
 
         return view('business-trips.index', [
             'BusinessTrips' => $BusinessTrips,

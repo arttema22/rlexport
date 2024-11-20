@@ -18,11 +18,10 @@ class RefillingController extends Controller
      */
     public function index()
     {
-        $Refillings = Refilling::where('driver_id', Auth::user()->id)->orderByDesc('event_date')->get();
+        $Refillings = Refilling::all();
         $RefillingsCount = $Refillings->count();
         $RefillingsSum = $Refillings->sum('sum');
-        $Archives = Refilling::onlyTrashed()->where('driver_id', Auth::user()->id)->where('profit_id', '!=', 0)
-            ->orderByDesc('event_date')->get();
+        $Archives = Refilling::onlyTrashed()->where('profit_id', '!=', 0)->get();
 
         return view('refillings.index', [
             'Refillings' => $Refillings,

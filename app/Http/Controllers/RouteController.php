@@ -18,11 +18,10 @@ class RouteController extends Controller
      */
     public function index()
     {
-        $Routes = Route::where('driver_id', Auth::user()->id)->orderByDesc('event_date')->get();
+        $Routes = Route::all();
         $RoutesCount = $Routes->count();
         $RoutesSum = $Routes->sum('sum');
-        $Archives = Route::onlyTrashed()->where('driver_id', Auth::user()->id)->where('profit_id', '!=', 0)
-            ->orderByDesc('event_date')->get();
+        $Archives = Route::onlyTrashed()->where('profit_id', '!=', 0)->get();
 
         return view('routes.index', [
             'Routes' => $Routes,
