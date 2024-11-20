@@ -7,8 +7,11 @@ use App\Models\Sys\Truck;
 use App\Models\Dir\DirFuelType;
 use App\Models\Dir\DirFuelCategory;
 use App\Models\Dir\DirPetrolStation;
+use App\Models\Scopes\OnlyUserScope;
 use App\Models\Dir\DirPetrolStationBrand;
+use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 
+#[ScopedBy([OnlyUserScope::class])]
 class Refilling extends MainModel
 {
     protected $fillable = [

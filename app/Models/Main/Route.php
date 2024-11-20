@@ -2,9 +2,12 @@
 
 namespace App\Models\Main;
 
-use App\Models\Dir\DirCargo;
 use App\Models\MainModel;
+use App\Models\Dir\DirCargo;
+use App\Models\Scopes\OnlyUserScope;
+use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 
+#[ScopedBy([OnlyUserScope::class])]
 class Route extends MainModel
 {
     protected $fillable = [

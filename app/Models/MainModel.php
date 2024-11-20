@@ -2,10 +2,8 @@
 
 namespace App\Models;
 
-use App\Models\Scopes\OnlyUserScope;
 use Illuminate\Support\Carbon;
 use App\Models\Sys\MoonshineUser;
-use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use MoonShine\ChangeLog\Traits\HasChangeLog;
@@ -14,7 +12,6 @@ use Illuminate\Database\Eloquent\MassPrunable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-#[ScopedBy([OnlyUserScope::class])]
 class MainModel extends Model
 {
     use HasFactory, SoftDeletes, HasChangeLog, MassPrunable;
