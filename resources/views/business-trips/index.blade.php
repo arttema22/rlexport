@@ -37,9 +37,9 @@
                         <x-index.table-td>{{$BusinessTrip->comment}}</x-index.table-td>
                         <x-index.table-td>
                             <div class="inline-flex items-center rounded-md shadow-sm">
-                                <x-index.button-view href="{{ route('b-trip.show', $BusinessTrip) }}" />
-                                <x-index.button-edit href="{{ route('b-trip.edit', $BusinessTrip) }}" />
-                                <x-index.button-delete action="{{ route('b-trip.destroy', $BusinessTrip) }}" />
+                                <x-buttons.button-view href="{{ route('b-trip.show', $BusinessTrip) }}" />
+                                <x-buttons.button-edit href="{{ route('b-trip.edit', $BusinessTrip) }}" />
+                                <x-buttons.button-delete action="{{ route('b-trip.destroy', $BusinessTrip) }}" />
                             </div>
                         </x-index.table-td>
                     </tr>

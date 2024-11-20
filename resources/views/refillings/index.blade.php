@@ -41,11 +41,11 @@
                         <x-index.table-td>
                             <div class="inline-flex items-center rounded-md shadow-sm">
                                 @if ($Refilling->integration_id == null)
-                                <x-index.button-view href="{{ route('refilling.show', $Refilling) }}" />
-                                <x-index.button-edit href="{{ route('refilling.edit', $Refilling) }}" />
-                                <x-index.button-delete action="{{ route('refilling.destroy', $Refilling) }}" />
+                                <x-buttons.button-view href="{{ route('refilling.show', $Refilling) }}" />
+                                <x-buttons.button-edit href="{{ route('refilling.edit', $Refilling) }}" />
+                                <x-buttons.button-delete action="{{ route('refilling.destroy', $Refilling) }}" />
                                 @else
-                                <x-index.button-view href="{{ route('refilling.show', $Refilling) }}" />
+                                <x-buttons.button-view href="{{ route('refilling.show', $Refilling) }}" />
                                 @endif
                             </div>
                         </x-index.table-td>

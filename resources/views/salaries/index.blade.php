@@ -37,9 +37,9 @@
                         <x-index.table-td>{{$Salary->comment}}</x-index.table-td>
                         <x-index.table-td>
                             <div class="inline-flex items-center rounded-md shadow-sm">
-                                <x-index.button-view href="{{ route('salary.show', $Salary) }}" />
-                                <x-index.button-edit href="{{ route('salary.edit', $Salary) }}" />
-                                <x-index.button-delete action="{{ route('salary.destroy', $Salary) }}" />
+                                <x-buttons.button-view href="{{ route('salary.show', $Salary) }}" />
+                                <x-buttons.button-edit href="{{ route('salary.edit', $Salary) }}" />
+                                <x-buttons.button-delete action="{{ route('salary.destroy', $Salary) }}" />
                             </div>
                         </x-index.table-td>
                     </tr>
