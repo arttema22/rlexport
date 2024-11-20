@@ -15,14 +15,19 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $RoutesCount = Route::where('driver_id', Auth::user()->id)->count();
-        $RoutesSum = round(Route::where('driver_id', Auth::user()->id)->sum('sum'), 2);
-        $SalariesCount = Salary::where('driver_id', Auth::user()->id)->count();
-        $SalariesSum = round(Salary::where('driver_id', Auth::user()->id)->sum('sum'), 2);
-        $RefillingsCount = Refilling::where('driver_id', Auth::user()->id)->count();
-        $RefillingsSum = round(Refilling::where('driver_id', Auth::user()->id)->sum('sum'), 2);
-        $BtripsCount = BusinessTrip::where('driver_id', Auth::user()->id)->count();
-        $BtripsSum = round(BusinessTrip::where('driver_id', Auth::user()->id)->sum('sum'), 2);
+        $Routes = Route::all();
+        $Salaries = Salary::all();
+        $Refillings = Refilling::all();
+        $Btrips = BusinessTrip::all();
+
+        $RoutesCount = $Routes->count();
+        $RoutesSum = round($Routes->sum('sum'), 2);
+        $SalariesCount = $Salaries->count();
+        $SalariesSum = round($Salaries->sum('sum'), 2);
+        $RefillingsCount = $Refillings->count();
+        $RefillingsSum = round($Refillings->sum('sum'), 2);
+        $BtripsCount = $Btrips->count();
+        $BtripsSum = round($Btrips->sum('sum'), 2);
 
         $Total = $RoutesSum + $SalariesSum + $RefillingsSum + $BtripsSum;
 
