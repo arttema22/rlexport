@@ -7,7 +7,7 @@
     </x-slot>
 
     <x-section>
-        <x-cover-medium>
+        <x-covers.cover-medium>
             <x-2-column-section>
 
                 <h3 class="mb-2 text-lg font-medium text-gray-900">{{ __('Main information') }}</h3>
@@ -68,7 +68,7 @@
                 </x-link>
             </x-buttons-group>
 
-        </x-cover-medium>
+        </x-covers.cover-medium>
     </x-section>
 
 </x-app-layout>

@@ -18,13 +18,12 @@
     </x-slot>
 
     <x-section>
-        <x-cover-medium>
+        <x-covers.cover-small>
             <x-index.table>
                 <x-index.table-head>
                     <x-index.table-head-th>#</x-index.table-head-th>
                     <x-index.table-head-th>{{__('Date')}}</x-index.table-head-th>
                     <x-index.table-head-th>{{__('Sum')}}</x-index.table-head-th>
-                    <x-index.table-head-th>{{__('Comment')}}</x-index.table-head-th>
                     <x-index.table-head-th></x-index.table-head-th>
                 </x-index.table-head>
                 <tbody>
@@ -34,30 +33,28 @@
                         <x-index.table-td>{{$Salary->event_date->format(config('app.date_format'))}}
                         </x-index.table-td>
                         <x-index.table-td>{{$Salary->sum}}</x-index.table-td>
-                        <x-index.table-td>{{$Salary->comment}}</x-index.table-td>
                         <x-index.table-td>
                             <div class="inline-flex items-center rounded-md shadow-sm">
                                 <x-buttons.button-view href="{{ route('salary.show', $Salary) }}" />
                                 <x-buttons.button-edit href="{{ route('salary.edit', $Salary) }}" />
-                                <x-buttons.button-delete action="{{ route('salary.destroy', $Salary) }}" />
+                                <x-buttons.button-delete-form action="{{ route('salary.destroy', $Salary) }}" />
                             </div>
                         </x-index.table-td>
                     </tr>
                     @endforeach
                 </tbody>
             </x-index.table>
-        </x-cover-medium>
+        </x-covers.cover-small>
     </x-section>
 
     <x-section>
-        <x-cover-medium-clear>
+        <x-covers.cover-small-clear>
             <h3>{{__('Archive')}}</h3>
             <x-index.table>
                 <x-index.table-head>
                     <x-index.table-head-th>#</x-index.table-head-th>
                     <x-index.table-head-th>{{__('Date')}}</x-index.table-head-th>
                     <x-index.table-head-th>{{__('Sum')}}</x-index.table-head-th>
-                    <x-index.table-head-th>{{__('Comment')}}</x-index.table-head-th>
                     <x-index.table-head-th></x-index.table-head-th>
                 </x-index.table-head>
                 <tbody>
@@ -66,12 +63,11 @@
                         <x-index.table-td>{{$loop->iteration}}</x-index.table-td>
                         <x-index.table-td>{{$Archive->event_date->format(config('app.date_format'))}}</x-index.table-td>
                         <x-index.table-td>{{$Archive->sum}}</x-index.table-td>
-                        <x-index.table-td>{{$Archive->comment}}</x-index.table-td>
                     </tr>
                     @endforeach
                 </tbody>
             </x-index.table>
-        </x-cover-medium-clear>
+        </x-covers.cover-small-clear>
     </x-section>
 
 </x-app-layout>

@@ -10,7 +10,7 @@
     </x-slot>
 
     <x-section>
-        <x-cover-small>
+        <x-covers.cover-small>
             <x-validation-errors class="mb-4" />
 
             <form method="POST" action="{{ route('salary.update', $salary) }}">
@@ -45,7 +45,7 @@
                 </x-buttons-group>
             </form>
 
-        </x-cover-small>
+        </x-covers.cover-small>
     </x-section>
 
 </x-app-layout>
