@@ -12,12 +12,12 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-        $DriversCount = User::all()->count();
-        $RefillingCount = Refilling::all()->count();
+        // $DriversCount = User::all()->count();
+        // $RefillingCount = Refilling::all()->count();
 
         return view('welcome', [
-            'DriversCount' => $DriversCount,
-            'RefillingCount' => $RefillingCount,
+            //   'DriversCount' => $DriversCount,
+            //   'RefillingCount' => $RefillingCount,
         ]);
     }
 }
