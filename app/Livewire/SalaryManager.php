@@ -58,7 +58,6 @@ class SalaryManager extends Component
         $this->event_date = $salary->event_date->format('Y-m-d');
         $this->sum = $salary->sum;
         $this->comment = $salary->comment;
-        //dd($this->event_date->format('Y-m-d'));
         $this->editForm = true;
     }
 
@@ -85,8 +84,6 @@ class SalaryManager extends Component
                 'comment' => $this->comment,
             ]
         );
-
-        $this->banner(__('Successfully!'));
         $this->editForm = false;
         $this->resetInputFields();
     }
@@ -111,7 +108,6 @@ class SalaryManager extends Component
     public function delete()
     {
         Salary::find($this->salary_id)->delete();
-        $this->dangerBanner('Record deleted.');
         $this->confirmingDeletion = false;
     }
 
