@@ -8,6 +8,7 @@
 
     @livewire('SalaryManager')
 
+    @livewire('SalaryArchive')
 
 
     <div class="py-12">
