@@ -3,14 +3,14 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use App\Models\Main\Salary;
+use App\Models\Main\BusinessTrip;
 use Illuminate\Support\Facades\Auth;
 
-class SalaryManager extends Component
+class BusinessTripManager extends Component
 {
 
-    public $salaries;
-    public $salary_id, $event_date, $owner_id, $driver_id, $sum, $comment;
+    public $btrips;
+    public $trip_id, $event_date, $owner_id, $driver_id, $sum, $comment;
     public $editForm = false, $confirmingDeletion = false;
     public $createOrUpdate;
 
@@ -21,9 +21,9 @@ class SalaryManager extends Component
      */
     public function render()
     {
-        $this->salaries = Salary::with(['owner'])
+        $this->btrips = BusinessTrip::with(['owner'])
             ->with(['driver'])->get();
-        return view('livewire.salary-manager');
+        return view('livewire.business-trip-manager');
     }
 
     /**
@@ -49,9 +49,9 @@ class SalaryManager extends Component
     {
         $this->createOrUpdate = 1;
 
-        $salary = Salary::findOrFail($id);
+        $salary = BusinessTrip::findOrFail($id);
 
-        $this->salary_id = $salary->id;
+        $this->trip_id = $salary->id;
         $this->event_date = $salary->event_date->format('Y-m-d');
         $this->sum = $salary->sum;
         $this->comment = $salary->comment;
@@ -71,8 +71,8 @@ class SalaryManager extends Component
             'comment' => 'nullable|string',
         ]);
 
-        Salary::updateOrCreate(
-            ['id' => $this->salary_id],
+        BusinessTrip::updateOrCreate(
+            ['id' => $this->trip_id],
             [
                 'event_date' => $this->event_date,
                 'owner_id' => Auth::user()->id,
@@ -93,7 +93,7 @@ class SalaryManager extends Component
      */
     public function confirmDelete($id)
     {
-        $this->salary_id = $id;
+        $this->trip_id = $id;
         $this->confirmingDeletion = true;
     }
 
@@ -104,7 +104,7 @@ class SalaryManager extends Component
      */
     public function delete()
     {
-        Salary::find($this->salary_id)->delete();
+        BusinessTrip::find($this->salary_id)->delete();
         $this->confirmingDeletion = false;
     }
 
@@ -115,7 +115,7 @@ class SalaryManager extends Component
      */
     private function resetInputFields()
     {
-        $this->salary_id = null;
+        $this->trip_id = null;
         $this->event_date = '';
         $this->owner_id = '';
         $this->driver_id = '';

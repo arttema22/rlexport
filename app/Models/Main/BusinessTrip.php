@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 class BusinessTrip extends MainModel
 {
     protected $fillable = [
+        'id',
         'event_date',
         'owner_id',
         'driver_id',
