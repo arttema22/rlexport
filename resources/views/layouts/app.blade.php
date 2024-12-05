@@ -13,8 +13,8 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     <!-- Scripts -->
-    <script src="{{ asset('/asset/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('/asset/js/select2.min.js') }}"></script>
+    {{-- <script src="{{ asset('/asset/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('/asset/js/select2.min.js') }}"></script> --}}
     {{--
     <link href="{{ asset('/asset/css/select2.min.css') }}" rel="stylesheet" /> --}}
 

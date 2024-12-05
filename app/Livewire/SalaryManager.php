@@ -24,7 +24,8 @@ class SalaryManager extends Component
      */
     public function render()
     {
-        $this->salaries = Salary::all();
+        $this->salaries = Salary::with(['owner'])
+            ->with(['driver'])->get();
         return view('livewire.salary-manager');
     }
 

@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Support\Carbon;
-use App\Models\Sys\MoonshineUser;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use MoonShine\ChangeLog\Traits\HasChangeLog;
@@ -30,7 +29,7 @@ class MainModel extends Model
      */
     public function owner()
     {
-        return $this->belongsTo(MoonshineUser::class, 'owner_id', 'id');
+        return $this->belongsTo(User::class, 'owner_id', 'id');
     }
 
     /**
