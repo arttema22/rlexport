@@ -5,11 +5,14 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Main\Salary;
 use Illuminate\Support\Facades\Auth;
+use Livewire\WithoutUrlPagination;
+use Livewire\WithPagination;
 
 class SalaryManager extends Component
 {
+    use WithPagination, WithoutUrlPagination;
 
-    public $salaries;
+    //    public $salaries;
     public $salary_id, $event_date, $owner_id, $driver_id, $sum, $comment;
     public $editForm = false, $confirmingDeletion = false;
     public $createOrUpdate;
@@ -21,9 +24,8 @@ class SalaryManager extends Component
      */
     public function render()
     {
-        $this->salaries = Salary::with(['owner'])
-            ->with(['driver'])->get();
-        return view('livewire.salary-manager');
+        $salaries = Salary::with(['owner'])->with(['driver'])->simplePaginate(3, pageName: 'salaries');
+        return view('livewire.salary-manager', ['salaries' => $salaries]);
     }
 
     /**
