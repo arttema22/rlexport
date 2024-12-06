@@ -17,57 +17,16 @@
         @endif
     </x-slot>
 
-    <x-section>
-        <x-covers.cover-small>
-            <x-index.table>
-                <x-index.table-head>
-                    <x-index.table-head-th>#</x-index.table-head-th>
-                    <x-index.table-head-th>{{__('Date')}}</x-index.table-head-th>
-                    <x-index.table-head-th>{{__('Sum')}}</x-index.table-head-th>
-                    <x-index.table-head-th></x-index.table-head-th>
-                </x-index.table-head>
-                <tbody>
-                    @foreach ( $Salaries as $Salary )
-                    <tr>
-                        <x-index.table-td>{{$loop->iteration}}</x-index.table-td>
-                        <x-index.table-td>{{$Salary->event_date->format(config('app.date_format'))}}
-                        </x-index.table-td>
-                        <x-index.table-td>{{$Salary->sum}}</x-index.table-td>
-                        <x-index.table-td>
-                            <div class="inline-flex items-center rounded-md shadow-sm">
-                                <x-buttons.button-view href="{{ route('salary.show', $Salary) }}" />
-                                <x-buttons.button-edit href="{{ route('salary.edit', $Salary) }}" />
-                                <x-buttons.button-delete-form action="{{ route('salary.destroy', $Salary) }}" />
-                            </div>
-                        </x-index.table-td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </x-index.table>
-        </x-covers.cover-small>
-    </x-section>
-
-    <x-section>
-        <x-covers.cover-small-clear>
-            <h3>{{__('Archive')}}</h3>
-            <x-index.table>
-                <x-index.table-head>
-                    <x-index.table-head-th>#</x-index.table-head-th>
-                    <x-index.table-head-th>{{__('Date')}}</x-index.table-head-th>
-                    <x-index.table-head-th>{{__('Sum')}}</x-index.table-head-th>
-                    <x-index.table-head-th></x-index.table-head-th>
-                </x-index.table-head>
-                <tbody>
-                    @foreach ( $Archives as $Archive )
-                    <tr>
-                        <x-index.table-td>{{$loop->iteration}}</x-index.table-td>
-                        <x-index.table-td>{{$Archive->event_date->format(config('app.date_format'))}}</x-index.table-td>
-                        <x-index.table-td>{{$Archive->sum}}</x-index.table-td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </x-index.table>
-        </x-covers.cover-small-clear>
-    </x-section>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
+        <div class="md:col-span-2 rounded-lg dark:bg-indigo-900 bg-indigo-300 p-4 shadow-lg">
+            @livewire('Salary.SalaryManager')
+        </div>
+        <div class="rounded-lg dark:bg-indigo-900 bg-indigo-300 p-4 shadow-lg">
+            @livewire('Salary.SalaryCard')
+        </div>
+        <div class="rounded-lg dark:bg-indigo-900 bg-indigo-300 p-4 shadow-lg">
+            @livewire('Salary.SalaryArchive')
+        </div>
+    </div>
 
 </x-app-layout>

@@ -6,11 +6,9 @@
     </x-slot>
 
 
-    @livewire('SalaryManager')
+    @livewire('Salary.SalaryManager')
 
-    @livewire('SalaryArchive')
-
-    @livewire('BusinessTripManager')
+    {{-- @livewire('Salary.SalaryArchive') --}}
 
 
     <div class="py-12">
@@ -39,19 +37,7 @@
                             </x-dashboard.card-dashboard>
 
                             <!-- Salaries -->
-                            <x-dashboard.card-dashboard>
-                                <x-dashboard.card-dashboard-title>
-                                    <a href="{{route('salary.index')}}">{{__('Salaries')}}</a>
-                                </x-dashboard.card-dashboard-title>
-                                <x-dashboard.card-dashboard-data>
-                                    {{$SalariesCount}} / {{$SalariesSum}}
-                                </x-dashboard.card-dashboard-data>
-                                <span class="text-gray-400 text-sm mt-1">{{__('Count')}} / {{__('Sum')}}</span>
-                                <x-dashboard.card-dashboard-link href="{{route('salary.new')}}">
-                                    {{__('New')}}
-                                    <x-dashboard.card-dashboard-link-img />
-                                </x-dashboard.card-dashboard-link>
-                            </x-dashboard.card-dashboard>
+                            @livewire('Salary.SalaryCard')
 
                             <!-- Refillings -->
                             <x-dashboard.card-dashboard>
@@ -107,13 +93,8 @@
                                 </div>
                             </li>
 
-                            <li class="md:flex-1">
-                                <div class="flex flex-col border-l-4 border-gray-300 py-2 pl-4 md:border-l-0 md:border-t-4 md:pb-0 md:pl-0 md:pt-4"
-                                    aria-current="step">
-                                    <span class="text-sm font-medium text-gray-600">{{__('Salaries')}}</span>
-                                    <span class="text-sm font-medium">{{$SalariesSum}}</span>
-                                </div>
-                            </li>
+                            <!-- Salaries -->
+                            @livewire('Salary.SalaryBadge')
 
                             <li class="md:flex-1">
                                 <div class="flex flex-col border-l-4 border-gray-300 py-2 pl-4 md:border-l-0 md:border-t-4 md:pb-0 md:pl-0 md:pt-4"

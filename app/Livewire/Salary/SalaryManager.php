@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Salary;
 
 use Livewire\Component;
 use App\Models\Main\Salary;
@@ -25,7 +25,7 @@ class SalaryManager extends Component
     public function render()
     {
         $salaries = Salary::with(['owner'])->with(['driver'])->simplePaginate(3, pageName: 'salaries');
-        return view('livewire.salary-manager', ['salaries' => $salaries]);
+        return view('livewire.salary.salary-manager', ['salaries' => $salaries]);
     }
 
     /**
@@ -85,6 +85,7 @@ class SalaryManager extends Component
         );
         $this->editForm = false;
         $this->resetInputFields();
+        $this->dispatch('salaryUpdate');
     }
 
     /**
@@ -108,6 +109,7 @@ class SalaryManager extends Component
     {
         Salary::find($this->salary_id)->delete();
         $this->confirmingDeletion = false;
+        $this->dispatch('salaryUpdate');
     }
 
     /**

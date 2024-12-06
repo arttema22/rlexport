@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Salary;
 
 use Livewire\Component;
 use App\Models\Main\Salary;
@@ -13,6 +13,6 @@ class SalaryArchive extends Component
     {
         $this->salaries = Salary::with(['owner'])
             ->with(['driver'])->get();
-        return view('livewire.salary-archive');
+        return view('livewire.salary.salary-archive');
     }
 }
