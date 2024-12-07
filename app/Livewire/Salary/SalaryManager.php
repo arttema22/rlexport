@@ -4,10 +4,12 @@ namespace App\Livewire\Salary;
 
 use Livewire\Component;
 use App\Models\Main\Salary;
-use Illuminate\Support\Facades\Auth;
-use Livewire\WithoutUrlPagination;
 use Livewire\WithPagination;
+use Livewire\Attributes\Lazy;
+use Livewire\WithoutUrlPagination;
+use Illuminate\Support\Facades\Auth;
 
+#[Lazy]
 class SalaryManager extends Component
 {
     use WithPagination, WithoutUrlPagination;
@@ -125,5 +127,15 @@ class SalaryManager extends Component
         $this->driver_id = '';
         $this->sum = '';
         $this->comment = '';
+    }
+
+    public function placeholder()
+    {
+        return <<<'HTML'
+        <div>
+            <!-- Loading spinner... -->
+            <svg>...</svg>
+        </div>
+        HTML;
     }
 }

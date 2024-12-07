@@ -7,6 +7,7 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RefillingController;
 use App\Http\Controllers\BusinessTripController;
+use App\Livewire\Salary\SalaryPage;
 use App\MoonShine\Controllers\SettingsController;
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
@@ -21,7 +22,8 @@ Route::middleware([
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::get('/salaries', [SalaryController::class, 'index'])->name('salary.index');
+    Route::get('/salaries', SalaryPage::class)->name('salary.index');
+    //Route::get('/salaries', [SalaryController::class, 'index'])->name('salary.index');
     Route::get('/salary/new', [SalaryController::class, 'create'])->name('salary.new');
     Route::post('/salary/store', [SalaryController::class, 'store'])->name('salary.store');
     Route::get('/salary/{salary}/show', [SalaryController::class, 'show'])->name('salary.show');
