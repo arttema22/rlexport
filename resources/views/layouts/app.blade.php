@@ -40,7 +40,7 @@
         @endif
 
         <!-- Page Content -->
-        <main>
+        <main class="m-2 xl:mx-auto max-w-6xl">
             {{ $slot }}
         </main>
     </div>

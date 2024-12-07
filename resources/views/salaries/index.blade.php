@@ -18,13 +18,13 @@
     </x-slot>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
-        <div class="md:col-span-2 rounded-lg dark:bg-indigo-900 bg-indigo-300 p-4 shadow-lg">
+        <div class="md:col-span-2">
             @livewire('Salary.SalaryManager')
         </div>
-        <div class="rounded-lg dark:bg-indigo-900 bg-indigo-300 p-4 shadow-lg">
+        <div>
             @livewire('Salary.SalaryCard')
         </div>
-        <div class="rounded-lg dark:bg-indigo-900 bg-indigo-300 p-4 shadow-lg">
+        <div class="">
             @livewire('Salary.SalaryArchive')
         </div>
     </div>
