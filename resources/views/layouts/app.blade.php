@@ -24,10 +24,11 @@
 
 </head>
 
-<body class="font-sans antialiased">
+<body>
     <x-banner />
 
-    <div class="min-h-screen bg-gray-100">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {{-- Navigation menu --}}
         @livewire('navigation-menu')
 
         <!-- Page Heading -->
@@ -40,10 +41,8 @@
         @endif
 
         <!-- Page Content -->
-        <main class="m-2 xl:mx-auto max-w-6xl">
-            {{ $slot }}
-        </main>
-    </div>
+        {{ $slot }}
+    </main>
 
     @stack('modals')
 

@@ -11,7 +11,10 @@
 </head>
 
 <body>
-    <main class="m-2 xl:mx-auto max-w-6xl">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {{-- Navigation menu --}}
+        @livewire('navigation-menu')
+        <!-- Page Content -->
         {{ $slot }}
     </main>
 </body>
