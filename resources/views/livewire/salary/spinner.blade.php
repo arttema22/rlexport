@@ -1,4 +1,4 @@
-<div class="relative max-w-6xl mx-auto p-4 bg-gray-50 overflow-hidden border sm:rounded-lg text-gray-200">
+<div class="relative h-[350px] mx-auto p-4 bg-gray-50 overflow-hidden border sm:rounded-lg text-gray-200">
     <div class="overflow-x-auto">
         <div class="flex justify-between px-3 py-1">
             <h2 class="text-xl font-bold border-b-2 inline-block border-gray-200 pb-1 capitalize">
