@@ -1,8 +1,7 @@
 @if($editForm)
 <x-dialog-modal wire:model="editForm">
     <x-slot name="title">
-        {{ $salary->exists }}
-        {{ $salary->exists ? __('Edit') : __('Create') }}
+        {{-- {{ $salary->exists ? __('Edit') : __('Create') }} --}}
     </x-slot>
     <x-slot name="content">
         <div>

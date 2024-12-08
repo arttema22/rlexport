@@ -1,4 +1,5 @@
-<div class="relative max-w-6xl mx-auto p-4 bg-gray-50 overflow-hidden border sm:rounded-lg">
+<div class="relative max-w-6xl max-h-[400px] mx-auto p-4 bg-gray-50 overflow-hidden border sm:rounded-lg">
+
     <x-blocks.list>
         <x-slot name="title">
             <x-blocks.title>
@@ -36,8 +37,6 @@
             {{$salaries->links()}}
         </x-slot>
     </x-blocks.list>
-
-    @include('components.blocks.spinner')
 
     @include('components.blocks.salary-form')
 

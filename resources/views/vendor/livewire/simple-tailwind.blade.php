@@ -35,7 +35,7 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
             <button type="button" wire:click="previousPage('{{ $paginator->getPageName() }}')"
                 x-on:click="{{ $scrollIntoViewJsSnippet }}" wire:loading.attr="disabled"
                 dusk="previousPage{{ $paginator->getPageName() == 'page' ? '' : '.' . $paginator->getPageName() }}"
-                class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 rounded-md hover:text-green-600 hover:border-green-600 focus:outline-none active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
+                class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 rounded-md hover:border-gray-700 focus:outline-none active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
                 {!! __('pagination.previous') !!}
             </button>
             @endif
@@ -57,7 +57,7 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
             <button type="button" wire:click="nextPage('{{ $paginator->getPageName() }}')"
                 x-on:click="{{ $scrollIntoViewJsSnippet }}" wire:loading.attr="disabled"
                 dusk="nextPage{{ $paginator->getPageName() == 'page' ? '' : '.' . $paginator->getPageName() }}"
-                class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 rounded-md hover:text-green-600 hover:border-green-600 focus:outline-none active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
+                class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 rounded-md hover:border-gray-700 focus:outline-none active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
                 {!! __('pagination.next') !!}
             </button>
             @endif

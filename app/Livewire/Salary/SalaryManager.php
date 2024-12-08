@@ -131,11 +131,6 @@ class SalaryManager extends Component
 
     public function placeholder()
     {
-        return <<<'HTML'
-        <div>
-            <!-- Loading spinner... -->
-            <svg>...</svg>
-        </div>
-        HTML;
+        return view('livewire.salary.spinner');
     }
 }
