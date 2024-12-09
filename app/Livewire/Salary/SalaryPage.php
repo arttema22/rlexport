@@ -15,7 +15,7 @@ class SalaryPage extends Component
 
     public function render()
     {
-        $salaries = Salary::with(['owner'])->with(['driver'])->simplePaginate(3, pageName: 'salaries');
+        $salaries = Salary::with(['owner'])->with(['driver'])->simplePaginate(5, pageName: 'salaries');
         return view('livewire.salary.salary-page')
             ->with([
                 'salaries' => $salaries,
