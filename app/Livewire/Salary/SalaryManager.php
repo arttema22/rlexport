@@ -26,7 +26,6 @@ class SalaryManager extends Component
      */
     public function render()
     {
-        sleep(3);
         $salaries = Salary::with(['owner'])->with(['driver'])->simplePaginate(3, pageName: 'salaries');
         return view('livewire.salary.salary-manager', ['salaries' => $salaries]);
     }

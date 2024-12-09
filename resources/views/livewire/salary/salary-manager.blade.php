@@ -1,4 +1,4 @@
-<div class="relative max-w-6xl h-[350px] mx-auto p-4 bg-gray-50 overflow-hidden border sm:rounded-lg">
+<div class="relative h-[350px] mx-auto p-4 bg-gray-50 overflow-hidden border sm:rounded-lg">
 
     <x-blocks.list>
         <x-slot name="title">
